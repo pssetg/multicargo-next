@@ -71,8 +71,37 @@
     }
   },
   "About": {
-    "title": "O Multicargo",
-    "body": "Od 2007 roku przewozimy ładunki na całym świecie. Działamy jak Twój wewnętrzny dział handlu zagranicznego — zaopatrzenie, spedycja, cło i dostawa ostatniej mili pod jednym dachem."
+    "badge": "Nasz cel strategiczny",
+    "title": "Uczynić międzynarodową logistykę dla biznesu <hl>przejrzystą</hl>, przewidywalną i wolną od biurokracji.",
+    "body": "Multicargo to Twój zewnętrzny dział handlu zagranicznego. Zajmujemy się zaopatrzeniem, transportem, cłem i dostawą ostatniej mili — od każdego dostawcy, w każdym kraju. Azja, obie Ameryki, Izrael, Brazylia, Kanada — gdziekolwiek zaczyna się Twój łańcuch dostaw, przejmujemy go stamtąd. Jeden partner. Pełna kontrola. Zero chaosu.",
+    "evolutionTitle": "Ewolucja firmy",
+    "established": "Zał. 2008",
+    "evolution": {
+      "e1": {
+        "year": "2008",
+        "title": "Początek drogi",
+        "desc": "Utworzenie zespołu podstawowego. Rozpoczęcie praktyki w transporcie multimodalnym i budowa sieci agentów w Chinach i Europie."
+      },
+      "e2": {
+        "year": "2014",
+        "title": "Marka Multicargo",
+        "desc": "Przekształcenie w niezależnego operatora logistycznego. Uruchomienie linii bezpośrednich i kompleksowych usług handlu zagranicznego pod klucz."
+      },
+      "e3": {
+        "year": "15+ lat",
+        "title": "Ekosystem",
+        "desc": "Dopracowany mechanizm: huby morskie, agenci lotniczy, magazyny w UE i wewnętrzne doradztwo celne."
+      }
+    }
+  },
+  "Stats": {
+    "years": "Lat doświadczenia",
+    "offices": "Biur strategicznych",
+    "countries": "Obsługiwanych krajów",
+    "clients": "Klientów na świecie"
+  },
+  "Carriers": {
+    "title": "Współpracujemy z"
   },
   "Services": {
     "title": "Usługi",
@@ -82,17 +111,6 @@
     "road": "Transport drogowy",
     "customs": "Odprawa celna",
     "warehousing": "Magazynowanie"
-  },
-  "Stats": {
-    "title": "W liczbach",
-    "years": "Lat w logistyce",
-    "offices": "Biur na świecie",
-    "countries": "Obsługiwanych krajów",
-    "shipments": "Zrealizowanych przesyłek"
-  },
-  "Carriers": {
-    "title": "Przewoźnicy i partnerzy",
-    "subtitle": "Współpracujemy z wiodącymi przewoźnikami na świecie"
   },
   "Relocants": {
     "title": "Przeprowadzasz się do innego kraju?",

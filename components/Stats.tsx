@@ -1,25 +1,32 @@
 import { useTranslations } from 'next-intl';
-import Section from './Section';
+
+/** Headline metrics. Values are brand facts; labels are translated. */
+const STATS: { value: string; plus?: boolean; key: string }[] = [
+  { value: '15', plus: true, key: 'years' },
+  { value: '6', key: 'offices' },
+  { value: '30', plus: true, key: 'countries' },
+  { value: '500', plus: true, key: 'clients' },
+];
 
 export default function Stats() {
   const t = useTranslations('Stats');
-  const stats = [
-    { value: '18+', label: t('years') },
-    { value: '6', label: t('offices') },
-    { value: '40+', label: t('countries') },
-    { value: '50k+', label: t('shipments') },
-  ];
 
   return (
-    <Section id="stats" title={t('title')} className="border-t border-slate-100 dark:border-slate-900">
-      <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="text-center">
-            <div className="text-4xl font-extrabold text-sky-600 dark:text-sky-400">{s.value}</div>
-            <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{s.label}</div>
+    <div className="mb-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {STATS.map((s) => (
+        <div
+          key={s.key}
+          className="group rounded-[24px] border border-white/5 bg-slate-900/40 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-blue-500/30"
+        >
+          <div className="mb-2 font-mono text-4xl font-black text-white md:text-5xl">
+            {s.value}
+            {s.plus && <span className="text-blue-400">+</span>}
           </div>
-        ))}
-      </div>
-    </Section>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            {t(s.key)}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }

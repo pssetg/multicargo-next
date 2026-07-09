@@ -71,8 +71,37 @@
     }
   },
   "About": {
-    "title": "About Multicargo",
-    "body": "Since 2007 we have been moving cargo across the globe. We act as your in-house foreign trade department — sourcing, forwarding, customs and last-mile delivery under one roof."
+    "badge": "Our Strategic Goal",
+    "title": "To make international logistics for business <hl>transparent</hl>, predictable, and free of bureaucracy.",
+    "body": "Multicargo is your outsourced foreign trade department. We handle sourcing, shipping, customs, and last-mile delivery — from any supplier, in any country. Asia, the Americas, Israel, Brazil, Canada — wherever your supply chain begins, we take it from there. One partner. Full control. Zero chaos.",
+    "evolutionTitle": "Company Evolution",
+    "established": "Est. 2008",
+    "evolution": {
+      "e1": {
+        "year": "2008",
+        "title": "Start of the Journey",
+        "desc": "Formation of the core team. Commencement of practice in multimodal transport and creation of agent networks in China and Europe."
+      },
+      "e2": {
+        "year": "2014",
+        "title": "Multicargo Brand",
+        "desc": "Transformation into an independent logistics operator. Launch of direct lines and complex turnkey foreign trade services."
+      },
+      "e3": {
+        "year": "15+ years",
+        "title": "Ecosystem",
+        "desc": "A fine-tuned mechanism: ocean hubs, air agents, warehouses in the EU, and in-house customs consulting."
+      }
+    }
+  },
+  "Stats": {
+    "years": "Years of expertise",
+    "offices": "Strategic offices",
+    "countries": "Countries covered",
+    "clients": "Clients worldwide"
+  },
+  "Carriers": {
+    "title": "We Work With"
   },
   "Services": {
     "title": "Services",
@@ -82,17 +111,6 @@
     "road": "Road freight",
     "customs": "Customs clearance",
     "warehousing": "Warehousing"
-  },
-  "Stats": {
-    "title": "By the numbers",
-    "years": "Years in logistics",
-    "offices": "Offices worldwide",
-    "countries": "Countries served",
-    "shipments": "Shipments delivered"
-  },
-  "Carriers": {
-    "title": "Carriers & partners",
-    "subtitle": "We work with the world's leading carriers"
   },
   "Relocants": {
     "title": "Moving to a new country?",

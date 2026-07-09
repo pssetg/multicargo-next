@@ -71,8 +71,37 @@
     }
   },
   "About": {
-    "title": "Sobre Multicargo",
-    "body": "Desde 2007 movemos carga por todo el mundo. Actuamos como tu departamento interno de comercio exterior: abastecimiento, transporte, aduanas y entrega de última milla bajo un mismo techo."
+    "badge": "Nuestro objetivo estratégico",
+    "title": "Hacer que la logística internacional para empresas sea <hl>transparente</hl>, predecible y libre de burocracia.",
+    "body": "Multicargo es tu departamento de comercio exterior externalizado. Nos encargamos del abastecimiento, el transporte, las aduanas y la entrega de última milla — desde cualquier proveedor, en cualquier país. Asia, América, Israel, Brasil, Canadá — dondequiera que empiece tu cadena de suministro, la tomamos desde ahí. Un solo socio. Control total. Cero caos.",
+    "evolutionTitle": "Evolución de la empresa",
+    "established": "Est. 2008",
+    "evolution": {
+      "e1": {
+        "year": "2008",
+        "title": "El inicio del camino",
+        "desc": "Formación del equipo principal. Inicio de la práctica en transporte multimodal y creación de redes de agentes en China y Europa."
+      },
+      "e2": {
+        "year": "2014",
+        "title": "Marca Multicargo",
+        "desc": "Transformación en un operador logístico independiente. Lanzamiento de líneas directas y servicios integrales de comercio exterior llave en mano."
+      },
+      "e3": {
+        "year": "15+ años",
+        "title": "Ecosistema",
+        "desc": "Un mecanismo afinado: hubs marítimos, agentes aéreos, almacenes en la UE y consultoría aduanera propia."
+      }
+    }
+  },
+  "Stats": {
+    "years": "Años de experiencia",
+    "offices": "Oficinas estratégicas",
+    "countries": "Países cubiertos",
+    "clients": "Clientes en todo el mundo"
+  },
+  "Carriers": {
+    "title": "Trabajamos con"
   },
   "Services": {
     "title": "Servicios",
@@ -82,17 +111,6 @@
     "road": "Flete por carretera",
     "customs": "Despacho de aduanas",
     "warehousing": "Almacenamiento"
-  },
-  "Stats": {
-    "title": "En cifras",
-    "years": "Años en logística",
-    "offices": "Oficinas en el mundo",
-    "countries": "Países atendidos",
-    "shipments": "Envíos entregados"
-  },
-  "Carriers": {
-    "title": "Transportistas y socios",
-    "subtitle": "Trabajamos con los principales transportistas del mundo"
   },
   "Relocants": {
     "title": "¿Te mudas a otro país?",

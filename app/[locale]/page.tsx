@@ -4,8 +4,6 @@ import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
 import About from '@/components/About';
 import Services from '@/components/Services';
-import Stats from '@/components/Stats';
-import Carriers from '@/components/Carriers';
 import Relocants from '@/components/Relocants';
 import HotOffers from '@/components/HotOffers';
 import Careers from '@/components/Careers';
@@ -29,10 +27,9 @@ export default function HomePage({
       <main>
         <Hero />
         <HowItWorks />
+        {/* About mega-card contains Stats + Carriers + Company Evolution */}
         <About />
         <Services />
-        <Stats />
-        <Carriers />
         <Relocants />
         <HotOffers />
         <Careers />
