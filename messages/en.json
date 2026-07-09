@@ -14,19 +14,50 @@
     "quote": "Get a quote"
   },
   "Hero": {
-    "eyebrow": "Global Freight Forwarder · Since 2007",
-    "title": "Your dedicated foreign trade department",
-    "subtitle": "Air, sea, rail & road from any country to Europe and Ukraine. 15 years. 6 offices. One call.",
-    "ctaPrimary": "Get a quote",
-    "ctaSecondary": "How it works"
+    "titleLine1": "Multi Routes.",
+    "titleLine2": "One Partner.",
+    "subtitle": "We Run Your Imports. You Run Your Business.",
+    "tagline": "From a single box to a full container.",
+    "searchPlaceholder": "Enter route, cargo weight or container number...",
+    "typewriter": [
+      "Enter route, cargo weight or container number...",
+      "Shenzhen → Warsaw, 500 kg air freight",
+      "Ningbo → Gdansk, 40HC container",
+      "Valencia → Kyiv, full truck load"
+    ],
+    "calculate": "Calculate",
+    "hotOffers": "Hot Offers",
+    "quote": "People build too many walls and not enough bridges.",
+    "quoteAuthor": "Isaac Newton",
+    "services": {
+      "air": { "title": "Air Freight", "desc": "Any country. Any urgency." },
+      "sea": { "title": "Sea Freight", "desc": "Scale without compromise" },
+      "road": { "title": "Road Transport", "desc": "Door to door across Europe" },
+      "rail": { "title": "Rail Freight", "desc": "China to Europe in 18 days" },
+      "lcl": { "title": "LCL & Groupage", "desc": "Pay only for your volume" },
+      "oversized": { "title": "Oversized Cargo", "desc": "No load too complex" },
+      "customs": { "title": "Customs Clearance", "desc": "Clear. Fast. No surprises." }
+    }
   },
   "HowItWorks": {
-    "title": "How it works",
-    "subtitle": "From request to delivery in four steps",
-    "step1": "Send us your request",
-    "step2": "We build the route & quote",
-    "step3": "We handle customs & docs",
-    "step4": "Door-to-door delivery"
+    "badge": "Process",
+    "title": "How It Works",
+    "subtitle": "Three steps from your first message to cargo at your door. No specialist knowledge required.",
+    "footer": "Works for 1 pallet or 100 containers. From China, Israel, UAE, USA, Brazil — anywhere in the world.",
+    "steps": {
+      "step1": {
+        "title": "Submit Your Request",
+        "desc": "Share your route, cargo type, weight and preferred delivery mode. No forms — just a message or a call to your personal manager."
+      },
+      "step2": {
+        "title": "Get a Route Proposal",
+        "desc": "Tell us your cargo details and we'll analyse your case — origin, destination, cargo type, urgency — and come back with the most efficient route, mode, and cost breakdown. No guesswork. Pure expertise."
+      },
+      "step3": {
+        "title": "We Handle Everything",
+        "desc": "From pickup to final delivery — Multicargo manages the full chain: booking, customs clearance, tracking and documentation. You stay focused on your business."
+      }
+    }
   },
   "About": {
     "title": "About Multicargo",

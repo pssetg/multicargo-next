@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/config';
 import '../globals.css';
 
-const geistSans = localFont({
-  src: '../fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: '../fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
 export function generateStaticParams() {
@@ -51,8 +47,10 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang={locale} className={inter.variable}>
+      <body className="min-h-screen overflow-x-hidden bg-[#030712] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+        {/* Fixed route map background */}
+        <div className="bg-routes pointer-events-none fixed inset-0 z-[-1] h-full w-full opacity-35" />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

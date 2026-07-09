@@ -14,19 +14,50 @@
     "quote": "Cotizar"
   },
   "Hero": {
-    "eyebrow": "Transitario global · Desde 2007",
-    "title": "Tu propio departamento de comercio exterior",
-    "subtitle": "Aéreo, marítimo, ferroviario y por carretera desde cualquier país a Europa y Ucrania. 15 años. 6 oficinas. Una llamada.",
-    "ctaPrimary": "Solicitar cotización",
-    "ctaSecondary": "Cómo funciona"
+    "titleLine1": "Múltiples rutas.",
+    "titleLine2": "Un solo socio.",
+    "subtitle": "Nosotros gestionamos tus importaciones. Tú gestionas tu negocio.",
+    "tagline": "Desde una sola caja hasta un contenedor completo.",
+    "searchPlaceholder": "Introduce ruta, peso de la carga o número de contenedor...",
+    "typewriter": [
+      "Introduce ruta, peso de la carga o número de contenedor...",
+      "Shenzhen → Varsovia, 500 kg aéreo",
+      "Ningbo → Gdansk, contenedor 40HC",
+      "Valencia → Kiev, camión completo"
+    ],
+    "calculate": "Calcular",
+    "hotOffers": "Ofertas destacadas",
+    "quote": "La gente construye demasiados muros y no suficientes puentes.",
+    "quoteAuthor": "Isaac Newton",
+    "services": {
+      "air": { "title": "Flete aéreo", "desc": "Cualquier país. Cualquier urgencia." },
+      "sea": { "title": "Flete marítimo", "desc": "Escala sin compromisos" },
+      "road": { "title": "Transporte por carretera", "desc": "Puerta a puerta por Europa" },
+      "rail": { "title": "Flete ferroviario", "desc": "China a Europa en 18 días" },
+      "lcl": { "title": "Grupaje (LCL)", "desc": "Paga solo por tu volumen" },
+      "oversized": { "title": "Carga sobredimensionada", "desc": "Ninguna carga es demasiado compleja" },
+      "customs": { "title": "Despacho de aduanas", "desc": "Claro. Rápido. Sin sorpresas." }
+    }
   },
   "HowItWorks": {
+    "badge": "Proceso",
     "title": "Cómo funciona",
-    "subtitle": "De la solicitud a la entrega en cuatro pasos",
-    "step1": "Envíanos tu solicitud",
-    "step2": "Diseñamos la ruta y la cotización",
-    "step3": "Gestionamos aduanas y documentos",
-    "step4": "Entrega puerta a puerta"
+    "subtitle": "Tres pasos desde tu primer mensaje hasta la carga en tu puerta. No se requieren conocimientos especializados.",
+    "footer": "Funciona para 1 palet o 100 contenedores. Desde China, Israel, EAU, EE. UU., Brasil — desde cualquier parte del mundo.",
+    "steps": {
+      "step1": {
+        "title": "Envía tu solicitud",
+        "desc": "Comparte tu ruta, tipo de carga, peso y modo de entrega preferido. Sin formularios — solo un mensaje o una llamada a tu gestor personal."
+      },
+      "step2": {
+        "title": "Recibe una propuesta de ruta",
+        "desc": "Cuéntanos los detalles de tu carga y analizaremos tu caso — origen, destino, tipo de carga, urgencia — y te propondremos la ruta, el modo y el desglose de costes más eficientes. Sin conjeturas. Pura experiencia."
+      },
+      "step3": {
+        "title": "Nos encargamos de todo",
+        "desc": "Desde la recogida hasta la entrega final — Multicargo gestiona toda la cadena: reserva, despacho de aduanas, seguimiento y documentación. Tú te centras en tu negocio."
+      }
+    }
   },
   "About": {
     "title": "Sobre Multicargo",

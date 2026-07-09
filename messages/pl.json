@@ -14,19 +14,50 @@
     "quote": "Wyceń"
   },
   "Hero": {
-    "eyebrow": "Międzynarodowy spedytor · Od 2007 roku",
-    "title": "Twój własny dział handlu zagranicznego",
-    "subtitle": "Lotniczo, morzem, koleją i drogą z każdego kraju do Europy i Ukrainy. 15 lat. 6 biur. Jeden telefon.",
-    "ctaPrimary": "Poproś o wycenę",
-    "ctaSecondary": "Jak to działa"
+    "titleLine1": "Wiele tras.",
+    "titleLine2": "Jeden partner.",
+    "subtitle": "My prowadzimy Twój import. Ty prowadzisz swój biznes.",
+    "tagline": "Od pojedynczego kartonu po pełny kontener.",
+    "searchPlaceholder": "Wpisz trasę, wagę ładunku lub numer kontenera...",
+    "typewriter": [
+      "Wpisz trasę, wagę ładunku lub numer kontenera...",
+      "Shenzhen → Warszawa, 500 kg lotniczo",
+      "Ningbo → Gdańsk, kontener 40HC",
+      "Walencja → Kijów, pełny transport"
+    ],
+    "calculate": "Oblicz",
+    "hotOffers": "Gorące oferty",
+    "quote": "Ludzie budują zbyt wiele murów, a za mało mostów.",
+    "quoteAuthor": "Isaac Newton",
+    "services": {
+      "air": { "title": "Transport lotniczy", "desc": "Każdy kraj. Każdy termin." },
+      "sea": { "title": "Transport morski", "desc": "Skala bez kompromisów" },
+      "road": { "title": "Transport drogowy", "desc": "Od drzwi do drzwi w Europie" },
+      "rail": { "title": "Transport kolejowy", "desc": "Chiny — Europa w 18 dni" },
+      "lcl": { "title": "Drobnica (LCL)", "desc": "Płać tylko za swoją objętość" },
+      "oversized": { "title": "Ładunki ponadgabarytowe", "desc": "Żaden ładunek nie jest za trudny" },
+      "customs": { "title": "Odprawa celna", "desc": "Jasno. Szybko. Bez niespodzianek." }
+    }
   },
   "HowItWorks": {
+    "badge": "Proces",
     "title": "Jak to działa",
-    "subtitle": "Od zapytania do dostawy w czterech krokach",
-    "step1": "Wyślij nam zapytanie",
-    "step2": "Budujemy trasę i wycenę",
-    "step3": "Zajmujemy się cłem i dokumentami",
-    "step4": "Dostawa od drzwi do drzwi"
+    "subtitle": "Trzy kroki od pierwszej wiadomości do ładunku pod Twoimi drzwiami. Nie potrzebujesz wiedzy specjalistycznej.",
+    "footer": "Działa dla 1 palety lub 100 kontenerów. Z Chin, Izraela, ZEA, USA, Brazylii — z każdego miejsca na świecie.",
+    "steps": {
+      "step1": {
+        "title": "Wyślij zapytanie",
+        "desc": "Podaj trasę, rodzaj ładunku, wagę i preferowany sposób dostawy. Żadnych formularzy — po prostu wiadomość lub telefon do Twojego osobistego opiekuna."
+      },
+      "step2": {
+        "title": "Otrzymaj propozycję trasy",
+        "desc": "Podaj szczegóły ładunku, a przeanalizujemy Twój przypadek — pochodzenie, cel, rodzaj ładunku, pilność — i przedstawimy najbardziej efektywną trasę, sposób i kalkulację kosztów. Bez zgadywania. Czysta wiedza."
+      },
+      "step3": {
+        "title": "Zajmujemy się wszystkim",
+        "desc": "Od odbioru po finalną dostawę — Multicargo zarządza całym łańcuchem: rezerwacja, odprawa celna, śledzenie i dokumentacja. Ty skupiasz się na swoim biznesie."
+      }
+    }
   },
   "About": {
     "title": "O Multicargo",
