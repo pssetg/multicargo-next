@@ -1,0 +1,100 @@
+{
+  "Meta": {
+    "title": "Multicargo — Global Freight Forwarder | Since 2007",
+    "description": "Logistics chaos? Multicargo is your dedicated trade department — air, sea, rail & road from Asia, the Americas, Israel and beyond. 15 years. 6 offices. One call."
+  },
+  "Nav": {
+    "about": "About",
+    "services": "Services",
+    "carriers": "Carriers",
+    "relocants": "Relocants",
+    "careers": "Careers",
+    "partners": "Partners",
+    "contact": "Contact",
+    "quote": "Get a quote"
+  },
+  "Hero": {
+    "eyebrow": "Global Freight Forwarder · Since 2007",
+    "title": "Your dedicated foreign trade department",
+    "subtitle": "Air, sea, rail & road from any country to Europe and Ukraine. 15 years. 6 offices. One call.",
+    "ctaPrimary": "Get a quote",
+    "ctaSecondary": "How it works"
+  },
+  "HowItWorks": {
+    "title": "How it works",
+    "subtitle": "From request to delivery in four steps",
+    "step1": "Send us your request",
+    "step2": "We build the route & quote",
+    "step3": "We handle customs & docs",
+    "step4": "Door-to-door delivery"
+  },
+  "About": {
+    "title": "About Multicargo",
+    "body": "Since 2007 we have been moving cargo across the globe. We act as your in-house foreign trade department — sourcing, forwarding, customs and last-mile delivery under one roof."
+  },
+  "Services": {
+    "title": "Services",
+    "air": "Air freight",
+    "sea": "Sea freight",
+    "rail": "Rail freight",
+    "road": "Road freight",
+    "customs": "Customs clearance",
+    "warehousing": "Warehousing"
+  },
+  "Stats": {
+    "title": "By the numbers",
+    "years": "Years in logistics",
+    "offices": "Offices worldwide",
+    "countries": "Countries served",
+    "shipments": "Shipments delivered"
+  },
+  "Carriers": {
+    "title": "Carriers & partners",
+    "subtitle": "We work with the world's leading carriers"
+  },
+  "Relocants": {
+    "title": "Moving to a new country?",
+    "subtitle": "Personal relocation & belongings shipping made simple",
+    "cta": "Talk to a relocation specialist"
+  },
+  "Careers": {
+    "title": "Careers",
+    "subtitle": "Grow with a global logistics team",
+    "cta": "See open roles"
+  },
+  "Partners": {
+    "title": "Become a partner",
+    "subtitle": "Agents, carriers and resellers welcome",
+    "cta": "Partner with us"
+  },
+  "HotOffers": {
+    "title": "Hot offers",
+    "subtitle": "Current rates and route deals"
+  },
+  "Downloads": {
+    "title": "Downloads",
+    "subtitle": "Company brief, price lists and documents",
+    "brief": "Company brief (PDF)"
+  },
+  "Contact": {
+    "title": "Contact us",
+    "subtitle": "Tell us about your shipment and we'll get back within one business day",
+    "name": "Your name",
+    "email": "Email",
+    "message": "Your message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks! We'll be in touch shortly.",
+    "error": "Something went wrong. Please try again."
+  },
+  "ChatAgent": {
+    "title": "Ask Multicargo AI",
+    "placeholder": "Ask about routes, rates or customs…",
+    "send": "Send",
+    "greeting": "Hi! I'm the Multicargo assistant. How can I help with your shipment today?"
+  },
+  "Footer": {
+    "tagline": "Global freight forwarding since 2007",
+    "rights": "All rights reserved."
+  }
+}

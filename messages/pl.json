@@ -1,0 +1,100 @@
+{
+  "Meta": {
+    "title": "Multicargo — Międzynarodowy spedytor | Od 2007 roku",
+    "description": "Chaos w logistyce? Multicargo to Twój dział handlu zagranicznego — lotniczo, morzem, koleją i drogą z Azji, Ameryki, Izraela i nie tylko. 15 lat. 6 biur. Jeden telefon."
+  },
+  "Nav": {
+    "about": "O nas",
+    "services": "Usługi",
+    "carriers": "Przewoźnicy",
+    "relocants": "Relokacja",
+    "careers": "Kariera",
+    "partners": "Partnerzy",
+    "contact": "Kontakt",
+    "quote": "Wyceń"
+  },
+  "Hero": {
+    "eyebrow": "Międzynarodowy spedytor · Od 2007 roku",
+    "title": "Twój własny dział handlu zagranicznego",
+    "subtitle": "Lotniczo, morzem, koleją i drogą z każdego kraju do Europy i Ukrainy. 15 lat. 6 biur. Jeden telefon.",
+    "ctaPrimary": "Poproś o wycenę",
+    "ctaSecondary": "Jak to działa"
+  },
+  "HowItWorks": {
+    "title": "Jak to działa",
+    "subtitle": "Od zapytania do dostawy w czterech krokach",
+    "step1": "Wyślij nam zapytanie",
+    "step2": "Budujemy trasę i wycenę",
+    "step3": "Zajmujemy się cłem i dokumentami",
+    "step4": "Dostawa od drzwi do drzwi"
+  },
+  "About": {
+    "title": "O Multicargo",
+    "body": "Od 2007 roku przewozimy ładunki na całym świecie. Działamy jak Twój wewnętrzny dział handlu zagranicznego — zaopatrzenie, spedycja, cło i dostawa ostatniej mili pod jednym dachem."
+  },
+  "Services": {
+    "title": "Usługi",
+    "air": "Transport lotniczy",
+    "sea": "Transport morski",
+    "rail": "Transport kolejowy",
+    "road": "Transport drogowy",
+    "customs": "Odprawa celna",
+    "warehousing": "Magazynowanie"
+  },
+  "Stats": {
+    "title": "W liczbach",
+    "years": "Lat w logistyce",
+    "offices": "Biur na świecie",
+    "countries": "Obsługiwanych krajów",
+    "shipments": "Zrealizowanych przesyłek"
+  },
+  "Carriers": {
+    "title": "Przewoźnicy i partnerzy",
+    "subtitle": "Współpracujemy z wiodącymi przewoźnikami na świecie"
+  },
+  "Relocants": {
+    "title": "Przeprowadzasz się do innego kraju?",
+    "subtitle": "Relokacja osobista i transport rzeczy — po prostu",
+    "cta": "Porozmawiaj ze specjalistą"
+  },
+  "Careers": {
+    "title": "Kariera",
+    "subtitle": "Rozwijaj się w globalnym zespole logistycznym",
+    "cta": "Zobacz oferty pracy"
+  },
+  "Partners": {
+    "title": "Zostań partnerem",
+    "subtitle": "Zapraszamy agentów, przewoźników i resellerów",
+    "cta": "Zostań partnerem"
+  },
+  "HotOffers": {
+    "title": "Gorące oferty",
+    "subtitle": "Aktualne stawki i okazje na trasach"
+  },
+  "Downloads": {
+    "title": "Do pobrania",
+    "subtitle": "Broszura firmowa, cenniki i dokumenty",
+    "brief": "Broszura firmowa (PDF)"
+  },
+  "Contact": {
+    "title": "Skontaktuj się z nami",
+    "subtitle": "Opowiedz nam o swojej przesyłce, a odezwiemy się w ciągu jednego dnia roboczego",
+    "name": "Imię i nazwisko",
+    "email": "Email",
+    "message": "Twoja wiadomość",
+    "send": "Wyślij wiadomość",
+    "sending": "Wysyłanie…",
+    "success": "Dziękujemy! Wkrótce się odezwiemy.",
+    "error": "Coś poszło nie tak. Spróbuj ponownie."
+  },
+  "ChatAgent": {
+    "title": "Zapytaj Multicargo AI",
+    "placeholder": "Zapytaj o trasy, stawki lub cło…",
+    "send": "Wyślij",
+    "greeting": "Cześć! Jestem asystentem Multicargo. Jak mogę pomóc z Twoją przesyłką?"
+  },
+  "Footer": {
+    "tagline": "Międzynarodowa spedycja od 2007 roku",
+    "rights": "Wszelkie prawa zastrzeżone."
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "Meta": {
+    "title": "Multicargo — Transitario global | Desde 2007",
+    "description": "¿Caos logístico? Multicargo es tu departamento de comercio exterior — aéreo, marítimo, ferroviario y por carretera desde Asia, América, Israel y más. 15 años. 6 oficinas. Una llamada."
+  },
+  "Nav": {
+    "about": "Nosotros",
+    "services": "Servicios",
+    "carriers": "Transportistas",
+    "relocants": "Reubicación",
+    "careers": "Empleo",
+    "partners": "Socios",
+    "contact": "Contacto",
+    "quote": "Cotizar"
+  },
+  "Hero": {
+    "eyebrow": "Transitario global · Desde 2007",
+    "title": "Tu propio departamento de comercio exterior",
+    "subtitle": "Aéreo, marítimo, ferroviario y por carretera desde cualquier país a Europa y Ucrania. 15 años. 6 oficinas. Una llamada.",
+    "ctaPrimary": "Solicitar cotización",
+    "ctaSecondary": "Cómo funciona"
+  },
+  "HowItWorks": {
+    "title": "Cómo funciona",
+    "subtitle": "De la solicitud a la entrega en cuatro pasos",
+    "step1": "Envíanos tu solicitud",
+    "step2": "Diseñamos la ruta y la cotización",
+    "step3": "Gestionamos aduanas y documentos",
+    "step4": "Entrega puerta a puerta"
+  },
+  "About": {
+    "title": "Sobre Multicargo",
+    "body": "Desde 2007 movemos carga por todo el mundo. Actuamos como tu departamento interno de comercio exterior: abastecimiento, transporte, aduanas y entrega de última milla bajo un mismo techo."
+  },
+  "Services": {
+    "title": "Servicios",
+    "air": "Flete aéreo",
+    "sea": "Flete marítimo",
+    "rail": "Flete ferroviario",
+    "road": "Flete por carretera",
+    "customs": "Despacho de aduanas",
+    "warehousing": "Almacenamiento"
+  },
+  "Stats": {
+    "title": "En cifras",
+    "years": "Años en logística",
+    "offices": "Oficinas en el mundo",
+    "countries": "Países atendidos",
+    "shipments": "Envíos entregados"
+  },
+  "Carriers": {
+    "title": "Transportistas y socios",
+    "subtitle": "Trabajamos con los principales transportistas del mundo"
+  },
+  "Relocants": {
+    "title": "¿Te mudas a otro país?",
+    "subtitle": "Reubicación personal y envío de pertenencias, sin complicaciones",
+    "cta": "Habla con un especialista"
+  },
+  "Careers": {
+    "title": "Empleo",
+    "subtitle": "Crece con un equipo de logística global",
+    "cta": "Ver vacantes"
+  },
+  "Partners": {
+    "title": "Conviértete en socio",
+    "subtitle": "Agentes, transportistas y revendedores bienvenidos",
+    "cta": "Ser socio"
+  },
+  "HotOffers": {
+    "title": "Ofertas destacadas",
+    "subtitle": "Tarifas actuales y ofertas de rutas"
+  },
+  "Downloads": {
+    "title": "Descargas",
+    "subtitle": "Folleto corporativo, tarifas y documentos",
+    "brief": "Folleto corporativo (PDF)"
+  },
+  "Contact": {
+    "title": "Contáctanos",
+    "subtitle": "Cuéntanos sobre tu envío y te responderemos en un día hábil",
+    "name": "Tu nombre",
+    "email": "Email",
+    "message": "Tu mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "¡Gracias! Nos pondremos en contacto pronto.",
+    "error": "Algo salió mal. Inténtalo de nuevo."
+  },
+  "ChatAgent": {
+    "title": "Pregunta a Multicargo AI",
+    "placeholder": "Pregunta por rutas, tarifas o aduanas…",
+    "send": "Enviar",
+    "greeting": "¡Hola! Soy el asistente de Multicargo. ¿Cómo puedo ayudarte con tu envío?"
+  },
+  "Footer": {
+    "tagline": "Transitario internacional desde 2007",
+    "rights": "Todos los derechos reservados."
+  }
+}
