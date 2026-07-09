@@ -6,12 +6,23 @@
   "Nav": {
     "about": "About",
     "services": "Services",
-    "carriers": "Carriers",
-    "relocants": "Relocants",
     "careers": "Careers",
     "partners": "Partners",
-    "contact": "Contact",
-    "quote": "Get a quote"
+    "downloads": "Downloads & FAQ",
+    "login": "Login",
+    "language": "Language",
+    "servicesMenu": {
+      "air": "Air Freight",
+      "sea": "Sea Freight",
+      "road": "Road Transport",
+      "rail": "Rail Freight",
+      "lcl": "LCL & Groupage",
+      "oversized": "Oversized Cargo",
+      "importer": "Tech. Importer EU/UKR",
+      "courier": "Courier Services",
+      "handling": "Port/Air Handling",
+      "customs": "Customs Clearance"
+    }
   },
   "Hero": {
     "titleLine1": "Multi Routes.",

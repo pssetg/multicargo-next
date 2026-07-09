@@ -6,12 +6,23 @@
   "Nav": {
     "about": "O nas",
     "services": "Usługi",
-    "carriers": "Przewoźnicy",
-    "relocants": "Relokacja",
     "careers": "Kariera",
     "partners": "Partnerzy",
-    "contact": "Kontakt",
-    "quote": "Wyceń"
+    "downloads": "Pliki i FAQ",
+    "login": "Zaloguj",
+    "language": "Język",
+    "servicesMenu": {
+      "air": "Transport lotniczy",
+      "sea": "Transport morski",
+      "road": "Transport drogowy",
+      "rail": "Transport kolejowy",
+      "lcl": "Drobnica (LCL)",
+      "oversized": "Ładunki ponadgabarytowe",
+      "importer": "Importer tech. UE/UKR",
+      "courier": "Usługi kurierskie",
+      "handling": "Obsługa portowa/lotnicza",
+      "customs": "Odprawa celna"
+    }
   },
   "Hero": {
     "titleLine1": "Wiele tras.",

@@ -6,12 +6,23 @@
   "Nav": {
     "about": "Nosotros",
     "services": "Servicios",
-    "carriers": "Transportistas",
-    "relocants": "Reubicación",
     "careers": "Empleo",
     "partners": "Socios",
-    "contact": "Contacto",
-    "quote": "Cotizar"
+    "downloads": "Descargas y FAQ",
+    "login": "Acceder",
+    "language": "Idioma",
+    "servicesMenu": {
+      "air": "Flete aéreo",
+      "sea": "Flete marítimo",
+      "road": "Transporte por carretera",
+      "rail": "Flete ferroviario",
+      "lcl": "Grupaje (LCL)",
+      "oversized": "Carga sobredimensionada",
+      "importer": "Importador téc. UE/UKR",
+      "courier": "Servicios de mensajería",
+      "handling": "Manejo portuario/aéreo",
+      "customs": "Despacho de aduanas"
+    }
   },
   "Hero": {
     "titleLine1": "Múltiples rutas.",
