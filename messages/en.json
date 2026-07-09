@@ -103,6 +103,18 @@
   "Carriers": {
     "title": "We Work With"
   },
+  "Network": {
+    "mission": "From Shenzhen to Singapore. From São Paulo to Tel Aviv. From Toronto to Ho Chi Minh City. We've built the routes, learned the regulations, and made the contacts — so you don't have to. Your supply chain starts wherever your supplier is. We take it from there.",
+    "officesTitle": "Strategic Offices",
+    "offices": {
+      "kyiv": { "city": "Kyiv [UA]", "address": "Ukraine, 02081 Kyiv, Dniprovska Naberezna St, 19A" },
+      "warsaw": { "city": "Warsaw [PL]", "address": "Poland, 02-146 Warsaw, Wirażowa St, 35, Cargo Terminal" },
+      "wroclaw": { "city": "Wroclaw [PL]", "address": "Poland, 54-611 Wroclaw, Stanisławowska St, 47" },
+      "valencia": { "city": "Valencia [ES]", "address": "Spain, 46023 Valencia, Carolina Álvarez St, 33" },
+      "tallinn": { "city": "Tallinn [EE]", "address": "Estonia, 11314 Tallinn, Pärnu mnt, 141" },
+      "shenzhen": { "city": "Shenzhen [CN]", "address": "China, 518048 Shenzhen, Futian District, Fuzhong 3rd Rd, 16" }
+    }
+  },
   "Services": {
     "title": "Services",
     "air": "Air freight",

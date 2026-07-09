@@ -103,6 +103,18 @@
   "Carriers": {
     "title": "Współpracujemy z"
   },
+  "Network": {
+    "mission": "Z Shenzhen do Singapuru. Z São Paulo do Tel Awiwu. Z Toronto do Ho Chi Minh. Zbudowaliśmy trasy, poznaliśmy przepisy i nawiązaliśmy kontakty — abyś Ty nie musiał. Twój łańcuch dostaw zaczyna się tam, gdzie jest Twój dostawca. Resztą zajmujemy się my.",
+    "officesTitle": "Biura strategiczne",
+    "offices": {
+      "kyiv": { "city": "Kijów [UA]", "address": "Ukraine, 02081 Kyiv, Dniprovska Naberezna St, 19A" },
+      "warsaw": { "city": "Warszawa [PL]", "address": "Poland, 02-146 Warsaw, Wirażowa St, 35, Cargo Terminal" },
+      "wroclaw": { "city": "Wrocław [PL]", "address": "Poland, 54-611 Wroclaw, Stanisławowska St, 47" },
+      "valencia": { "city": "Walencja [ES]", "address": "Spain, 46023 Valencia, Carolina Álvarez St, 33" },
+      "tallinn": { "city": "Tallinn [EE]", "address": "Estonia, 11314 Tallinn, Pärnu mnt, 141" },
+      "shenzhen": { "city": "Shenzhen [CN]", "address": "China, 518048 Shenzhen, Futian District, Fuzhong 3rd Rd, 16" }
+    }
+  },
   "Services": {
     "title": "Usługi",
     "air": "Transport lotniczy",

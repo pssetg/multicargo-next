@@ -103,6 +103,18 @@
   "Carriers": {
     "title": "Ми працюємо з"
   },
+  "Network": {
+    "mission": "Від Шеньчженя до Сінгапуру. Від Сан-Паулу до Тель-Авіва. Від Торонто до Хошиміна. Ми побудували маршрути, вивчили правила та налагодили контакти — щоб вам не довелося. Ваш ланцюг постачання починається там, де ваш постачальник. Далі — наша справа.",
+    "officesTitle": "Стратегічні офіси",
+    "offices": {
+      "kyiv": { "city": "Київ [UA]", "address": "Ukraine, 02081 Kyiv, Dniprovska Naberezna St, 19A" },
+      "warsaw": { "city": "Варшава [PL]", "address": "Poland, 02-146 Warsaw, Wirażowa St, 35, Cargo Terminal" },
+      "wroclaw": { "city": "Вроцлав [PL]", "address": "Poland, 54-611 Wroclaw, Stanisławowska St, 47" },
+      "valencia": { "city": "Валенсія [ES]", "address": "Spain, 46023 Valencia, Carolina Álvarez St, 33" },
+      "tallinn": { "city": "Таллінн [EE]", "address": "Estonia, 11314 Tallinn, Pärnu mnt, 141" },
+      "shenzhen": { "city": "Шеньчжень [CN]", "address": "China, 518048 Shenzhen, Futian District, Fuzhong 3rd Rd, 16" }
+    }
+  },
   "Services": {
     "title": "Послуги",
     "air": "Авіаперевезення",

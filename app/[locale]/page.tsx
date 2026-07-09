@@ -3,6 +3,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
 import About from '@/components/About';
+import Network from '@/components/Network';
 import Services from '@/components/Services';
 import Relocants from '@/components/Relocants';
 import HotOffers from '@/components/HotOffers';
@@ -29,6 +30,7 @@ export default function HomePage({
         <HowItWorks />
         {/* About mega-card contains Stats + Carriers + Company Evolution */}
         <About />
+        <Network />
         <Services />
         <Relocants />
         <HotOffers />
