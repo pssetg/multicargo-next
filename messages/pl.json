@@ -295,5 +295,10 @@
   "Footer": {
     "company": "Multicargo Logistics Group",
     "copyright": "© {year} Multicargo. Multi Routes. One Partner."
+  },
+  "Cookie": {
+    "text": "Używamy plików cookie do analizy ruchu i poprawy doświadczeń. Kontynuując, zgadzasz się na ich użycie.",
+    "accept": "Akceptuj",
+    "decline": "Odrzuć"
   }
 }
