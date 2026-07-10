@@ -57,6 +57,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No messages provided' }, { status: 400 });
     }
 
+    // Anthropic requires the conversation to start with a `user` turn; drop any
+    // leading assistant messages (e.g. the client-side greeting).
+    const firstUser = messages.findIndex((m) => m.role === 'user');
+    const apiMessages = (firstUser >= 0 ? messages.slice(firstUser) : [])
+      .filter((m) => m && typeof m.content === 'string' && m.content.trim().length > 0)
+      .map((m) => ({ role: m.role, content: m.content }));
+
+    if (apiMessages.length === 0) {
+      return NextResponse.json({ error: 'No user message provided' }, { status: 400 });
+    }
+
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey || apiKey === 'placeholder') {
       return NextResponse.json(
@@ -72,7 +83,7 @@ export async function POST(request: Request) {
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1024,
       system: `${SYSTEM_PROMPT}\n\npage_language: ${langName}`,
-      messages: messages.map((m) => ({ role: m.role, content: m.content })),
+      messages: apiMessages,
     });
 
     const reply = response.content

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -8,15 +8,21 @@ import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_ADDRESS } fro
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+// Public EmailJS config (safe to expose). Env vars override the defaults.
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_mlc';
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_j8v1gpg';
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'r6yEzcDu-bcJvsCx5';
 const ORDER_EMAIL = 'order1@multicargoltd.com';
 
 export default function Contact() {
   const t = useTranslations('Contact');
   const locale = useLocale();
   const [status, setStatus] = useState<Status>('idle');
+
+  // Initialise EmailJS once on mount with the public key
+  useEffect(() => {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,34 +34,23 @@ export default function Contact() {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
 
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      console.error('EmailJS environment variables are not configured.');
-      setStatus('error');
-      return;
-    }
-
     setStatus('sending');
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          // Template variables — recipient is order1@multicargoltd.com
-          to_email: ORDER_EMAIL,
-          name: data.name,
-          email: data.contact,
-          message:
-            `🚢 NEW LEAD — MULTICARGO WEBSITE\n` +
-            `━━━━━━━━━━━━━━━━━\n` +
-            `📅 ${new Date().toLocaleString()}\n` +
-            `🌐 Language: ${locale}\n` +
-            `━━━━━━━━━━━━━━━━━\n\n` +
-            `👤 Name: ${data.name}\n` +
-            `📞 Contact: ${data.contact}\n\n` +
-            `📝 Message / Cargo details:\n${data.message}`,
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY },
-      );
+      // Template `template_j8v1gpg` expects: name, email, message
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email: ORDER_EMAIL,
+        name: data.name,
+        email: data.contact,
+        message:
+          `🚢 NEW LEAD — MULTICARGO WEBSITE\n` +
+          `━━━━━━━━━━━━━━━━━\n` +
+          `📅 ${new Date().toLocaleString()}\n` +
+          `🌐 Language: ${locale}\n` +
+          `━━━━━━━━━━━━━━━━━\n\n` +
+          `👤 Name: ${data.name}\n` +
+          `📞 Contact: ${data.contact}\n\n` +
+          `📝 Message / Cargo details:\n${data.message}`,
+      });
       setStatus('success');
       form.reset();
     } catch (err) {

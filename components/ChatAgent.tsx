@@ -34,6 +34,8 @@ export default function ChatAgent() {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  // Always-current copy of `messages` so sendMessage can read it synchronously
+  const messagesRef = useRef<Message[]>([]);
 
   // Seed the greeting once
   useEffect(() => {
@@ -42,6 +44,7 @@ export default function ChatAgent() {
   }, []);
 
   useEffect(() => {
+    messagesRef.current = messages;
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [messages, open, loading]);
 
@@ -51,17 +54,22 @@ export default function ChatAgent() {
       if (!trimmed || loading) return;
 
       setLoading(true);
-      let history: Message[] = [];
-      setMessages((prev) => {
-        history = [...prev, { role: 'user', content: trimmed }];
-        return history;
-      });
+      // Build the new history synchronously from the ref (not from a setState
+      // updater, whose result isn't available in this scope yet).
+      const history: Message[] = [...messagesRef.current, { role: 'user', content: trimmed }];
+      messagesRef.current = history;
+      setMessages(history);
+
+      // Anthropic requires the conversation to start with a `user` turn, so
+      // drop the leading assistant greeting before sending.
+      const firstUser = history.findIndex((m) => m.role === 'user');
+      const apiMessages = firstUser >= 0 ? history.slice(firstUser) : history;
 
       try {
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: history, language: locale }),
+          body: JSON.stringify({ messages: apiMessages, language: locale }),
         });
         const data = await res.json();
         const reply = data.reply ?? data.error ?? t('error');
