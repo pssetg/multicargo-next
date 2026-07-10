@@ -116,13 +116,60 @@
     }
   },
   "Services": {
-    "title": "Usługi",
-    "air": "Transport lotniczy",
-    "sea": "Transport morski",
-    "rail": "Transport kolejowy",
-    "road": "Transport drogowy",
-    "customs": "Odprawa celna",
-    "warehousing": "Magazynowanie"
+    "moreDetails": "Więcej szczegółów",
+    "collapse": "Zwiń",
+    "items": {
+      "air": {
+        "title": "Transport lotniczy",
+        "short": "Szybka dostawa lotnicza ładunków o dowolnej złożoności na całym świecie. Optymalne trasy i gwarantowane terminy dla Twojego biznesu.",
+        "full": "Organizacja lotów czarterowych, ekspresowa dostawa ładunków o wysokiej wartości i konsolidacja w kluczowych hubach lotniczych. Pełne wsparcie od odbioru po odprawę celną na lotnisku docelowym."
+      },
+      "sea": {
+        "title": "Transport morski",
+        "short": "Niezawodny transport morski: ładunki kontenerowe (FCL) i drobnicowe (LCL). Współpraca ze wszystkimi głównymi portami świata.",
+        "full": "Optymalne stawki frachtu, śledzenie kontenerów i spedycja portowa. Zapewniamy dostawę pustego sprzętu i terminowy zwrot po rozładunku."
+      },
+      "road": {
+        "title": "Transport drogowy",
+        "short": "Efektywne pokrycie Europy i Ukrainy. Od jednej palety po pełne ciężarówki ze śledzeniem 24/7.",
+        "full": "Własna sieć sprawdzonych przewoźników, usługi LTL i FTL. Transport ładunków niebezpiecznych (ADR) i wymagających kontroli temperatury (chłodnie). Szybkie podstawienie pojazdów do załadunku."
+      },
+      "rail": {
+        "title": "Transport kolejowy",
+        "short": "Stabilne i opłacalne euroazjatyckie trasy kolejowe. Pociągi bezpośrednie z Chin do Europy.",
+        "full": "Złoty środek między szybkością lotniczą a kosztem morskim. Regularne pociągi kontenerowe, wysokie bezpieczeństwo ładunku i stałe harmonogramy odjazdów."
+      },
+      "lcl": {
+        "title": "Drobnica (LCL)",
+        "short": "Opłacalna dostawa małych przesyłek w kontenerach i ciężarówkach zbiorczych.",
+        "full": "Idealne rozwiązanie dla firm, które nie potrzebują pełnego kontenera lub ciężarówki. Zbieramy ładunki od różnych nadawców w naszych magazynach konsolidacyjnych w Europie i Azji, tworzymy jedną partię i wysyłamy do celu.\n\nPłacisz tylko za objętość, którą zajmuje Twój towar. Zajmujemy się całą dokumentacją, przeładunkiem i ewidencją magazynową, zapewniając regularne odjazdy i przewidywalne terminy tranzytu."
+      },
+      "oversized": {
+        "title": "Ładunki ponadgabarytowe",
+        "short": "Logistyka projektowa dla obiektów superciężkich i ponadgabarytowych. Złożone rozwiązania inżynieryjne.",
+        "full": "Opracowanie schematów mocowania, uzyskiwanie specjalnych zezwoleń i pilotaż ładunków ponadgabarytowych. Transport maszyn przemysłowych, rolniczych i budowlanych."
+      },
+      "importer": {
+        "title": "Importer tech. UE/UKR",
+        "short": "Pełna obsługa transakcji handlu zagranicznego: wsparcie finansowe i techniczne w Europie i na Ukrainie.",
+        "full": "Outsourcing zakupów, płatności dla dostawców, kontrola walutowa i przygotowanie wszystkich dokumentów transportowych. Bierzemy na siebie ryzyko importera."
+      },
+      "courier": {
+        "title": "Usługi kurierskie",
+        "short": "Ekspresowe rozwiązania dla paczek i dokumentów. Od drzwi do drzwi z minimalnym czasem tranzytu.",
+        "full": "Globalny zasięg dzięki współpracy z liderami rynku usług kurierskich. Specjalne stawki na dostawę próbek handlowych i krytycznych części zamiennych."
+      },
+      "handling": {
+        "title": "Obsługa portowa/lotnicza",
+        "short": "Profesjonalna obsługa ładunków w głównych hubach europejskich. Kontrola przeładunku i magazynowania.",
+        "full": "Usługi magazynowe klasy A w portach Gdańska, Gdyni, Hamburga. Przeładunek z kontenerów na ciężarówki plandekowe, paletyzacja, etykietowanie i bezpieczne przechowywanie."
+      },
+      "customs": {
+        "title": "Odprawa celna",
+        "short": "Szybka odprawa celna i klasyfikacja taryfowa. Minimalizacja ryzyka i opóźnień.",
+        "full": "Ekspercki dobór kodów HS, przygotowanie deklaracji i wsparcie przy organach celnych 24/7. Zapewniamy odprawę bez zbędnych przestojów i dodatkowych kosztów."
+      }
+    }
   },
   "Relocants": {
     "title": "Przeprowadzasz się do innego kraju?",

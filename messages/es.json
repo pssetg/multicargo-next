@@ -116,13 +116,60 @@
     }
   },
   "Services": {
-    "title": "Servicios",
-    "air": "Flete aéreo",
-    "sea": "Flete marítimo",
-    "rail": "Flete ferroviario",
-    "road": "Flete por carretera",
-    "customs": "Despacho de aduanas",
-    "warehousing": "Almacenamiento"
+    "moreDetails": "Más detalles",
+    "collapse": "Contraer",
+    "items": {
+      "air": {
+        "title": "Flete aéreo",
+        "short": "Entrega aérea rápida de carga de cualquier complejidad en todo el mundo. Rutas óptimas y plazos garantizados para tu negocio.",
+        "full": "Organización de vuelos chárter, entrega exprés de carga de alto valor y consolidación en hubs aéreos clave. Soporte completo desde la recogida hasta el despacho de aduanas en el aeropuerto de destino."
+      },
+      "sea": {
+        "title": "Flete marítimo",
+        "short": "Flete marítimo fiable: carga en contenedor (FCL) y consolidada (LCL). Cooperación con todos los grandes puertos del mundo.",
+        "full": "Tarifas de flete óptimas, seguimiento de contenedores y despacho portuario. Garantizamos el suministro de equipo vacío y su devolución puntual tras la descarga."
+      },
+      "road": {
+        "title": "Transporte por carretera",
+        "short": "Cobertura eficiente de Europa y Ucrania. Desde un palet hasta camiones completos con seguimiento 24/7.",
+        "full": "Nuestra propia red de transportistas de confianza, servicio LTL y FTL. Transporte de mercancías peligrosas (ADR) y con temperatura controlada (frigoríficos). Envío rápido de vehículos para la carga."
+      },
+      "rail": {
+        "title": "Flete ferroviario",
+        "short": "Rutas ferroviarias euroasiáticas estables y rentables. Trenes directos de China a Europa.",
+        "full": "El punto medio entre la velocidad aérea y el coste marítimo. Trenes de contenedores regulares, alta seguridad de la carga y horarios de salida fijos."
+      },
+      "lcl": {
+        "title": "Grupaje (LCL)",
+        "short": "Entrega rentable de envíos pequeños en contenedores y camiones consolidados.",
+        "full": "Una solución ideal para empresas que no necesitan un contenedor o camión completo. Recogemos carga de distintos remitentes en nuestros almacenes de consolidación en Europa y Asia, formamos un único lote y lo enviamos al destino.\n\nSolo pagas por el volumen que ocupa tu producto. Nos encargamos de toda la documentación, el transbordo y la contabilidad de almacén, garantizando salidas regulares y plazos de tránsito predecibles."
+      },
+      "oversized": {
+        "title": "Carga sobredimensionada",
+        "short": "Logística de proyectos para objetos superpesados y sobredimensionados. Soluciones de ingeniería complejas.",
+        "full": "Desarrollo de esquemas de sujeción, obtención de permisos especiales y escolta de carga sobredimensionada. Transporte de equipos industriales, maquinaria agrícola y de construcción."
+      },
+      "importer": {
+        "title": "Importador téc. UE/UKR",
+        "short": "Soporte integral de operaciones de comercio exterior: apoyo financiero y técnico en Europa y Ucrania.",
+        "full": "Externalización de compras, pagos a proveedores, control de divisas y preparación de todos los documentos de transporte. Asumimos los riesgos del importador."
+      },
+      "courier": {
+        "title": "Servicios de mensajería",
+        "short": "Soluciones exprés para paquetes y documentos. Puerta a puerta con un tiempo de tránsito mínimo.",
+        "full": "Cobertura global gracias a la asociación con líderes del mercado de mensajería. Tarifas especiales para la entrega de muestras comerciales y repuestos críticos."
+      },
+      "handling": {
+        "title": "Manejo portuario/aéreo",
+        "short": "Manejo profesional de carga en los principales hubs europeos. Control de transbordo y almacenamiento.",
+        "full": "Servicios de almacén clase A en los puertos de Gdansk, Gdynia y Hamburgo. Transbordo de contenedores a camiones de lona, paletizado, etiquetado y almacenamiento seguro."
+      },
+      "customs": {
+        "title": "Despacho de aduanas",
+        "short": "Despacho de aduanas ágil y clasificación arancelaria. Minimización de riesgos y retrasos.",
+        "full": "Selección experta de códigos HS, preparación de declaraciones y soporte con las autoridades aduaneras 24/7. Garantizamos el despacho sin tiempos muertos innecesarios ni costes adicionales."
+      }
+    }
   },
   "Relocants": {
     "title": "¿Te mudas a otro país?",

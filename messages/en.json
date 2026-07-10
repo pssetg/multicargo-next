@@ -116,13 +116,60 @@
     }
   },
   "Services": {
-    "title": "Services",
-    "air": "Air freight",
-    "sea": "Sea freight",
-    "rail": "Rail freight",
-    "road": "Road freight",
-    "customs": "Customs clearance",
-    "warehousing": "Warehousing"
+    "moreDetails": "More Details",
+    "collapse": "Collapse",
+    "items": {
+      "air": {
+        "title": "Air Freight",
+        "short": "Fast air delivery of cargo of any complexity worldwide. Optimal routes and guaranteed delivery times for your business.",
+        "full": "Organization of charter flights, express delivery of high-value cargo, and consolidation at key air hubs. Full support from pickup to customs clearance at the destination airport."
+      },
+      "sea": {
+        "title": "Sea Freight",
+        "short": "Reliable sea freight: container (FCL) and consolidated (LCL) cargo. Cooperation with all major ports worldwide.",
+        "full": "Optimal freight rates, container tracking, and port forwarding. We ensure the supply of empty equipment and timely return after unloading."
+      },
+      "road": {
+        "title": "Road Transport",
+        "short": "Efficient coverage of Europe and Ukraine. From one pallet to full trucks with 24/7 tracking.",
+        "full": "Our own network of proven carriers, LTL and FTL service. Transportation of dangerous (ADR) and temperature-controlled cargo (reefers). Prompt dispatch of vehicles for loading."
+      },
+      "rail": {
+        "title": "Rail Freight",
+        "short": "Stable and cost-effective Eurasian rail routes. Direct trains from China to Europe.",
+        "full": "The golden mean between air speed and sea cost. Regular container trains, high cargo safety, and fixed departure schedules."
+      },
+      "lcl": {
+        "title": "LCL & Groupage",
+        "short": "Cost-effective delivery of small shipments in consolidated containers and trucks.",
+        "full": "An ideal solution for businesses that do not require a full container or truck. We collect cargo from different senders at our consolidation warehouses in Europe and Asia, form a single batch, and send it to the destination.\n\nYou only pay for the volume your product occupies. We handle all paperwork, reloading, and warehouse accounting, ensuring regular departures and predictable transit times."
+      },
+      "oversized": {
+        "title": "Oversized Cargo",
+        "short": "Project logistics for super-heavy and oversized objects. Complex engineering solutions.",
+        "full": "Development of securing schemes, obtaining special permits, and escort of oversized cargo. Transport of industrial equipment, agricultural and construction machinery."
+      },
+      "importer": {
+        "title": "Tech. Importer EU/UKR",
+        "short": "Full support of foreign trade transactions: financial and technical support in Europe and Ukraine.",
+        "full": "Procurement outsourcing, payments to suppliers, currency control, and preparation of all transport documents. We take on the importer's risks."
+      },
+      "courier": {
+        "title": "Courier Services",
+        "short": "Express solutions for parcels and documents. Door-to-door with minimal transit time.",
+        "full": "Global coverage through partnership with market leaders in courier services. Special rates for delivery of commercial samples and critical spare parts."
+      },
+      "handling": {
+        "title": "Port/Air Handling",
+        "short": "Professional cargo handling in major European hubs. Control of reloading and warehousing.",
+        "full": "Class A warehouse services in the ports of Gdansk, Gdynia, Hamburg. Reloading from containers to tilt trucks, palletizing, labeling, and secure storage."
+      },
+      "customs": {
+        "title": "Customs Clearance",
+        "short": "Prompt customs clearance and tariff classification. Minimization of risks and delays.",
+        "full": "Expert selection of HS codes, preparation of declarations, and support with customs authorities 24/7. We ensure clearance without unnecessary downtime and additional costs."
+      }
+    }
   },
   "Relocants": {
     "title": "Moving to a new country?",
