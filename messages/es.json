@@ -284,10 +284,13 @@
     "error": "Algo salió mal. Inténtalo de nuevo."
   },
   "ChatAgent": {
-    "title": "Pregunta a Multicargo AI",
-    "placeholder": "Pregunta por rutas, tarifas o aduanas…",
-    "send": "Enviar",
-    "greeting": "¡Hola! Soy el asistente de Multicargo. ¿Cómo puedo ayudarte con tu envío?"
+    "title": "Multicargo AI",
+    "status": "En línea",
+    "placeholder": "Escribe tu mensaje...",
+    "greeting": "¡Hola! 👋 Soy el asistente de IA de Multicargo. ¿Qué te gustaría enviar hoy?",
+    "error": "Error de conexión. Inténtalo de nuevo.",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram"
   },
   "Footer": {
     "company": "Multicargo Logistics Group",

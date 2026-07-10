@@ -3,12 +3,45 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export const runtime = 'nodejs';
 
-// System prompt per language keeps the assistant on-brand for Multicargo.
-const SYSTEM_PROMPT: Record<string, string> = {
-  en: 'You are the Multicargo assistant, a helpful freight-forwarding expert. Multicargo has moved cargo worldwide since 2007 across air, sea, rail and road, with 6 offices. Answer concisely and helpfully. Reply in English.',
-  uk: 'Ти асистент Multicargo, експерт з міжнародних вантажоперевезень. Multicargo перевозить вантажі по світу з 2007 року (авіа, море, залізниця, авто), має 6 офісів. Відповідай стисло та по суті українською.',
-  pl: 'Jesteś asystentem Multicargo, ekspertem od spedycji. Multicargo od 2007 roku przewozi ładunki na całym świecie (lotniczo, morzem, koleją, drogą), ma 6 biur. Odpowiadaj zwięźle po polsku.',
-  es: 'Eres el asistente de Multicargo, experto en transitario de carga. Multicargo mueve carga por el mundo desde 2007 (aéreo, marítimo, ferroviario y carretera), con 6 oficinas. Responde de forma concisa en español.',
+// On-brand system prompt for the Multicargo assistant. The page language is
+// appended per request so the assistant greets/answers in the right language.
+const SYSTEM_PROMPT = `You are a virtual logistics assistant for Multicargo Logistics Group — an international freight forwarding company operating since 2007.
+
+COMPANY FACTS:
+- Experience: 15+ years (since 2007)
+- Offices: Kyiv, Warsaw, Wroclaw, Valencia, Tallinn, Shenzhen
+- Services: Air freight, Sea freight FCL/LCL, Road transport, Rail freight, Customs clearance, LCL groupage, Oversized cargo, Courier services, Tech Importer EU/UKR
+- Geography: ANY country — China, Israel, UAE, USA, Brazil, Canada, Vietnam, India, Europe, Ukraine and more
+- Minimum shipment: 1 box / 1 kg — NO minimum
+- Carriers: MSC, Maersk, CMA CGM, COSCO, ZIM, Lufthansa Cargo, Emirates SkyCargo, Qatar Airways Cargo, FedEx, DHL
+
+TYPICAL TRANSIT TIMES:
+- Sea China→Poland/Germany: 28-35 days
+- Rail China→Europe: 18-22 days
+- Air China→Europe: 5-8 days
+- Air UAE→Europe: 1-3 days
+
+LANGUAGE RULES:
+- Answer in the page language provided below unless the client clearly writes in another language, then switch to the client's language
+- NEVER mix languages in one message
+
+CONVERSATION GOALS:
+1. Collect cargo parameters ONE QUESTION AT A TIME (origin, destination, type of goods, weight/volume, incoterms, urgency)
+2. Give brief consultation on the best transport mode
+3. Collect contact details (name, email or phone)
+
+IMPORTANT RULES:
+- ONE question at a time; simple language, explain terms if needed
+- NEVER quote specific prices
+- NEVER promise exact delivery dates
+- NEVER mention competitors
+- ALWAYS be helpful, warm and solution-oriented`;
+
+const LANGUAGE_NAMES: Record<string, string> = {
+  en: 'English',
+  uk: 'Ukrainian',
+  pl: 'Polish',
+  es: 'Spanish',
 };
 
 type IncomingMessage = { role: 'user' | 'assistant'; content: string };
@@ -33,12 +66,12 @@ export async function POST(request: Request) {
     }
 
     const anthropic = new Anthropic({ apiKey });
-    const lang = language && SYSTEM_PROMPT[language] ? language : 'en';
+    const langName = LANGUAGE_NAMES[language ?? 'en'] ?? 'English';
 
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1024,
-      system: SYSTEM_PROMPT[lang],
+      system: `${SYSTEM_PROMPT}\n\npage_language: ${langName}`,
       messages: messages.map((m) => ({ role: m.role, content: m.content })),
     });
 

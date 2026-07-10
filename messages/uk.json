@@ -284,10 +284,13 @@
     "error": "Щось пішло не так. Спробуйте ще раз."
   },
   "ChatAgent": {
-    "title": "Запитайте Multicargo AI",
-    "placeholder": "Спитайте про маршрути, ставки чи митницю…",
-    "send": "Надіслати",
-    "greeting": "Вітаю! Я асистент Multicargo. Чим можу допомогти з вашим відправленням?"
+    "title": "Multicargo AI",
+    "status": "Онлайн",
+    "placeholder": "Введіть повідомлення...",
+    "greeting": "Привіт! 👋 Я AI-асистент Multicargo. Що бажаєте відправити?",
+    "error": "Помилка зв'язку. Спробуйте ще раз.",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram"
   },
   "Footer": {
     "company": "Multicargo Logistics Group",
