@@ -207,9 +207,65 @@
     "subtitle": "Aktualne stawki i okazje na trasach"
   },
   "Downloads": {
-    "title": "Do pobrania",
-    "subtitle": "Broszura firmowa, cenniki i dokumenty",
-    "brief": "Broszura firmowa (PDF)"
+    "badge": "Zasoby",
+    "title": "Pliki i FAQ",
+    "subtitle": "Formularze, umowy i odpowiedzi na najczęstsze pytania",
+    "tabFaq": "FAQ",
+    "tabDocs": "Dokumenty",
+    "download": "Pobierz",
+    "toast": "Dokument w przygotowaniu. Skontaktuj się z nami, aby otrzymać aktualną wersję.",
+    "faqHeading": "Pytania ogólne",
+    "faq": {
+      "q1": {
+        "q": "Czy pracujecie tylko z dużymi firmami?",
+        "a": "Nie. Obsługujemy przesyłki od jednego kartonu po pełny kontener. Usługa LCL (drobnica) jest stworzona właśnie dla firm wysyłających małe wolumeny."
+      },
+      "q2": {
+        "q": "Czy pracujecie tylko z Chinami?",
+        "a": "Nie. Realizujemy import z dowolnego kraju — Chiny, Izrael, ZEA, USA, Brazylia, Kanada, Wietnam, Indie i inne."
+      },
+      "q3": {
+        "q": "Czy możecie być naszym oficjalnym importerem, jeśli nie mamy podmiotu prawnego w UE?",
+        "a": "Tak. Nasza usługa „Importer techniczny” pozwala nam działać jako oficjalny importer w Twoim imieniu w Polsce, Hiszpanii lub dowolnym innym kraju UE."
+      },
+      "q4": {
+        "q": "Jaki jest minimalny rozmiar przesyłki?",
+        "a": "Nie ma minimum. Obsługujemy paczki kurierskie od 1 kg oraz pełne kontenery dowolnej wielkości. Płacisz tylko za objętość lub wagę swojego ładunku."
+      }
+    },
+    "glossaryHeading": "Słowniczek / Kluczowe pojęcia",
+    "glossary": {
+      "fcl": { "full": "Pełny kontener", "desc": "Twój ładunek wypełnia cały kontener. Najbardziej opłacalne przy dużych przesyłkach." },
+      "lcl": { "full": "Ładunek drobnicowy", "desc": "Twój ładunek dzieli kontener z innymi. Płacisz tylko za swoją objętość (za CBM)." },
+      "cbm": { "full": "Metr sześcienny", "desc": "Jednostka pomiaru objętości ładunku. 1 CBM = 1m × 1m × 1m." },
+      "awb": { "full": "Lotniczy list przewozowy", "desc": "Główny dokument transportu lotniczego. Potwierdza umowę przewozu i służy jako potwierdzenie odbioru ładunku." },
+      "bl": { "full": "Konosament", "desc": "Główny dokument transportu morskiego. Potwierdza własność ładunku — kto go posiada, ten jest właścicielem towaru." },
+      "cmr": { "full": "Międzynarodowy list przewozowy", "desc": "Obowiązkowy dokument dla każdego międzynarodowego transportu drogowego. Potwierdza umowę między nadawcą, przewoźnikiem i odbiorcą." },
+      "t1": { "full": "Dokument tranzytowy", "desc": "Celny dokument tranzytowy UE. Umożliwia przewóz ładunku przez kraje UE bez opłat celnych do docelowego urzędu celnego." },
+      "exw": { "full": "Ex Works", "desc": "Incoterm: sprzedawca przygotowuje towar w swoim magazynie. Od tego momentu wszystkie koszty i ryzyko transportu ponosi kupujący." },
+      "fob": { "full": "Free On Board", "desc": "Incoterm: sprzedawca ładuje towar na statek. Od tego momentu koszty i ryzyko przechodzą na kupującego." },
+      "hs": { "full": "Kod HS (taryfa celna)", "desc": "Międzynarodowy kod klasyfikacji towarów. Określa stawki cła. Błędny kod = opóźnienia i kary." },
+      "eta": { "full": "Przybycie / Odjazd", "desc": "ETA — szacowany czas przybycia. ETD — szacowany czas odjazdu. Standardowe terminy harmonogramu przewozów." },
+      "demurrage": { "full": "Opłata za przestój w porcie", "desc": "Kara za przetrzymanie kontenera w porcie ponad wolny czas. Nalicza się codziennie — może być kosztowna." }
+    },
+    "groupClients": "Dla klientów",
+    "groupCarriers": "Dla przewoźników",
+    "groupPartners": "Dla partnerów",
+    "docs": {
+      "shippingRequest": { "name": "Formularz zlecenia przewozu", "langs": "EN / UA / PL / ES" },
+      "forwardingAgreement": { "name": "Umowa spedycji", "langs": "UA / EN" },
+      "importerChecklist": { "name": "Lista kontrolna importera", "langs": "EN / UA" },
+      "chinaGuide": { "name": "Przewodnik „Jak importować z Chin”", "langs": "EN / UA" },
+      "incoterms": { "name": "Przewodnik Incoterms 2020", "langs": "EN / UA / PL / ES" },
+      "tripOrder": { "name": "Zlecenie transportowe", "langs": "UA / EN" },
+      "carrierAgreement": { "name": "Umowa z przewoźnikiem", "langs": "UA / EN" },
+      "vehicleRequirements": { "name": "Wymagania dotyczące pojazdu", "langs": "UA / EN" },
+      "cmrInstructions": { "name": "Instrukcja wypełniania CMR", "langs": "UA / EN" },
+      "agentAgreement": { "name": "Umowa agencyjna", "langs": "UA / EN" },
+      "nda": { "name": "NDA — Umowa o poufności", "langs": "EN" },
+      "companyPresentation": { "name": "Prezentacja firmy", "langs": "EN / UA" },
+      "logisticsGlossary": { "name": "Słownik logistyczny", "langs": "EN / UA / PL / ES" }
+    }
   },
   "Contact": {
     "title": "Skontaktuj się z nami",

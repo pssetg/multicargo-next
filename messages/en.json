@@ -207,9 +207,65 @@
     "subtitle": "Current rates and route deals"
   },
   "Downloads": {
-    "title": "Downloads",
-    "subtitle": "Company brief, price lists and documents",
-    "brief": "Company brief (PDF)"
+    "badge": "Resources",
+    "title": "Downloads & FAQ",
+    "subtitle": "Forms, agreements and answers to the most common questions",
+    "tabFaq": "FAQ",
+    "tabDocs": "Documents",
+    "download": "Download",
+    "toast": "Document in preparation. Contact us for the latest version.",
+    "faqHeading": "General Questions",
+    "faq": {
+      "q1": {
+        "q": "Do you work only with large companies?",
+        "a": "No. We work from a single box to a full container. LCL (groupage) service is specifically designed for businesses that ship small volumes."
+      },
+      "q2": {
+        "q": "Do you work only with China?",
+        "a": "No. We handle imports from any country — China, Israel, UAE, USA, Brazil, Canada, Vietnam, India and more."
+      },
+      "q3": {
+        "q": "Can you be our official importer if we don't have a legal entity in the EU?",
+        "a": "Yes. Our Tech. Importer service allows us to act as the official importer of record on your behalf in Poland, Spain or any other EU country."
+      },
+      "q4": {
+        "q": "What is the minimum shipment size?",
+        "a": "There is no minimum. We handle courier parcels from 1kg and full containers of any size. You pay only for the volume or weight your cargo occupies."
+      }
+    },
+    "glossaryHeading": "Glossary / Key Terms",
+    "glossary": {
+      "fcl": { "full": "Full Container Load", "desc": "Your cargo fills the entire container. Most cost-effective for large shipments." },
+      "lcl": { "full": "Less than Container Load", "desc": "Your cargo shares a container with others. You pay only for your volume (per CBM)." },
+      "cbm": { "full": "Cubic Meter", "desc": "Unit of cargo volume measurement. 1 CBM = 1m × 1m × 1m." },
+      "awb": { "full": "Air Waybill", "desc": "The main document for air freight. Confirms the contract of carriage and serves as a cargo receipt." },
+      "bl": { "full": "Bill of Lading", "desc": "The main document for sea freight. Confirms ownership of the cargo — whoever holds it owns the goods." },
+      "cmr": { "full": "Road Consignment Note", "desc": "Mandatory document for every international road shipment. Confirms the contract between shipper, carrier and consignee." },
+      "t1": { "full": "Transit Document", "desc": "EU customs transit document. Allows cargo to move through EU countries without paying import duties until it reaches the final customs office." },
+      "exw": { "full": "Ex Works", "desc": "Incoterm: seller prepares goods at their warehouse. All transport costs and risks are the buyer's responsibility from that point." },
+      "fob": { "full": "Free On Board", "desc": "Incoterm: seller loads cargo onto the vessel. From that point, costs and risks transfer to the buyer." },
+      "hs": { "full": "Harmonized System Code", "desc": "International product classification code. Determines customs duty rates. Wrong code = delays and fines." },
+      "eta": { "full": "Arrival / Departure", "desc": "ETA — Estimated Time of Arrival. ETD — Estimated Time of Departure. Standard shipping schedule terms." },
+      "demurrage": { "full": "Port Detention Fee", "desc": "Penalty charged for keeping a container at port beyond the free time allowed. Accumulates daily — can be expensive." }
+    },
+    "groupClients": "For Clients",
+    "groupCarriers": "For Carriers",
+    "groupPartners": "For Partners",
+    "docs": {
+      "shippingRequest": { "name": "Shipping Request Form", "langs": "EN / UA / PL / ES" },
+      "forwardingAgreement": { "name": "Freight Forwarding Agreement", "langs": "UA / EN" },
+      "importerChecklist": { "name": "Importer Checklist", "langs": "EN / UA" },
+      "chinaGuide": { "name": "How to Import from China Guide", "langs": "EN / UA" },
+      "incoterms": { "name": "Incoterms 2020 Guide", "langs": "EN / UA / PL / ES" },
+      "tripOrder": { "name": "Trip Order Agreement", "langs": "UA / EN" },
+      "carrierAgreement": { "name": "Carrier Agreement", "langs": "UA / EN" },
+      "vehicleRequirements": { "name": "Vehicle Requirements", "langs": "UA / EN" },
+      "cmrInstructions": { "name": "CMR Instructions", "langs": "UA / EN" },
+      "agentAgreement": { "name": "Agent Agreement", "langs": "UA / EN" },
+      "nda": { "name": "NDA — Non-Disclosure Agreement", "langs": "EN" },
+      "companyPresentation": { "name": "Company Presentation", "langs": "EN / UA" },
+      "logisticsGlossary": { "name": "Logistics Glossary", "langs": "EN / UA / PL / ES" }
+    }
   },
   "Contact": {
     "title": "Contact us",

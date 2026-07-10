@@ -207,9 +207,65 @@
     "subtitle": "Tarifas actuales y ofertas de rutas"
   },
   "Downloads": {
-    "title": "Descargas",
-    "subtitle": "Folleto corporativo, tarifas y documentos",
-    "brief": "Folleto corporativo (PDF)"
+    "badge": "Recursos",
+    "title": "Descargas y FAQ",
+    "subtitle": "Formularios, acuerdos y respuestas a las preguntas más frecuentes",
+    "tabFaq": "FAQ",
+    "tabDocs": "Documentos",
+    "download": "Descargar",
+    "toast": "Documento en preparación. Contáctanos para la versión más reciente.",
+    "faqHeading": "Preguntas generales",
+    "faq": {
+      "q1": {
+        "q": "¿Trabajan solo con grandes empresas?",
+        "a": "No. Trabajamos desde una sola caja hasta un contenedor completo. El servicio LCL (grupaje) está diseñado específicamente para empresas que envían volúmenes pequeños."
+      },
+      "q2": {
+        "q": "¿Trabajan solo con China?",
+        "a": "No. Gestionamos importaciones desde cualquier país — China, Israel, EAU, EE. UU., Brasil, Canadá, Vietnam, India y más."
+      },
+      "q3": {
+        "q": "¿Pueden ser nuestro importador oficial si no tenemos una entidad legal en la UE?",
+        "a": "Sí. Nuestro servicio de Importador Técnico nos permite actuar como importador oficial en tu nombre en Polonia, España o cualquier otro país de la UE."
+      },
+      "q4": {
+        "q": "¿Cuál es el tamaño mínimo de envío?",
+        "a": "No hay mínimo. Gestionamos paquetes de mensajería desde 1 kg y contenedores completos de cualquier tamaño. Solo pagas por el volumen o el peso que ocupa tu carga."
+      }
+    },
+    "glossaryHeading": "Glosario / Términos clave",
+    "glossary": {
+      "fcl": { "full": "Contenedor completo", "desc": "Tu carga llena todo el contenedor. Lo más rentable para grandes envíos." },
+      "lcl": { "full": "Carga fraccionada", "desc": "Tu carga comparte contenedor con otras. Solo pagas por tu volumen (por CBM)." },
+      "cbm": { "full": "Metro cúbico", "desc": "Unidad de medida del volumen de carga. 1 CBM = 1m × 1m × 1m." },
+      "awb": { "full": "Carta de porte aéreo", "desc": "Documento principal del flete aéreo. Confirma el contrato de transporte y sirve como recibo de la carga." },
+      "bl": { "full": "Conocimiento de embarque", "desc": "Documento principal del flete marítimo. Confirma la propiedad de la carga — quien lo posee, posee la mercancía." },
+      "cmr": { "full": "Carta de porte por carretera", "desc": "Documento obligatorio para todo envío internacional por carretera. Confirma el contrato entre remitente, transportista y destinatario." },
+      "t1": { "full": "Documento de tránsito", "desc": "Documento de tránsito aduanero de la UE. Permite mover la carga por países de la UE sin pagar aranceles hasta la aduana final." },
+      "exw": { "full": "Ex Works (en fábrica)", "desc": "Incoterm: el vendedor prepara la mercancía en su almacén. Todos los costes y riesgos del transporte son del comprador desde ese punto." },
+      "fob": { "full": "Free On Board", "desc": "Incoterm: el vendedor carga la mercancía en el buque. A partir de ahí, costes y riesgos pasan al comprador." },
+      "hs": { "full": "Código HS (arancel)", "desc": "Código internacional de clasificación de productos. Determina los aranceles. Código erróneo = retrasos y multas." },
+      "eta": { "full": "Llegada / Salida", "desc": "ETA — hora estimada de llegada. ETD — hora estimada de salida. Términos estándar del calendario de envíos." },
+      "demurrage": { "full": "Tasa de detención portuaria", "desc": "Penalización por mantener un contenedor en puerto más allá del tiempo libre permitido. Se acumula a diario — puede ser cara." }
+    },
+    "groupClients": "Para clientes",
+    "groupCarriers": "Para transportistas",
+    "groupPartners": "Para socios",
+    "docs": {
+      "shippingRequest": { "name": "Formulario de solicitud de envío", "langs": "EN / UA / PL / ES" },
+      "forwardingAgreement": { "name": "Contrato de transitario", "langs": "UA / EN" },
+      "importerChecklist": { "name": "Checklist del importador", "langs": "EN / UA" },
+      "chinaGuide": { "name": "Guía «Cómo importar desde China»", "langs": "EN / UA" },
+      "incoterms": { "name": "Guía Incoterms 2020", "langs": "EN / UA / PL / ES" },
+      "tripOrder": { "name": "Contrato de orden de viaje", "langs": "UA / EN" },
+      "carrierAgreement": { "name": "Contrato con transportista", "langs": "UA / EN" },
+      "vehicleRequirements": { "name": "Requisitos del vehículo", "langs": "UA / EN" },
+      "cmrInstructions": { "name": "Instrucciones CMR", "langs": "UA / EN" },
+      "agentAgreement": { "name": "Contrato de agente", "langs": "UA / EN" },
+      "nda": { "name": "NDA — Acuerdo de confidencialidad", "langs": "EN" },
+      "companyPresentation": { "name": "Presentación de la empresa", "langs": "EN / UA" },
+      "logisticsGlossary": { "name": "Glosario logístico", "langs": "EN / UA / PL / ES" }
+    }
   },
   "Contact": {
     "title": "Contáctanos",
