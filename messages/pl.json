@@ -268,14 +268,19 @@
     }
   },
   "Contact": {
-    "title": "Skontaktuj się z nami",
-    "subtitle": "Opowiedz nam o swojej przesyłce, a odezwiemy się w ciągu jednego dnia roboczego",
+    "badge": "Kontakt",
+    "titleLine1": "Opowiedz nam o swoim ładunku.",
+    "titleLine2": "Resztą zajmiemy się my.",
+    "lead": "Wypełnij formularz lub skontaktuj się bezpośrednio. Nasi eksperci przeanalizują Twój przypadek i przedstawią najbardziej efektywną trasę oraz przejrzystą wycenę.",
     "name": "Imię i nazwisko",
-    "email": "Email",
-    "message": "Twoja wiadomość",
-    "send": "Wyślij wiadomość",
+    "namePlaceholder": "Jan Kowalski",
+    "contact": "Telefon lub Email",
+    "contactPlaceholder": "+48... lub email@example.com",
+    "message": "Wiadomość / Szczegóły ładunku",
+    "messagePlaceholder": "Opisz swój ładunek, miejsce nadania i przeznaczenia...",
+    "submit": "Otrzymaj bezpłatną wycenę",
     "sending": "Wysyłanie…",
-    "success": "Dziękujemy! Wkrótce się odezwiemy.",
+    "success": "Otrzymano. Nasz ekspert ds. logistyki przeanalizuje Twój przypadek i wkrótce się odezwie.",
     "error": "Coś poszło nie tak. Spróbuj ponownie."
   },
   "ChatAgent": {
@@ -285,7 +290,7 @@
     "greeting": "Cześć! Jestem asystentem Multicargo. Jak mogę pomóc z Twoją przesyłką?"
   },
   "Footer": {
-    "tagline": "Międzynarodowa spedycja od 2007 roku",
-    "rights": "Wszelkie prawa zastrzeżone."
+    "company": "Multicargo Logistics Group",
+    "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   }
 }

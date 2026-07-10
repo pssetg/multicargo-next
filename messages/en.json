@@ -268,14 +268,19 @@
     }
   },
   "Contact": {
-    "title": "Contact us",
-    "subtitle": "Tell us about your shipment and we'll get back within one business day",
-    "name": "Your name",
-    "email": "Email",
-    "message": "Your message",
-    "send": "Send message",
+    "badge": "Get in Touch",
+    "titleLine1": "Tell us about your cargo.",
+    "titleLine2": "We'll handle the rest.",
+    "lead": "Fill in the form or reach out directly. Our experts will analyse your case and come back with the most efficient route and a transparent cost proposal.",
+    "name": "Your Name",
+    "namePlaceholder": "John Doe",
+    "contact": "Phone or Email",
+    "contactPlaceholder": "+1... or email@example.com",
+    "message": "Message / Cargo Details",
+    "messagePlaceholder": "Describe your cargo, origin, and destination...",
+    "submit": "Get a Free Quote",
     "sending": "Sending…",
-    "success": "Thanks! We'll be in touch shortly.",
+    "success": "Received. Our logistics expert will review your case and get back to you shortly.",
     "error": "Something went wrong. Please try again."
   },
   "ChatAgent": {
@@ -285,7 +290,7 @@
     "greeting": "Hi! I'm the Multicargo assistant. How can I help with your shipment today?"
   },
   "Footer": {
-    "tagline": "Global freight forwarding since 2007",
-    "rights": "All rights reserved."
+    "company": "Multicargo Logistics Group",
+    "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   }
 }

@@ -268,14 +268,19 @@
     }
   },
   "Contact": {
-    "title": "Contáctanos",
-    "subtitle": "Cuéntanos sobre tu envío y te responderemos en un día hábil",
+    "badge": "Contacto",
+    "titleLine1": "Cuéntanos sobre tu carga.",
+    "titleLine2": "Nosotros nos encargamos del resto.",
+    "lead": "Rellena el formulario o contáctanos directamente. Nuestros expertos analizarán tu caso y te propondrán la ruta más eficiente y un presupuesto transparente.",
     "name": "Tu nombre",
-    "email": "Email",
-    "message": "Tu mensaje",
-    "send": "Enviar mensaje",
+    "namePlaceholder": "Juan Pérez",
+    "contact": "Teléfono o Email",
+    "contactPlaceholder": "+34... o email@example.com",
+    "message": "Mensaje / Detalles de la carga",
+    "messagePlaceholder": "Describe tu carga, origen y destino...",
+    "submit": "Obtener presupuesto gratis",
     "sending": "Enviando…",
-    "success": "¡Gracias! Nos pondremos en contacto pronto.",
+    "success": "Recibido. Nuestro experto en logística revisará tu caso y se pondrá en contacto contigo en breve.",
     "error": "Algo salió mal. Inténtalo de nuevo."
   },
   "ChatAgent": {
@@ -285,7 +290,7 @@
     "greeting": "¡Hola! Soy el asistente de Multicargo. ¿Cómo puedo ayudarte con tu envío?"
   },
   "Footer": {
-    "tagline": "Transitario internacional desde 2007",
-    "rights": "Todos los derechos reservados."
+    "company": "Multicargo Logistics Group",
+    "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   }
 }
