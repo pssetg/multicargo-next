@@ -1,19 +1,25 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_ADDRESS } from '@/lib/links';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+const ORDER_EMAIL = 'order1@multicargoltd.com';
+
 export default function Contact() {
   const t = useTranslations('Contact');
+  const locale = useLocale();
   const [status, setStatus] = useState<Status>('idle');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('sending');
 
     const form = e.currentTarget;
     const data = {
@@ -22,15 +28,38 @@ export default function Contact() {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
 
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error('EmailJS environment variables are not configured.');
+      setStatus('error');
+      return;
+    }
+
+    setStatus('sending');
     try {
-      // TODO: integrate EmailJS. Install `@emailjs/browser`, then:
-      //   await emailjs.send(SERVICE_ID, TEMPLATE_ID, data, PUBLIC_KEY);
-      console.log('Contact form submission (stub):', data);
-      await new Promise((r) => setTimeout(r, 600));
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          // Template variables — recipient is order1@multicargoltd.com
+          to_email: ORDER_EMAIL,
+          name: data.name,
+          email: data.contact,
+          message:
+            `🚢 NEW LEAD — MULTICARGO WEBSITE\n` +
+            `━━━━━━━━━━━━━━━━━\n` +
+            `📅 ${new Date().toLocaleString()}\n` +
+            `🌐 Language: ${locale}\n` +
+            `━━━━━━━━━━━━━━━━━\n\n` +
+            `👤 Name: ${data.name}\n` +
+            `📞 Contact: ${data.contact}\n\n` +
+            `📝 Message / Cargo details:\n${data.message}`,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
       setStatus('success');
       form.reset();
     } catch (err) {
-      console.error(err);
+      console.error('EmailJS send failed:', err);
       setStatus('error');
     }
   }
