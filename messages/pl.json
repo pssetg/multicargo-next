@@ -177,14 +177,30 @@
     "cta": "Porozmawiaj ze specjalistą"
   },
   "Careers": {
-    "title": "Kariera",
-    "subtitle": "Rozwijaj się w globalnym zespole logistycznym",
-    "cta": "Zobacz oferty pracy"
+    "badge": "Kariera i partnerstwo",
+    "titleLine1": "Nie zatrudniamy sprzedawców.",
+    "titleLine2": "Współpracujemy z łowcami.",
+    "lead": "Rynek logistyczny nie zna granic. Tak samo jak nasz zespół.",
+    "body": "Współpracujemy zdalnie ze specjalistami ds. sprzedaży i agentami — z Kijowa, Warszawy, Walencji czy skądkolwiek indziej. Jeśli potrafisz otwierać drzwi i zamykać transakcje w branży frachtowej, mamy infrastrukturę, która Cię wesprze.",
+    "cta": "Napisz do nas",
+    "cards": {
+      "flexible": { "title": "Elastyczne formaty", "desc": "Praca zdalna i przejrzyste formy współpracy dla Twojego komfortu." },
+      "resources": { "title": "Nasze zasoby", "desc": "Silny back office, dopracowane łańcuchy dostaw i sieci agentów w Chinach i UE." },
+      "geography": { "title": "Geografia bez granic", "desc": "Dla eksperta ds. sprzedaży lokalizacja nie ma znaczenia. Masz dostęp do wszystkich możliwości ekosystemu." }
+    }
   },
   "Partners": {
-    "title": "Zostań partnerem",
-    "subtitle": "Zapraszamy agentów, przewoźników i resellerów",
-    "cta": "Zostań partnerem"
+    "badge": "Partnerstwo strategiczne",
+    "titleLine1": "Nie tylko współpracujemy.",
+    "titleLine2": "Budujemy razem.",
+    "lead": "Multicargo to nie tylko firma logistyczna — to platforma.",
+    "body": "Jesteśmy otwarci na długoterminowe partnerstwa z agentami, spedytorami, przewoźnikami i agencjami celnymi, którzy podzielają nasze wartości: niezawodność, przejrzystość i wzajemny rozwój.",
+    "cta": "Zostań partnerem",
+    "cards": {
+      "winwin": { "title": "Podejście Win-Win", "desc": "Tworzymy warunki, w których każdy uczestnik łańcucha uzyskuje maksymalne korzyści i wzrost." },
+      "reliability": { "title": "Niezawodność", "desc": "Nienaganna dyscyplina finansowa i ścisłe wypełnianie wszystkich podjętych zobowiązań." },
+      "infrastructure": { "title": "Rozwój infrastruktury", "desc": "Gotowi na wspólne projekty rozbudowy powierzchni magazynowej i nowych tras logistycznych." }
+    }
   },
   "HotOffers": {
     "title": "Gorące oferty",

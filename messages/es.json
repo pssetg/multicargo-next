@@ -177,14 +177,30 @@
     "cta": "Habla con un especialista"
   },
   "Careers": {
-    "title": "Empleo",
-    "subtitle": "Crece con un equipo de logística global",
-    "cta": "Ver vacantes"
+    "badge": "Empleo y colaboración",
+    "titleLine1": "No contratamos vendedores.",
+    "titleLine2": "Nos asociamos con cazadores.",
+    "lead": "El mercado logístico no tiene fronteras. Nuestro equipo tampoco.",
+    "body": "Trabajamos con profesionales de ventas y agentes en remoto — desde Kiev, Varsovia, Valencia o cualquier otro lugar. Si sabes abrir puertas y cerrar acuerdos en el sector del flete, tenemos la infraestructura para respaldarte.",
+    "cta": "Escríbenos",
+    "cards": {
+      "flexible": { "title": "Formatos flexibles", "desc": "Trabajo remoto y formas de cooperación transparentes para tu comodidad." },
+      "resources": { "title": "Nuestros recursos", "desc": "Un back office sólido, cadenas de suministro afinadas y redes de agentes en China y la UE." },
+      "geography": { "title": "Geografía sin fronteras", "desc": "Para un experto en ventas, la ubicación no importa. Tienes acceso a todas las oportunidades del ecosistema." }
+    }
   },
   "Partners": {
-    "title": "Conviértete en socio",
-    "subtitle": "Agentes, transportistas y revendedores bienvenidos",
-    "cta": "Ser socio"
+    "badge": "Alianza estratégica",
+    "titleLine1": "No solo trabajamos juntos.",
+    "titleLine2": "Construimos juntos.",
+    "lead": "Multicargo no es solo una empresa de logística: es una plataforma.",
+    "body": "Estamos abiertos a alianzas a largo plazo con agentes, transitarios, transportistas y agentes de aduanas que compartan nuestros valores: fiabilidad, transparencia y crecimiento mutuo.",
+    "cta": "Conviértete en socio",
+    "cards": {
+      "winwin": { "title": "Enfoque Win-Win", "desc": "Creamos condiciones en las que cada participante de la cadena obtiene el máximo beneficio y crecimiento." },
+      "reliability": { "title": "Fiabilidad", "desc": "Disciplina financiera impecable y cumplimiento estricto de todos los compromisos adquiridos." },
+      "infrastructure": { "title": "Desarrollo de infraestructura", "desc": "Listos para proyectos conjuntos que amplíen la capacidad de almacenamiento y nuevas rutas logísticas." }
+    }
   },
   "HotOffers": {
     "title": "Ofertas destacadas",

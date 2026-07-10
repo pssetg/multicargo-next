@@ -177,14 +177,30 @@
     "cta": "Talk to a relocation specialist"
   },
   "Careers": {
-    "title": "Careers",
-    "subtitle": "Grow with a global logistics team",
-    "cta": "See open roles"
+    "badge": "Careers & Partnership",
+    "titleLine1": "We don't hire salespeople.",
+    "titleLine2": "We partner with hunters.",
+    "lead": "The logistics market is borderless. So is our team.",
+    "body": "We work with sales professionals and agents remotely — from Kyiv, Warsaw, Valencia, or anywhere else. If you know how to open doors and close deals in freight, we have the infrastructure to back you up.",
+    "cta": "Write to Us",
+    "cards": {
+      "flexible": { "title": "Flexible Formats", "desc": "Remote work and transparent cooperation formats for your comfort." },
+      "resources": { "title": "Our Resources", "desc": "Strong back office, fine-tuned supply chains, and agent networks in China & EU." },
+      "geography": { "title": "Geography Without Borders", "desc": "For a sales expert, location does not matter. You get access to all opportunities of the ecosystem." }
+    }
   },
   "Partners": {
-    "title": "Become a partner",
-    "subtitle": "Agents, carriers and resellers welcome",
-    "cta": "Partner with us"
+    "badge": "Strategic Partnership",
+    "titleLine1": "We don't just work together.",
+    "titleLine2": "We build together.",
+    "lead": "Multicargo is not just a logistics company — it's a platform.",
+    "body": "We're open to long-term partnerships with agents, freight forwarders, carriers, and customs brokers who share our values: reliability, transparency, and mutual growth.",
+    "cta": "Become a Partner",
+    "cards": {
+      "winwin": { "title": "Win-Win Approach", "desc": "We create conditions where each chain participant gets maximum benefit and growth." },
+      "reliability": { "title": "Reliability", "desc": "Impeccable financial discipline and strict fulfillment of all taken commitments." },
+      "infrastructure": { "title": "Infrastructure Development", "desc": "Ready for joint projects to expand warehouse capacity and new logistics routes." }
+    }
   },
   "HotOffers": {
     "title": "Hot offers",

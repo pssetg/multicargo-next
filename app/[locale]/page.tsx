@@ -5,8 +5,6 @@ import HowItWorks from '@/components/HowItWorks';
 import About from '@/components/About';
 import Network from '@/components/Network';
 import Services from '@/components/Services';
-import Relocants from '@/components/Relocants';
-import HotOffers from '@/components/HotOffers';
 import Careers from '@/components/Careers';
 import Partners from '@/components/Partners';
 import Downloads from '@/components/Downloads';
@@ -32,8 +30,6 @@ export default function HomePage({
         <About />
         <Network />
         <Services />
-        <Relocants />
-        <HotOffers />
         <Careers />
         <Partners />
         <Downloads />
