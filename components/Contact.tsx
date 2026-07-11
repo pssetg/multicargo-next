@@ -35,6 +35,11 @@ export default function Contact() {
     };
 
     setStatus('sending');
+
+    // Yield to the browser so it can paint the "sending" state and keep the
+    // interaction responsive (improves INP) before the synchronous EmailJS work.
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
     try {
       // Template `template_j8v1gpg` expects: name, email, message
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
