@@ -287,7 +287,7 @@
     "title": "Multicargo AI",
     "status": "En línea",
     "placeholder": "Escribe tu mensaje...",
-    "greeting": "¡Hola! 👋 Soy el asistente de IA de Multicargo. ¿Qué te gustaría enviar hoy?",
+    "greeting": "¡Hola! Soy el asistente AI de Multicargo. Cuéntame sobre tu carga — ¿de dónde, a dónde, qué mercancía?",
     "error": "Error de conexión. Inténtalo de nuevo.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram"

@@ -287,7 +287,7 @@
     "title": "Multicargo AI",
     "status": "Онлайн",
     "placeholder": "Введіть повідомлення...",
-    "greeting": "Привіт! 👋 Я AI-асистент Multicargo. Що бажаєте відправити?",
+    "greeting": "Привіт! Я AI асистент Multicargo. Розкажіть про ваш вантаж — звідки, куди, що везете?",
     "error": "Помилка зв'язку. Спробуйте ще раз.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram"

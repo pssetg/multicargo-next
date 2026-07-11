@@ -42,20 +42,15 @@ export default function Contact() {
 
     try {
       // Template `template_j8v1gpg` expects: name, email, message
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email: ORDER_EMAIL,
+      const templateParams = {
         name: data.name,
-        email: data.contact,
-        message:
-          `🚢 NEW LEAD — MULTICARGO WEBSITE\n` +
-          `━━━━━━━━━━━━━━━━━\n` +
-          `📅 ${new Date().toLocaleString()}\n` +
-          `🌐 Language: ${locale}\n` +
-          `━━━━━━━━━━━━━━━━━\n\n` +
-          `👤 Name: ${data.name}\n` +
-          `📞 Contact: ${data.contact}\n\n` +
-          `📝 Message / Cargo details:\n${data.message}`,
-      });
+        email: data.contact, // send the phone/email field as `email`
+        message: data.message,
+        language: locale,
+        date: new Date().toLocaleString(),
+        to_email: ORDER_EMAIL,
+      };
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       setStatus('success');
       form.reset();
     } catch (err) {
