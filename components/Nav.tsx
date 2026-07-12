@@ -86,7 +86,14 @@ export default function Nav() {
           className={`flag-box cursor-pointer ${l === locale ? 'active' : ''}`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={FLAGS[l].src} className="flag-icon" alt={FLAGS[l].alt} />
+          <img
+            src={FLAGS[l].src}
+            className="flag-icon"
+            alt={FLAGS[l].alt}
+            width={20}
+            height={14}
+            decoding="async"
+          />
         </button>
       ))}
     </div>
@@ -159,7 +166,7 @@ export default function Nav() {
           <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileOpen(true)}
-              className="p-2 text-slate-300 transition hover:text-blue-400 focus:outline-none"
+              className="flex h-11 w-11 items-center justify-center text-slate-300 transition hover:text-blue-400 focus:outline-none"
               aria-label="Open menu"
             >
               <Menu className="h-6 w-6" />

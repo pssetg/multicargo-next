@@ -94,6 +94,16 @@ export default function ChatAgent() {
     return () => window.removeEventListener('multicargo:openChat', onOpen as EventListener);
   }, [sendMessage]);
 
+  // Close the chat window with Escape
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: globalThis.KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
   function handleKey(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();

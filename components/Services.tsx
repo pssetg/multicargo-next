@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 
@@ -28,12 +29,13 @@ function ServiceCard({ id, imageLeft }: { id: string; imageLeft: boolean }) {
   const [open, setOpen] = useState(false);
 
   const image = (
-    <div className="w-full flex-shrink-0 md:w-1/4">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+    <div className="relative h-[200px] w-full flex-shrink-0 overflow-hidden rounded-[20px] md:h-[284px] md:w-1/4 md:rounded-[30px]">
+      <Image
         src={SERVICE_IMAGES[id]}
         alt={t(`items.${id}.title`)}
-        className="h-[200px] w-full rounded-[20px] object-cover md:h-[284px] md:rounded-[30px]"
+        fill
+        sizes="(max-width: 768px) 100vw, 25vw"
+        className="object-cover"
       />
     </div>
   );
@@ -71,11 +73,26 @@ function ServiceCard({ id, imageLeft }: { id: string; imageLeft: boolean }) {
     </div>
   );
 
+  function toggle() {
+    setOpen((v) => !v);
+  }
+  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  }
+
   return (
     <div
       id={`service-${id}`}
-      onClick={() => setOpen((v) => !v)}
-      className={`flex h-fit min-h-[380px] cursor-pointer flex-col overflow-hidden rounded-[40px] border p-6 backdrop-blur-sm transition-all duration-300 md:flex-row md:p-12 ${
+      role="button"
+      tabIndex={0}
+      aria-expanded={open}
+      aria-label={t(`items.${id}.title`)}
+      onClick={toggle}
+      onKeyDown={onKeyDown}
+      className={`flex h-fit min-h-[380px] cursor-pointer flex-col overflow-hidden rounded-[40px] border p-6 backdrop-blur-sm transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 md:flex-row md:p-12 ${
         open
           ? 'border-blue-500/30 bg-slate-900/[0.85] shadow-2xl'
           : 'border-white/5 bg-slate-900/40 hover:-translate-y-1.5 hover:border-blue-500/30 hover:shadow-xl'

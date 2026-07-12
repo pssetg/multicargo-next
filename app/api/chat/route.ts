@@ -46,8 +46,36 @@ const LANGUAGE_NAMES: Record<string, string> = {
 
 type IncomingMessage = { role: 'user' | 'assistant'; content: string };
 
+// Basic in-memory rate limiting (best-effort — per serverless instance).
+// Blocks obvious abuse without an external store.
+const RATE_LIMIT = 15; // requests
+const RATE_WINDOW_MS = 60_000; // per minute
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = hits.get(ip);
+  if (!entry || now > entry.resetAt) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > RATE_LIMIT;
+}
+
 export async function POST(request: Request) {
   try {
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please slow down.' },
+        { status: 429 },
+      );
+    }
+
     const { messages, language } = (await request.json()) as {
       messages: IncomingMessage[];
       language?: string;

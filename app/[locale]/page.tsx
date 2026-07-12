@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
@@ -7,10 +8,12 @@ import Network from '@/components/Network';
 import Services from '@/components/Services';
 import Careers from '@/components/Careers';
 import Partners from '@/components/Partners';
-import Downloads from '@/components/Downloads';
 import Contact from '@/components/Contact';
-import ChatAgent from '@/components/ChatAgent';
 import Footer from '@/components/Footer';
+import ChatAgentLoader from '@/components/ChatAgentLoader';
+
+// Heavy below-the-fold section — code-split into its own chunk (kept SSR'd for SEO)
+const Downloads = dynamic(() => import('@/components/Downloads'));
 
 export default function HomePage({
   params: { locale },
@@ -36,7 +39,7 @@ export default function HomePage({
         <Contact />
       </main>
       <Footer />
-      <ChatAgent />
+      <ChatAgentLoader />
     </>
   );
 }

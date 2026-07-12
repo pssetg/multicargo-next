@@ -50,6 +50,10 @@ function Mark({ carrier }: { carrier: Carrier }) {
     <img
       src={carrier.src}
       alt={carrier.name}
+      width={carrier.w ?? 70}
+      height={(carrier.w ?? 70) / 2}
+      loading="lazy"
+      decoding="async"
       style={{
         width: carrier.w ?? 70,
         height: (carrier.w ?? 70) / 2,
