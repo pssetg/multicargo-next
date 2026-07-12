@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import Badge from './Badge';
 import Stats from './Stats';
 import Carriers from './Carriers';
 
@@ -17,12 +18,7 @@ export default function About() {
           <div className="relative z-10">
             {/* Strategic goal */}
             <div className="mb-16 max-w-4xl space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 shadow-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">
-                  {t('badge')}
-                </span>
-              </div>
+              <Badge label={t('badge')} size="sm" />
               <h2 className="text-3xl font-black uppercase italic leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl">
                 {t.rich('title', {
                   hl: (chunks) => <span className="text-blue-400">{chunks}</span>,

@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Handshake, ShieldCheck, TrendingUp, MessageSquare } from 'lucide-react';
+import Badge from './Badge';
 import { WHATSAPP_URL } from '@/lib/links';
 
 export default function Partners() {
@@ -16,12 +17,7 @@ export default function Partners() {
           <div className="relative z-10 flex flex-col items-start gap-16 lg:flex-row-reverse">
             {/* Text */}
             <div className="w-full space-y-8 text-left lg:w-1/2">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/10 bg-blue-600/5 px-4 py-2">
-                <span className="h-2 w-2 rounded-full bg-blue-500" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400">
-                  {t('badge')}
-                </span>
-              </div>
+              <Badge label={t('badge')} variant="blue" />
               <div className="space-y-6">
                 <h2 className="text-4xl font-black uppercase italic leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
                   {t('titleLine1')}

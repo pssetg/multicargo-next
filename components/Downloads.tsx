@@ -15,6 +15,7 @@ import {
   Minus,
   type LucideIcon,
 } from 'lucide-react';
+import Badge from './Badge';
 
 const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4'] as const;
 
@@ -63,12 +64,7 @@ export default function Downloads() {
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6">
         {/* Header */}
         <div className="mb-10 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-            <FolderOpen className="h-4 w-4 text-blue-400" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              {t('badge')}
-            </span>
-          </div>
+          <Badge label={t('badge')} icon={FolderOpen} className="mb-6" />
           <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
             {t('title')}
           </h2>

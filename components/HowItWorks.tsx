@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Send, Calculator, PackageCheck, type LucideIcon } from 'lucide-react';
+import Badge from './Badge';
 
 const STEPS: { key: string; num: string; icon: LucideIcon }[] = [
   { key: 'step1', num: '01', icon: Send },
@@ -14,12 +15,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="w-full bg-transparent py-12">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6">
         <div className="mb-10 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">
-              {t('badge')}
-            </span>
-          </div>
+          <Badge label={t('badge')} size="sm" className="mb-4" />
           <h2 className="text-3xl font-black uppercase italic tracking-tight text-white md:text-4xl">
             {t('title')}
           </h2>
