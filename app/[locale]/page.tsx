@@ -6,6 +6,7 @@ import HowItWorks from '@/components/HowItWorks';
 import About from '@/components/About';
 import Network from '@/components/Network';
 import Services from '@/components/Services';
+import Relocants from '@/components/Relocants';
 import Careers from '@/components/Careers';
 import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
@@ -29,6 +30,8 @@ export default function HomePage({
       <main>
         <Hero />
         <HowItWorks />
+        {/* Ukrainian-only block for relocated businesses */}
+        {locale === 'uk' && <Relocants />}
         {/* About mega-card contains Stats + Carriers + Company Evolution */}
         <About />
         <Network />

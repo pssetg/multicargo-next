@@ -111,6 +111,12 @@ export default function Nav() {
               {t('about')}
             </a>
 
+            {locale === 'uk' && (
+              <a href="#relocants" className="transition hover:text-blue-400">
+                Бізнес в ЄС
+              </a>
+            )}
+
             {/* Services dropdown (CSS hover) */}
             <div className="dropdown relative flex h-full cursor-pointer items-center">
               <span className="flex items-center text-slate-400 transition hover:text-blue-400">
@@ -197,6 +203,11 @@ export default function Nav() {
             <a href="#about" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('about')}
             </a>
+            {locale === 'uk' && (
+              <a href="#relocants" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+                Бізнес в ЄС
+              </a>
+            )}
             <div className="flex flex-col space-y-3">
               <a href="#services" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
                 {t('services')}

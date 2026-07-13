@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import {
   Search,
   ArrowRight,
@@ -96,6 +96,7 @@ function HotOffersGroup() {
 
 export default function Hero() {
   const t = useTranslations('Hero');
+  const locale = useLocale();
   const phrases = (t.raw('typewriter') as string[]) ?? [];
   const typed = useTypewriter(phrases);
   const [query, setQuery] = useState('');
@@ -122,11 +123,19 @@ export default function Hero() {
             {t('subtitle')}
           </p>
           <p
-            className="mx-auto mb-14 max-w-3xl text-sm font-semibold"
+            className={`mx-auto max-w-3xl text-sm font-semibold ${locale === 'uk' ? 'mb-3' : 'mb-14'}`}
             style={{ color: '#60a5fa', textShadow: '0 0 20px rgba(96,165,250,0.6)' }}
           >
             {t('tagline')}
           </p>
+          {locale === 'uk' && (
+            <p
+              className="relocant-line mx-auto mb-14 max-w-3xl text-sm font-semibold"
+              style={{ color: '#60a5fa', textShadow: '0 0 20px rgba(96,165,250,0.5)' }}
+              // t.raw returns the untouched string (contains an <a> tag) for dangerouslySetInnerHTML
+              dangerouslySetInnerHTML={{ __html: t.raw('relocantLine') as string }}
+            />
+          )}
         </div>
 
         {/* Floating rails (desktop only) */}
