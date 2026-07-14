@@ -285,10 +285,10 @@
     "error": "Щось пішло не так. Спробуйте ще раз."
   },
   "ChatAgent": {
-    "title": "Multicargo AI",
+    "title": "Multicargo",
     "status": "Онлайн",
     "placeholder": "Введіть повідомлення...",
-    "greeting": "Привіт! Я AI асистент Multicargo. Розкажіть про ваш вантаж — звідки, куди, що везете?",
+    "greeting": "Вітаємо в Multicargo! Розкажіть про ваш вантаж — підберемо найкращий маршрут з будь-якої точки світу.",
     "error": "Помилка зв'язку. Спробуйте ще раз.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram"

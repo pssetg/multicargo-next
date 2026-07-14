@@ -284,10 +284,10 @@
     "error": "Coś poszło nie tak. Spróbuj ponownie."
   },
   "ChatAgent": {
-    "title": "Multicargo AI",
+    "title": "Multicargo",
     "status": "Online",
     "placeholder": "Wpisz wiadomość...",
-    "greeting": "Cześć! Jestem asystentem AI Multicargo. Opowiedz o swoim ładunku — skąd, dokąd, co przewozisz?",
+    "greeting": "Witamy w Multicargo! Opowiedz nam o swoim ładunku — znajdziemy najlepszą trasę z dowolnego miejsca na świecie.",
     "error": "Błąd połączenia. Spróbuj ponownie.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram"
