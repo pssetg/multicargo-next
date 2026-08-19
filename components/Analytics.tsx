@@ -21,7 +21,18 @@ export default function Analytics() {
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('consent', 'default', { analytics_storage: 'denied' });
+          // Consent Mode: honour a previously stored choice so returning
+          // visitors who accepted are granted on every load (otherwise consent
+          // would reset to 'denied' each visit and GA would collect nothing).
+          var mcConsent = 'denied';
+          try { if (localStorage.getItem('cookieConsent') === 'accepted') mcConsent = 'granted'; } catch (e) {}
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: mcConsent,
+            wait_for_update: 500
+          });
           gtag('config', '${GA_ID}');
         `}
       </Script>

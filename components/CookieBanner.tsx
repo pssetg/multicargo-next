@@ -24,6 +24,11 @@ export default function CookieBanner() {
       gtag('consent', 'update', {
         analytics_storage: consent === 'accepted' ? 'granted' : 'denied',
       });
+      // The initial page_view fired under 'denied' consent — once granted,
+      // send a page_view so the current page is counted (shows up in Realtime).
+      if (consent === 'accepted') {
+        gtag('event', 'page_view');
+      }
     }
   }
 

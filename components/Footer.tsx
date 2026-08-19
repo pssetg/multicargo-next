@@ -13,7 +13,8 @@ export default function Footer() {
           </div>
           <span className="text-white">{t('company')}</span>
         </div>
-        <p>{t('copyright', { year })}</p>
+        {/* Pass year as a string so next-intl doesn't number-format it (e.g. "2,026") */}
+        <p>{t('copyright', { year: String(year) })}</p>
       </div>
     </footer>
   );

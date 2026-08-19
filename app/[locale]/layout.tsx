@@ -86,8 +86,14 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
-      <body className="min-h-screen overflow-x-hidden bg-[#030712] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+      {/* suppressHydrationWarning guards against browser extensions (adblockers,
+          Grammarly, etc.) mutating <html>/<body> attributes before hydration,
+          a common source of React #418/#423 on production. */}
+      <body
+        suppressHydrationWarning
+        className="min-h-screen overflow-x-hidden bg-[#030712] text-slate-100 antialiased selection:bg-blue-600 selection:text-white"
+      >
         {/* Fixed route map background */}
         <div className="bg-routes pointer-events-none fixed inset-0 z-[-1] h-full w-full opacity-35" />
         <NextIntlClientProvider messages={messages}>
