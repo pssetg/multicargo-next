@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { trackLead } from '@/lib/analytics';
 import {
   Search,
   ArrowRight,
@@ -102,9 +103,10 @@ export default function Hero() {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // The ChatAgent bubble will listen for this event (wired later)
+  // The ChatAgent bubble listens for this event and opens with the query
   function handleCalculate() {
     const q = query.trim();
+    trackLead('route_search');
     window.dispatchEvent(new CustomEvent('multicargo:openChat', { detail: q }));
   }
 

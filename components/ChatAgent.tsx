@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 're
 import { useLocale, useTranslations } from 'next-intl';
 import { MessageSquare, Send, X } from 'lucide-react';
 import { WHATSAPP_URL, TELEGRAM_URL } from '@/lib/links';
+import { trackLead } from '@/lib/analytics';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -104,11 +105,19 @@ export default function ChatAgent() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
+  // User-initiated send (typed message) — tracked as a lead. The Hero
+  // auto-forwarded query goes through sendMessage directly and is NOT tracked
+  // here (it's already tracked as `route_search`).
+  function handleUserSend() {
+    if (input.trim()) trackLead('chat_message');
+    sendMessage(input);
+    setInput('');
+  }
+
   function handleKey(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      sendMessage(input);
-      setInput('');
+      handleUserSend();
     }
   }
 
@@ -149,6 +158,7 @@ export default function ChatAgent() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLead('whatsapp_click')}
                 className="rounded-lg bg-green-600 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white"
               >
                 {t('whatsapp')}
@@ -157,6 +167,7 @@ export default function ChatAgent() {
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLead('telegram_click')}
                 className="px-1 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 transition-colors hover:text-blue-400"
               >
                 {t('telegram')}
@@ -214,10 +225,7 @@ export default function ChatAgent() {
               className="max-h-20 flex-1 resize-none rounded-xl border border-white/10 bg-slate-800 px-3.5 py-2.5 text-[13px] leading-relaxed text-white outline-none transition-colors focus:border-blue-600/50"
             />
             <button
-              onClick={() => {
-                sendMessage(input);
-                setInput('');
-              }}
+              onClick={handleUserSend}
               aria-label="Send"
               className="flex h-[38px] w-[38px] flex-shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition-colors hover:bg-blue-500"
             >

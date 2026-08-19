@@ -1,6 +1,9 @@
+'use client';
+
 import { ShieldCheck, ClipboardCheck, PackageSearch, MessageSquare, type LucideIcon } from 'lucide-react';
 import Badge from './Badge';
 import { WHATSAPP_URL } from '@/lib/links';
+import { trackLead } from '@/lib/analytics';
 
 // Ukrainian-only block — content is intentionally hard-coded (rendered only for the `uk` locale).
 const CARDS: { icon: LucideIcon; title: string; desc: string }[] = [
@@ -63,6 +66,7 @@ export default function Relocants() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLead('whatsapp_click')}
                 className="btn-glow flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-5 text-sm font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500"
               >
                 <span>Поговоримо про твій маршрут</span>

@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Badge from './Badge';
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_ADDRESS } from '@/lib/links';
+import { trackLead } from '@/lib/analytics';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -52,6 +53,7 @@ export default function Contact() {
         to_email: ORDER_EMAIL,
       };
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      trackLead('contact_form');
       setStatus('success');
       form.reset();
     } catch (err) {
@@ -83,13 +85,21 @@ export default function Contact() {
                 <div className="space-y-4 pt-6 text-sm text-slate-400">
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-blue-400" />
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="transition hover:text-white">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      onClick={() => trackLead('email_click')}
+                      className="transition hover:text-white"
+                    >
                       {CONTACT_EMAIL}
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-blue-400" />
-                    <a href={CONTACT_PHONE_HREF} className="transition hover:text-white">
+                    <a
+                      href={CONTACT_PHONE_HREF}
+                      onClick={() => trackLead('phone_click')}
+                      className="transition hover:text-white"
+                    >
                       {CONTACT_PHONE}
                     </a>
                   </div>

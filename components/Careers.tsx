@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Badge from './Badge';
 import { WHATSAPP_URL } from '@/lib/links';
+import { trackLead } from '@/lib/analytics';
 
 export default function Careers() {
   const t = useTranslations('Careers');
@@ -57,6 +58,7 @@ export default function Careers() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackLead('whatsapp_click')}
                   className="btn-glow flex w-full items-center justify-center rounded-2xl bg-blue-600 py-5 text-sm font-black uppercase tracking-widest text-white transition-all hover:bg-blue-700"
                 >
                   {t('cta')}

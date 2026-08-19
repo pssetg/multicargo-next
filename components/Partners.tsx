@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Handshake, ShieldCheck, TrendingUp, MessageSquare } from 'lucide-react';
 import Badge from './Badge';
 import { WHATSAPP_URL } from '@/lib/links';
+import { trackLead } from '@/lib/analytics';
 
 export default function Partners() {
   const t = useTranslations('Partners');
@@ -74,6 +75,7 @@ export default function Partners() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackLead('whatsapp_click')}
                   className="btn-glow flex w-full animate-pulse items-center justify-center gap-3 rounded-2xl bg-blue-600 py-5 text-sm font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500"
                 >
                   <span>{t('cta')}</span>
