@@ -1,41 +1,25 @@
 import { NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { buildSystemPrompt } from '@/lib/agent-config';
 
 export const runtime = 'nodejs';
 
-// On-brand system prompt for the Multicargo assistant. The page language is
-// appended per request so the assistant greets/answers in the right language.
-const SYSTEM_PROMPT = `You are a virtual logistics assistant for Multicargo Logistics Group — an international freight forwarding company operating since 2007.
+const ALLOWED_HOSTS = ['multicargoltd.com', 'www.multicargoltd.com', 'localhost', '127.0.0.1'];
 
-COMPANY FACTS:
-- Experience: 15+ years (since 2007)
-- Offices: Kyiv, Warsaw, Wroclaw, Valencia, Tallinn, Shenzhen
-- Services: Air freight, Sea freight FCL/LCL, Road transport, Rail freight, Customs clearance, LCL groupage, Oversized cargo, Courier services, Tech Importer EU/UKR
-- Geography: ANY country — China, Israel, UAE, USA, Brazil, Canada, Vietnam, India, Europe, Ukraine and more
-- Minimum shipment: 1 box / 1 kg — NO minimum
-- Carriers: MSC, Maersk, CMA CGM, COSCO, ZIM, Lufthansa Cargo, Emirates SkyCargo, Qatar Airways Cargo, FedEx, DHL
+function isAllowedOrigin(request: Request): boolean {
+  const originHeader = request.headers.get('origin') ?? request.headers.get('referer');
+  if (!originHeader) return false;
 
-TYPICAL TRANSIT TIMES:
-- Sea China→Poland/Germany: 28-35 days
-- Rail China→Europe: 18-22 days
-- Air China→Europe: 5-8 days
-- Air UAE→Europe: 1-3 days
+  try {
+    const hostname = new URL(originHeader).hostname;
+    return ALLOWED_HOSTS.includes(hostname) || hostname.endsWith('.vercel.app');
+  } catch {
+    return false;
+  }
+}
 
-LANGUAGE RULES:
-- Answer in the page language provided below unless the client clearly writes in another language, then switch to the client's language
-- NEVER mix languages in one message
-
-CONVERSATION GOALS:
-1. Collect cargo parameters ONE QUESTION AT A TIME (origin, destination, type of goods, weight/volume, incoterms, urgency)
-2. Give brief consultation on the best transport mode
-3. Collect contact details (name, email or phone)
-
-IMPORTANT RULES:
-- ONE question at a time; simple language, explain terms if needed
-- NEVER quote specific prices
-- NEVER promise exact delivery dates
-- NEVER mention competitors
-- ALWAYS be helpful, warm and solution-oriented`;
+const MAX_HISTORY_MESSAGES = 20;
+const MAX_MESSAGE_LENGTH = 2000;
 
 const LANGUAGE_NAMES: Record<string, string> = {
   en: 'English',
@@ -65,6 +49,10 @@ function isRateLimited(ip: string): boolean {
 
 export async function POST(request: Request) {
   try {
+    if (!isAllowedOrigin(request)) {
+      return new Response('Forbidden', { status: 403 });
+    }
+
     const ip =
       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
       request.headers.get('x-real-ip') ||
@@ -88,12 +76,26 @@ export async function POST(request: Request) {
     // Anthropic requires the conversation to start with a `user` turn; drop any
     // leading assistant messages (e.g. the client-side greeting).
     const firstUser = messages.findIndex((m) => m.role === 'user');
-    const apiMessages = (firstUser >= 0 ? messages.slice(firstUser) : [])
+    let apiMessages = (firstUser >= 0 ? messages.slice(firstUser) : [])
       .filter((m) => m && typeof m.content === 'string' && m.content.trim().length > 0)
       .map((m) => ({ role: m.role, content: m.content }));
 
     if (apiMessages.length === 0) {
       return NextResponse.json({ error: 'No user message provided' }, { status: 400 });
+    }
+
+    if (apiMessages.some((m) => m.content.length > MAX_MESSAGE_LENGTH)) {
+      return NextResponse.json(
+        { error: `Message too long (max ${MAX_MESSAGE_LENGTH} characters).` },
+        { status: 400 },
+      );
+    }
+
+    if (apiMessages.length > MAX_HISTORY_MESSAGES) {
+      apiMessages = apiMessages.slice(-MAX_HISTORY_MESSAGES);
+      // Re-anchor on a `user` turn in case truncation left an assistant turn first.
+      const truncatedFirstUser = apiMessages.findIndex((m) => m.role === 'user');
+      apiMessages = truncatedFirstUser >= 0 ? apiMessages.slice(truncatedFirstUser) : [];
     }
 
     const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -110,7 +112,7 @@ export async function POST(request: Request) {
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1024,
-      system: `${SYSTEM_PROMPT}\n\npage_language: ${langName}`,
+      system: buildSystemPrompt(langName),
       messages: apiMessages,
     });
 
