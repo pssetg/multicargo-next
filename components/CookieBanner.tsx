@@ -37,10 +37,13 @@ export default function CookieBanner() {
   return (
     <div
       id="cookie-banner"
-      className="fixed inset-x-0 bottom-0 z-[9000] border-t border-white/[0.08] bg-[#030712]/[0.97] px-6 py-4 backdrop-blur-md"
+      className="fixed inset-x-0 bottom-0 z-[9000] border-t border-white/[0.08] bg-[#030712]/[0.97] px-6 pt-4 backdrop-blur-md"
+      style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
     >
-      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4">
-        <p className="min-w-[200px] flex-1 text-[13px] text-slate-400">{t('text')}</p>
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-4">
+        <p className="line-clamp-2 min-w-[200px] flex-1 text-[13px] text-slate-400 md:line-clamp-none">
+          {t('text')}
+        </p>
         <div className="flex flex-shrink-0 gap-2">
           <button
             onClick={() => decide('accepted')}

@@ -125,7 +125,7 @@ export default function ChatWindow({
   return (
     <div
       className="fixed right-6 z-[9999] flex h-[520px] w-[380px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-[0_25px_70px_rgba(0,0,0,0.85)] transition-[bottom] duration-200"
-      style={{ bottom: `${24 + bottomOffset}px` }}
+      style={{ bottom: `calc(max(24px, env(safe-area-inset-bottom) + 16px) + ${bottomOffset}px)` }}
     >
       {/* Header */}
       <div className="flex flex-shrink-0 items-center justify-between border-b border-white/[0.07] px-4 py-3">

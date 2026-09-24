@@ -22,6 +22,7 @@ export default function ChatAgent() {
   const [open, setOpen] = useState(false);
   const [pendingQuery, setPendingQuery] = useState('');
   const [bannerOffset, setBannerOffset] = useState(0);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   // Listen for the Hero Smart Console "Calculate" button
   useEffect(() => {
@@ -80,15 +81,40 @@ export default function ChatAgent() {
     };
   }, []);
 
+  // Mobile only: hide the bubble while the on-screen keyboard is likely open
+  // (any text field elsewhere on the page is focused), so it doesn't sit on
+  // top of the keyboard or the field being edited.
+  useEffect(() => {
+    const isTextField = (el: EventTarget | null) =>
+      el instanceof HTMLElement &&
+      (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+
+    function onFocusIn(e: FocusEvent) {
+      if (window.matchMedia('(max-width: 767px)').matches && isTextField(e.target)) {
+        setKeyboardOpen(true);
+      }
+    }
+    function onFocusOut(e: FocusEvent) {
+      if (isTextField(e.target)) setKeyboardOpen(false);
+    }
+
+    document.addEventListener('focusin', onFocusIn);
+    document.addEventListener('focusout', onFocusOut);
+    return () => {
+      document.removeEventListener('focusin', onFocusIn);
+      document.removeEventListener('focusout', onFocusOut);
+    };
+  }, []);
+
   return (
     <>
       {/* Bubble */}
-      {!open && (
+      {!open && !keyboardOpen && (
         <button
           onClick={() => setOpen(true)}
           aria-label={t('title')}
-          className="fixed right-6 z-[9999] h-[60px] w-[60px] cursor-pointer transition-[bottom] duration-200"
-          style={{ bottom: `${24 + bannerOffset}px` }}
+          className="fixed right-6 z-[9999] h-[52px] w-[52px] cursor-pointer transition-[bottom] duration-200 md:h-[60px] md:w-[60px]"
+          style={{ bottom: `calc(max(24px, env(safe-area-inset-bottom) + 16px) + ${bannerOffset}px)` }}
         >
           <span className="mc-ping absolute inset-0 rounded-full bg-blue-600/40" />
           <span className="absolute inset-0 flex items-center justify-center rounded-full bg-blue-600 shadow-[0_0_32px_rgba(37,99,235,0.6)]">
