@@ -35,7 +35,10 @@ export default function CookieBanner() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[99999] border-t border-white/[0.08] bg-[#030712]/[0.97] px-6 py-4 backdrop-blur-md">
+    <div
+      id="cookie-banner"
+      className="fixed inset-x-0 bottom-0 z-[9000] border-t border-white/[0.08] bg-[#030712]/[0.97] px-6 py-4 backdrop-blur-md"
+    >
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4">
         <p className="min-w-[200px] flex-1 text-[13px] text-slate-400">{t('text')}</p>
         <div className="flex flex-shrink-0 gap-2">

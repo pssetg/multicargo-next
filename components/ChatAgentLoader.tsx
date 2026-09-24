@@ -1,11 +1,10 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import ChatAgent from './ChatAgent';
 
-// The chat widget is client-only and not needed for first paint or SEO, so
-// defer loading its bundle until after hydration.
-const ChatAgent = dynamic(() => import('./ChatAgent'), { ssr: false });
-
+// The trigger button must be interactive immediately after hydration, so
+// ChatAgent is imported directly (not via next/dynamic) — only its heavy
+// chat window is code-split internally.
 export default function ChatAgentLoader() {
   return <ChatAgent />;
 }
