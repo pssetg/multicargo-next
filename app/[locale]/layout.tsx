@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, unstable_setRequestLocale } from 'next-intl/server';
@@ -22,6 +22,14 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
 });
+
+// viewport-fit=cover exposes env(safe-area-inset-*) so fixed mobile UI
+// (chat bubble, cookie banner) can clear the iOS home indicator / Safari bars.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
