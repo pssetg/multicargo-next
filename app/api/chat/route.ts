@@ -6,13 +6,17 @@ export const runtime = 'nodejs';
 
 const ALLOWED_HOSTS = ['multicargoltd.com', 'www.multicargoltd.com', 'localhost', '127.0.0.1'];
 
+// Our own Vercel deployments only — the production alias plus preview
+// deployments, which are named `<project>-<hash/branch>-<team>.vercel.app`.
+const ALLOWED_VERCEL_HOSTS = /^multicargo-next(-[a-z0-9-]+-multicargo)?\.vercel\.app$/;
+
 function isAllowedOrigin(request: Request): boolean {
   const originHeader = request.headers.get('origin') ?? request.headers.get('referer');
   if (!originHeader) return false;
 
   try {
     const hostname = new URL(originHeader).hostname;
-    return ALLOWED_HOSTS.includes(hostname) || hostname.endsWith('.vercel.app');
+    return ALLOWED_HOSTS.includes(hostname) || ALLOWED_VERCEL_HOSTS.test(hostname);
   } catch {
     return false;
   }
