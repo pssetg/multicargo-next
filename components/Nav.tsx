@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import {
@@ -159,12 +160,12 @@ export default function Nav() {
           <div className="hidden items-center space-x-6 lg:flex">
             <div className="flex items-center">
               <LanguageBar className="mr-8" />
-              <a
-                href="#login"
+              <Link
+                href={`/${locale}/login`}
                 className="text-[11px] font-black uppercase tracking-widest text-slate-300 transition hover:text-blue-400"
               >
                 {t('login')}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -243,13 +244,13 @@ export default function Nav() {
               </span>
               <LanguageBar className="space-x-3" />
             </div>
-            <a
-              href="#login"
+            <Link
+              href={`/${locale}/login`}
               onClick={() => setMobileOpen(false)}
               className="block w-full rounded-xl border border-white/10 py-4 text-center text-[11px] font-black uppercase tracking-widest text-slate-300 transition hover:border-blue-500/30 hover:bg-white/5 hover:text-blue-400"
             >
               {t('login')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

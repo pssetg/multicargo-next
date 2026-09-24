@@ -10,7 +10,8 @@ export type LeadType =
   | 'telegram_click'
   | 'phone_click'
   | 'email_click'
-  | 'chat_message';
+  | 'chat_message'
+  | 'login_email';
 
 type Gtag = (...args: unknown[]) => void;
 
