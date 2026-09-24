@@ -283,6 +283,27 @@
     "success": "Received. Our logistics expert will review your case and get back to you shortly.",
     "error": "Something went wrong. Please try again."
   },
+  "Login": {
+    "metaTitle": "Client Portal",
+    "title": "Client Portal",
+    "subtitle": "Sign in to track your shipments, invoices and documents.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Log in",
+    "gateTitle": "Portal access opens once we start working together",
+    "gateMessage": "Client accounts are set up by your personal manager after your first shipment is agreed. Reach out and we'll get you set up.",
+    "chatButton": "Chat with us",
+    "emailFormTitle": "Leave your email",
+    "emailFormPlaceholder": "you@company.com",
+    "emailFormSubmit": "Send",
+    "emailFormSending": "Sending…",
+    "emailFormSuccess": "Thanks, we'll be in touch soon.",
+    "emailFormError": "Something went wrong. Please try again.",
+    "emailInvalid": "Enter a valid email address.",
+    "chatOpenedNote": "Continue the conversation in the chat window."
+  },
   "ChatAgent": {
     "title": "Multicargo",
     "status": "Online",

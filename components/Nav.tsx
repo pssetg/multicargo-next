@@ -68,6 +68,10 @@ export default function Nav() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  function openLogin() {
+    window.dispatchEvent(new CustomEvent('multicargo:openLogin'));
+  }
+
   function switchLocale(next: string) {
     const segments = pathname.split('/');
     segments[1] = next;
@@ -159,12 +163,13 @@ export default function Nav() {
           <div className="hidden items-center space-x-6 lg:flex">
             <div className="flex items-center">
               <LanguageBar className="mr-8" />
-              <a
-                href="#login"
+              <button
+                type="button"
+                onClick={openLogin}
                 className="text-[11px] font-black uppercase tracking-widest text-slate-300 transition hover:text-blue-400"
               >
                 {t('login')}
-              </a>
+              </button>
             </div>
           </div>
 
@@ -243,13 +248,16 @@ export default function Nav() {
               </span>
               <LanguageBar className="space-x-3" />
             </div>
-            <a
-              href="#login"
-              onClick={() => setMobileOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                openLogin();
+              }}
               className="block w-full rounded-xl border border-white/10 py-4 text-center text-[11px] font-black uppercase tracking-widest text-slate-300 transition hover:border-blue-500/30 hover:bg-white/5 hover:text-blue-400"
             >
               {t('login')}
-            </a>
+            </button>
           </div>
         </div>
       </div>

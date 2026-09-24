@@ -284,6 +284,27 @@
     "success": "Отримано. Наш експерт з логістики розгляне ваш запит і незабаром зв'яжеться з вами.",
     "error": "Щось пішло не так. Спробуйте ще раз."
   },
+  "Login": {
+    "metaTitle": "Клієнтський портал",
+    "title": "Клієнтський портал",
+    "subtitle": "Увійдіть, щоб відстежувати вантажі, рахунки та документи.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Увійти",
+    "gateTitle": "Доступ до порталу відкривається після початку співпраці",
+    "gateMessage": "Особистий кабінет клієнта налаштовує ваш менеджер після узгодження першого вантажу. Напишіть нам — і ми все підготуємо.",
+    "chatButton": "Написати в чат",
+    "emailFormTitle": "Залишити email",
+    "emailFormPlaceholder": "you@company.com",
+    "emailFormSubmit": "Надіслати",
+    "emailFormSending": "Надсилаємо…",
+    "emailFormSuccess": "Дякуємо, скоро зв'яжемось.",
+    "emailFormError": "Щось пішло не так. Спробуйте ще раз.",
+    "emailInvalid": "Введіть коректний email.",
+    "chatOpenedNote": "Продовжте розмову у вікні чату."
+  },
   "ChatAgent": {
     "title": "Multicargo",
     "status": "Онлайн",

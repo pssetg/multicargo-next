@@ -283,6 +283,27 @@
     "success": "Otrzymano. Nasz ekspert ds. logistyki przeanalizuje Twój przypadek i wkrótce się odezwie.",
     "error": "Coś poszło nie tak. Spróbuj ponownie."
   },
+  "Login": {
+    "metaTitle": "Portal klienta",
+    "title": "Portal klienta",
+    "subtitle": "Zaloguj się, aby śledzić przesyłki, faktury i dokumenty.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Zaloguj się",
+    "gateTitle": "Dostęp do portalu otwiera się po rozpoczęciu współpracy",
+    "gateMessage": "Konto klienta zakłada Twój opiekun po uzgodnieniu pierwszej wysyłki. Napisz do nas, a przygotujemy dostęp.",
+    "chatButton": "Napisz na czacie",
+    "emailFormTitle": "Zostaw swój email",
+    "emailFormPlaceholder": "you@company.com",
+    "emailFormSubmit": "Wyślij",
+    "emailFormSending": "Wysyłanie…",
+    "emailFormSuccess": "Dziękujemy, wkrótce się skontaktujemy.",
+    "emailFormError": "Coś poszło nie tak. Spróbuj ponownie.",
+    "emailInvalid": "Podaj poprawny adres email.",
+    "chatOpenedNote": "Kontynuuj rozmowę w oknie czatu."
+  },
   "ChatAgent": {
     "title": "Multicargo",
     "status": "Online",
