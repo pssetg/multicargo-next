@@ -12,6 +12,7 @@ import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ChatAgentLoader from '@/components/ChatAgentLoader';
+import LoginModal from '@/components/LoginModal';
 
 // Heavy below-the-fold section — code-split into its own chunk (kept SSR'd for SEO)
 const Downloads = dynamic(() => import('@/components/Downloads'));
@@ -43,6 +44,7 @@ export default function HomePage({
       </main>
       <Footer />
       <ChatAgentLoader />
+      <LoginModal />
     </>
   );
 }

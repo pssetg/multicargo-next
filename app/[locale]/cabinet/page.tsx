@@ -5,6 +5,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CabinetLogoutButton from '@/components/CabinetLogoutButton';
+import LoginModal from '@/components/LoginModal';
 import { verifySession } from '@/lib/session';
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default async function CabinetPage({
         </div>
       </main>
       <Footer />
+      <LoginModal />
     </>
   );
 }
