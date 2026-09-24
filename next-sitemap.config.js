@@ -12,8 +12,8 @@ module.exports = {
   siteUrl,
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  // Client portal placeholder — noindex'd per-page too, keep it out of the sitemap.
-  exclude: ['/*/login'],
+  // Client portal / cabinet / admin — noindex'd per-page too, keep them out of the sitemap.
+  exclude: ['/*/login', '/*/cabinet', '/*/admin/*'],
   transform: async (config, path) => ({
     loc: path,
     changefreq: 'weekly',

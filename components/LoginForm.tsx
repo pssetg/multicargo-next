@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import emailjs from '@emailjs/browser';
 import { Lock, MessageSquare } from 'lucide-react';
@@ -20,7 +21,9 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function LoginForm() {
   const t = useTranslations('Login');
   const locale = useLocale();
+  const router = useRouter();
   const [view, setView] = useState<View>('form');
+  const [checkingLogin, setCheckingLogin] = useState(false);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [emailStatus, setEmailStatus] = useState<EmailStatus>('idle');
 
@@ -28,10 +31,31 @@ export default function LoginForm() {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
   }, []);
 
-  // No backend behind this form — any credentials land on the same
-  // "portal access isn't open yet" gate instead of a fake success/error.
-  function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
+  // Real credential check against /api/login. A match sets an httpOnly
+  // session cookie and sends the visitor to /cabinet; anything else
+  // (wrong password, no matching user, CLIENT_USERS unset) falls through
+  // to the same "portal access isn't open yet" gate — no raw error shown.
+  async function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+
+    setCheckingLogin(true);
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      if (res.ok) {
+        router.push(`/${locale}/cabinet`);
+        return;
+      }
+    } catch {
+      // network/server error — same fallback as an invalid login
+    }
+    setCheckingLogin(false);
     setView('gate');
   }
 
@@ -108,7 +132,8 @@ export default function LoginForm() {
             </Field>
             <button
               type="submit"
-              className="btn-glow w-full rounded-2xl bg-blue-600 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-500"
+              disabled={checkingLogin}
+              className="btn-glow w-full rounded-2xl bg-blue-600 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-500 disabled:opacity-60"
             >
               {t('submit')}
             </button>
