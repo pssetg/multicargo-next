@@ -16,6 +16,33 @@ const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'temp
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'r6yEzcDu-bcJvsCx5';
 const ORDER_EMAIL = 'order1@multicargoltd.com';
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Best-effort CRM sync after EmailJS has accepted the lead. HubSpot needs an
+// email, so a phone-only contact is skipped. Failures are never surfaced.
+async function syncLeadToHubspot(
+  data: { name: string; contact: string; message: string },
+  language: string,
+) {
+  const contact = data.contact.trim();
+  if (!EMAIL_RE.test(contact)) return;
+  try {
+    await fetch('/api/hubspot-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: contact,
+        name: data.name,
+        message: data.message,
+        language,
+        source: 'contact-form',
+      }),
+    });
+  } catch {
+    // ignore — EmailJS remains the primary channel
+  }
+}
+
 export default function Contact() {
   const t = useTranslations('Contact');
   const locale = useLocale();
@@ -54,6 +81,7 @@ export default function Contact() {
       };
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       trackLead('contact_form');
+      void syncLeadToHubspot(data, locale);
       setStatus('success');
       form.reset();
     } catch (err) {
