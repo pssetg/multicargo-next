@@ -13,6 +13,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ChatAgentLoader from '@/components/ChatAgentLoader';
 import LoginModal from '@/components/LoginModal';
+import MobileCtaBar from '@/components/MobileCtaBar';
 
 // Heavy below-the-fold section — code-split into its own chunk (kept SSR'd for SEO)
 const Downloads = dynamic(() => import('@/components/Downloads'));
@@ -37,14 +38,15 @@ export default function HomePage({
         <About />
         <Network />
         <Services />
+        <Contact />
         <Careers />
         <Partners />
         <Downloads />
-        <Contact />
       </main>
       <Footer />
       <ChatAgentLoader />
       <LoginModal />
+      <MobileCtaBar />
     </>
   );
 }

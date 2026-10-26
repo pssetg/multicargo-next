@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { locales, type Locale } from '@/i18n/config';
+import { trackLead } from '@/lib/analytics';
 
 /** Services dropdown items — icon + translation key + anchor */
 const SERVICE_ITEMS: { key: string; icon: LucideIcon; href: string }[] = [
@@ -45,12 +46,12 @@ const FLAGS: Record<Locale, { src: string; alt: string }> = {
 
 function Logo({ onClick }: { onClick?: () => void }) {
   return (
-    <a href="#hero" onClick={onClick} className="flex items-center space-x-3">
+    <a href="#hero" onClick={onClick} className="flex items-center space-x-2 sm:space-x-3">
       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-500 shadow-lg">
         <span className="text-xl font-bold tracking-tighter text-white">M</span>
       </div>
       <div className="flex flex-col">
-        <span className="text-xl font-bold uppercase leading-none tracking-tight text-white">
+        <span className="text-lg font-bold uppercase leading-none tracking-tight text-white sm:text-xl">
           Multicargo
         </span>
         <span className="text-[10px] font-medium uppercase tracking-widest text-slate-400">
@@ -87,7 +88,7 @@ export default function Nav() {
           type="button"
           onClick={() => switchLocale(l)}
           title={FLAGS[l].alt}
-          className={`flag-box cursor-pointer ${l === locale ? 'active' : ''}`}
+          className={`flag-box flex cursor-pointer items-center justify-center max-xl:min-h-[44px] max-xl:min-w-[44px] ${l === locale ? 'active' : ''}`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -106,13 +107,16 @@ export default function Nav() {
   return (
     <>
       <header className="glass-nav fixed z-50 w-full border-b border-white/5">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Logo />
 
           {/* Desktop nav */}
-          <nav className="hidden h-full items-center space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-400 lg:flex">
+          <nav className="hidden h-full items-center space-x-8 whitespace-nowrap text-[11px] font-bold uppercase tracking-widest text-slate-400 xl:flex">
             <a href="#about" className="transition hover:text-blue-400">
               {t('about')}
+            </a>
+            <a href="#contact" className="transition hover:text-blue-400">
+              {t('contact')}
             </a>
 
             {locale === 'uk' && (
@@ -160,7 +164,14 @@ export default function Nav() {
           </nav>
 
           {/* Desktop language / login */}
-          <div className="hidden items-center space-x-6 lg:flex">
+          <div className="hidden items-center space-x-6 xl:flex">
+            <a
+              href="#contact"
+              onClick={() => trackLead('quote_request')}
+              className="whitespace-nowrap rounded-xl bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/25 transition hover:bg-blue-500"
+            >
+              {t('quote')}
+            </a>
             <div className="flex items-center">
               <LanguageBar className="mr-8" />
               <button
@@ -174,7 +185,14 @@ export default function Nav() {
           </div>
 
           {/* Mobile hamburger */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center gap-1 xl:hidden">
+            <a
+              href="#contact"
+              onClick={() => trackLead('quote_request')}
+              className="flex h-11 items-center whitespace-nowrap rounded-xl bg-blue-600 px-3 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition active:scale-95"
+            >
+              {t('quote')}
+            </a>
             <button
               onClick={() => setMobileOpen(true)}
               className="flex h-11 w-11 items-center justify-center text-slate-300 transition hover:text-blue-400 focus:outline-none"
@@ -188,7 +206,7 @@ export default function Nav() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-[100] flex flex-col border-l border-white/10 bg-slate-950/98 backdrop-blur-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-[100] flex flex-col border-l border-white/10 bg-slate-950/98 backdrop-blur-2xl transition-transform duration-300 ease-in-out xl:hidden ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -196,7 +214,7 @@ export default function Nav() {
           <Logo onClick={() => setMobileOpen(false)} />
           <button
             onClick={() => setMobileOpen(false)}
-            className="p-2 text-slate-300 transition hover:text-blue-400 focus:outline-none"
+            className="flex h-11 w-11 items-center justify-center text-slate-300 transition hover:text-blue-400 focus:outline-none"
             aria-label="Close menu"
           >
             <X className="h-6 w-6" />
@@ -204,26 +222,29 @@ export default function Nav() {
         </div>
 
         <div className="flex flex-1 flex-col justify-between overflow-y-auto px-6 py-8">
-          <nav className="flex flex-col space-y-6 text-sm font-bold uppercase tracking-widest text-slate-300">
+          <nav className="flex flex-col space-y-1 text-sm font-bold uppercase tracking-widest text-slate-300 [&>a]:flex [&>a]:min-h-[44px] [&>a]:items-center">
             <a href="#about" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('about')}
+            </a>
+            <a href="#contact" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+              {t('contact')}
             </a>
             {locale === 'uk' && (
               <a href="#relocants" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
                 Бізнес в ЄС
               </a>
             )}
-            <div className="flex flex-col space-y-3">
-              <a href="#services" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <div className="flex flex-col">
+              <a href="#services-detailed" onClick={() => setMobileOpen(false)} className="flex min-h-[44px] items-center transition hover:text-blue-400">
                 {t('services')}
               </a>
-              <div className="grid grid-cols-1 gap-2 border-l border-white/5 pl-4">
+              <div className="grid grid-cols-1 border-l border-white/5 pl-4">
                 {SERVICE_ITEMS.map(({ key, href }) => (
                   <a
                     key={key}
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-xs text-slate-400 transition hover:text-blue-400"
+                    className="flex min-h-[40px] items-center text-xs text-slate-400 transition hover:text-blue-400"
                   >
                     {t(`servicesMenu.${key}`)}
                   </a>

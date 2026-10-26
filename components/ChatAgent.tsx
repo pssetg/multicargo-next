@@ -114,7 +114,7 @@ export default function ChatAgent() {
           onClick={() => setOpen(true)}
           aria-label={t('title')}
           className="fixed right-6 z-[9999] h-[52px] w-[52px] cursor-pointer transition-[bottom] duration-200 md:h-[60px] md:w-[60px]"
-          style={{ bottom: `calc(max(24px, env(safe-area-inset-bottom) + 16px) + ${bannerOffset}px)` }}
+          style={{ bottom: `calc(max(24px, env(safe-area-inset-bottom) + 16px) + ${bannerOffset}px + var(--cta-bar-h, 0px))` }}
         >
           <span className="mc-ping absolute inset-0 rounded-full bg-blue-600/40" />
           <span className="absolute inset-0 flex items-center justify-center rounded-full bg-blue-600 shadow-[0_0_32px_rgba(37,99,235,0.6)]">

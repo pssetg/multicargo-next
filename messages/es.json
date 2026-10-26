@@ -5,6 +5,8 @@
   },
   "Nav": {
     "about": "Nosotros",
+    "contact": "Contacto",
+    "quote": "Presupuesto",
     "services": "Servicios",
     "careers": "Empleo",
     "partners": "Socios",
@@ -25,6 +27,7 @@
     }
   },
   "Hero": {
+    "quote": "Solicitar presupuesto",
     "titleLine1": "Múltiples rutas.",
     "titleLine2": "Un solo socio.",
     "subtitle": "Nosotros gestionamos tus importaciones. Tú gestionas tu negocio.",
@@ -58,7 +61,7 @@
     "steps": {
       "step1": {
         "title": "Envía tu solicitud",
-        "desc": "Comparte tu ruta, tipo de carga, peso y modo de entrega preferido. Sin formularios — solo un mensaje o una llamada a tu gestor personal."
+        "desc": "Comparte tu ruta, tipo de carga, peso y modo de entrega preferido. Rellena el breve formulario o llámanos."
       },
       "step2": {
         "title": "Recibe una propuesta de ruta",
@@ -266,6 +269,11 @@
       "companyPresentation": { "name": "Presentación de la empresa", "langs": "EN / UA" },
       "logisticsGlossary": { "name": "Glosario logístico", "langs": "EN / UA / PL / ES" }
     }
+  },
+  "CtaBar": {
+    "quote": "Presupuesto",
+    "call": "Llamar",
+    "whatsapp": "WhatsApp"
   },
   "Contact": {
     "badge": "Contacto",
