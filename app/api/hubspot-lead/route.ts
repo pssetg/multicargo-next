@@ -62,8 +62,21 @@ function parseLead(raw: unknown): Lead | null {
     lead[key] = trimmed;
   }
 
-  if (!lead.email || !EMAIL_RE.test(lead.email)) return null;
+  // Either a valid email or a valid phone is enough; an invalid one is
+  // dropped as long as the other is usable.
+  if (lead.email && !EMAIL_RE.test(lead.email)) lead.email = '';
+  lead.phone = normalizePhone(lead.phone);
+  if (!lead.email && !lead.phone) return null;
   return lead;
+}
+
+// Strips spaces, brackets, dashes etc.; keeps a leading "+" and digits.
+// Returns '' unless the result has 7–15 digits.
+function normalizePhone(raw: string): string {
+  if (!raw) return '';
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length < 7 || digits.length > 15) return '';
+  return (raw.trim().startsWith('+') ? '+' : '') + digits;
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -144,13 +157,15 @@ async function upsertContact(token: string, lead: Lead): Promise<string | null> 
   if (lead.phone) properties.phone = lead.phone;
   if (lead.company) properties.company = lead.company;
 
+  // Prefer email as the identity; fall back to the normalised phone.
+  const [searchProp, searchValue] = lead.email ? ['email', lead.email] : ['phone', lead.phone];
   const found = await hubspot<{ results?: { id: string }[] }>(
     token,
     'search contact',
     'POST',
     '/crm/v3/objects/contacts/search',
     {
-      filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: lead.email }] }],
+      filterGroups: [{ filters: [{ propertyName: searchProp, operator: 'EQ', value: searchValue }] }],
       limit: 1,
     },
   );
@@ -168,7 +183,7 @@ async function upsertContact(token: string, lead: Lead): Promise<string | null> 
   }
 
   const created = await hubspot<{ id: string }>(token, 'create contact', 'POST', '/crm/v3/objects/contacts', {
-    properties: { email: lead.email, ...properties },
+    properties: { ...(lead.email ? { email: lead.email } : {}), ...properties },
   });
   return created?.id ?? null;
 }
@@ -179,6 +194,7 @@ async function createDeal(token: string, lead: Lead, contactId: string): Promise
 
   const date = new Date().toISOString().slice(0, 10);
   const description = [
+    lead.phone && `Телефон: ${lead.phone}`,
     lead.message,
     `Язык: ${lead.language || '—'}`,
     `Источник: ${lead.source || '—'}`,
@@ -188,7 +204,7 @@ async function createDeal(token: string, lead: Lead, contactId: string): Promise
 
   const deal = await hubspot(token, 'create deal', 'POST', '/crm/v3/objects/deals', {
     properties: {
-      dealname: `Сайт-чат: ${lead.name || lead.email} — ${date}`,
+      dealname: `Сайт-чат: ${lead.name || lead.email || lead.phone} — ${date}`,
       description,
       pipeline: target.pipeline,
       dealstage: target.stage,
