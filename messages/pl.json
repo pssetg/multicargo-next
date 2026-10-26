@@ -27,7 +27,7 @@
     }
   },
   "Hero": {
-    "quote": "Zamów wycenę",
+    "getQuote": "Wycena",
     "titleLine1": "Wiele tras.",
     "titleLine2": "Jeden partner.",
     "subtitle": "My prowadzimy Twój import. Ty prowadzisz swój biznes.",

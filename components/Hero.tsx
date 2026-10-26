@@ -260,7 +260,7 @@ export default function Hero() {
             onClick={() => trackLead('quote_request')}
             className="mt-3 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-2xl border border-white/15 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-300 transition hover:border-blue-500/40 hover:text-white"
           >
-            {t('quote')}
+            {t('getQuote')}
           </a>
         </div>
 
