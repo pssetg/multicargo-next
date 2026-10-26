@@ -18,20 +18,28 @@ const ORDER_EMAIL = 'order1@multicargoltd.com';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Best-effort CRM sync after EmailJS has accepted the lead. HubSpot needs an
-// email, so a phone-only contact is skipped. Failures are never surfaced.
+// The single "Phone or Email" field: a valid email if it looks like one,
+// otherwise treated as a phone number (validated/normalised server-side).
+function splitContact(value: string): { email: string; phone: string } {
+  const contact = value.trim();
+  if (contact.includes('@') && EMAIL_RE.test(contact)) return { email: contact, phone: '' };
+  return { email: '', phone: contact };
+}
+
+// Best-effort CRM sync after EmailJS has accepted the lead. Failures are
+// never surfaced.
 async function syncLeadToHubspot(
-  data: { name: string; contact: string; message: string },
+  data: { name: string; message: string },
+  contact: { email: string; phone: string },
   language: string,
 ) {
-  const contact = data.contact.trim();
-  if (!EMAIL_RE.test(contact)) return;
   try {
     await fetch('/api/hubspot-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: contact,
+        ...(contact.email ? { email: contact.email } : {}),
+        ...(contact.phone ? { phone: contact.phone } : {}),
         name: data.name,
         message: data.message,
         language,
@@ -69,11 +77,15 @@ export default function Contact() {
     // interaction responsive (improves INP) before the synchronous EmailJS work.
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    const contact = splitContact(data.contact);
+
     try {
-      // Template `template_j8v1gpg` expects: name, email, message
+      // Template `template_j8v1gpg` expects: name, email, phone, message.
+      // `email` is empty when the client left only a phone number.
       const templateParams = {
         name: data.name,
-        email: data.contact, // send the phone/email field as `email`
+        email: contact.email,
+        phone: contact.phone,
         message: data.message,
         language: locale,
         date: new Date().toLocaleString(),
@@ -81,7 +93,7 @@ export default function Contact() {
       };
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       trackLead('contact_form');
-      void syncLeadToHubspot(data, locale);
+      void syncLeadToHubspot(data, contact, locale);
       setStatus('success');
       form.reset();
     } catch (err) {
