@@ -54,7 +54,7 @@ export default function ChatAgent() {
     function attach(el: HTMLElement) {
       setBannerOffset(el.getBoundingClientRect().height);
       resizeObserver = new ResizeObserver(([entry]) => {
-        setBannerOffset(entry.contentRect.height);
+        setBannerOffset(entry.target.getBoundingClientRect().height);
       });
       resizeObserver.observe(el);
     }
