@@ -15,6 +15,8 @@ const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'servic
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_j8v1gpg';
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'r6yEzcDu-bcJvsCx5';
 const ORDER_EMAIL = 'order1@multicargoltd.com';
+// Name is optional on the form; keeps the EmailJS subject and HubSpot deal name non-empty.
+const FALLBACK_NAME = 'Website visitor';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -78,12 +80,13 @@ export default function Contact() {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const contact = splitContact(data.contact);
+    const name = data.name.trim() || FALLBACK_NAME;
 
     try {
       // Template `template_j8v1gpg` expects: name, email, phone, message.
       // `email` is empty when the client left only a phone number.
       const templateParams = {
-        name: data.name,
+        name,
         email: contact.email,
         phone: contact.phone,
         message: data.message,
@@ -93,7 +96,7 @@ export default function Contact() {
       };
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       trackLead('contact_form');
-      void syncLeadToHubspot(data, contact, locale);
+      void syncLeadToHubspot({ name, message: data.message }, contact, locale);
       setStatus('success');
       form.reset();
     } catch (err) {
@@ -103,7 +106,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="w-full bg-transparent py-12">
+    <section id="contact" className="w-full scroll-mt-24 bg-transparent py-12">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-[50px] border border-white/5 bg-slate-950/40 p-8 backdrop-blur-md md:p-16 lg:px-20 lg:py-20">
           <div className="absolute right-0 top-0 -mr-20 -mt-20 h-96 w-96 rounded-full bg-blue-600/[0.03] blur-3xl" />
@@ -122,13 +125,13 @@ export default function Contact() {
                   {t('lead')}
                 </p>
 
-                <div className="space-y-4 pt-6 text-sm text-slate-400">
+                <div className="space-y-1 pt-6 text-sm text-slate-400">
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-blue-400" />
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
                       onClick={() => trackLead('email_click')}
-                      className="transition hover:text-white"
+                      className="inline-flex min-h-[44px] items-center transition hover:text-white"
                     >
                       {CONTACT_EMAIL}
                     </a>
@@ -138,7 +141,7 @@ export default function Contact() {
                     <a
                       href={CONTACT_PHONE_HREF}
                       onClick={() => trackLead('phone_click')}
-                      className="transition hover:text-white"
+                      className="inline-flex min-h-[44px] items-center transition hover:text-white"
                     >
                       {CONTACT_PHONE}
                     </a>
@@ -157,7 +160,8 @@ export default function Contact() {
                 <Field label={t('name')}>
                   <input
                     name="name"
-                    required
+                    autoComplete="name"
+                    enterKeyHint="next"
                     placeholder={t('namePlaceholder')}
                     className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   />
@@ -166,6 +170,11 @@ export default function Contact() {
                   <input
                     name="contact"
                     required
+                    autoComplete="email"
+                    enterKeyHint="next"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
                     placeholder={t('contactPlaceholder')}
                     className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   />
@@ -174,7 +183,7 @@ export default function Contact() {
                   <textarea
                     name="message"
                     rows={4}
-                    required
+                    enterKeyHint="send"
                     placeholder={t('messagePlaceholder')}
                     className="w-full resize-none rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   />

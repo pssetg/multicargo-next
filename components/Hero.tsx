@@ -262,7 +262,7 @@ export default function Hero() {
             <a
               key={key}
               href={href}
-              className="flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-slate-950/50 px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-slate-200 backdrop-blur-md active:scale-95"
+              className="flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-slate-950/50 px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-slate-200 backdrop-blur-md active:scale-95"
             >
               <Icon className="h-3.5 w-3.5 text-blue-400" />
               {t(`services.${key}.title`)}

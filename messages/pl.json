@@ -5,6 +5,8 @@
   },
   "Nav": {
     "about": "O nas",
+    "contact": "Kontakt",
+    "quote": "Wycena",
     "services": "Usługi",
     "careers": "Kariera",
     "partners": "Partnerzy",
@@ -58,7 +60,7 @@
     "steps": {
       "step1": {
         "title": "Wyślij zapytanie",
-        "desc": "Podaj trasę, rodzaj ładunku, wagę i preferowany sposób dostawy. Żadnych formularzy — po prostu wiadomość lub telefon do Twojego osobistego opiekuna."
+        "desc": "Podaj trasę, rodzaj ładunku, wagę i preferowany sposób dostawy. Wypełnij krótki formularz lub zadzwoń do nas."
       },
       "step2": {
         "title": "Otrzymaj propozycję trasy",
@@ -266,6 +268,11 @@
       "companyPresentation": { "name": "Prezentacja firmy", "langs": "EN / UA" },
       "logisticsGlossary": { "name": "Słownik logistyczny", "langs": "EN / UA / PL / ES" }
     }
+  },
+  "CtaBar": {
+    "quote": "Wycena",
+    "call": "Zadzwoń",
+    "whatsapp": "WhatsApp"
   },
   "Contact": {
     "badge": "Kontakt",

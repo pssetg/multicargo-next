@@ -5,6 +5,8 @@
   },
   "Nav": {
     "about": "About",
+    "contact": "Contact",
+    "quote": "Get a quote",
     "services": "Services",
     "careers": "Careers",
     "partners": "Partners",
@@ -58,7 +60,7 @@
     "steps": {
       "step1": {
         "title": "Submit Your Request",
-        "desc": "Share your route, cargo type, weight and preferred delivery mode. No forms — just a message or a call to your personal manager."
+        "desc": "Share your route, cargo type, weight and preferred delivery mode. Fill in the short form or call us."
       },
       "step2": {
         "title": "Get a Route Proposal",
@@ -266,6 +268,11 @@
       "companyPresentation": { "name": "Company Presentation", "langs": "EN / UA" },
       "logisticsGlossary": { "name": "Logistics Glossary", "langs": "EN / UA / PL / ES" }
     }
+  },
+  "CtaBar": {
+    "quote": "Get a quote",
+    "call": "Call",
+    "whatsapp": "WhatsApp"
   },
   "Contact": {
     "badge": "Get in Touch",
