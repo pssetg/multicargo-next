@@ -318,7 +318,9 @@
     "greeting": "Witamy w Multicargo! Opowiedz nam o swoim ładunku — znajdziemy najlepszą trasę z dowolnego miejsca na świecie.",
     "error": "Błąd połączenia. Spróbuj ponownie.",
     "whatsapp": "WhatsApp",
-    "telegram": "Telegram"
+    "telegram": "Telegram",
+    "consent": "Podając telefon lub e-mail, zgadzasz się na przekazanie ich menedżerowi Multicargo, który skontaktuje się z Tobą.",
+    "privacyLink": "Polityka prywatności"
   },
   "Footer": {
     "company": "Multicargo Logistics Group",

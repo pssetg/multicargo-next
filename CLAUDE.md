@@ -14,6 +14,7 @@ Next.js 14 (App Router) site for multicargoltd.com, deployed on Vercel.
 
 - `app/[locale]/...` — localized pages (layout, home page)
 - `app/api/chat/route.ts` — chat assistant API route (Anthropic calls, origin/rate/length checks)
+- `app/api/chat-lead/route.ts` — saves chat leads to HubSpot (contact/deal/note) and emails a copy via EmailJS; helpers in `lib/hubspot.ts`, `lib/contact-parse.ts`; client side in `components/useChatLeadCapture.ts`
 - `components/` — React components, including `ChatAgent.tsx` (chat widget UI)
 - `lib/chat-prompt.ts` — chat assistant's company facts and system prompt builder; edit this to change what the assistant knows or says
 - `lib/links.ts`, `lib/analytics.ts` — shared constants and GA4 helpers

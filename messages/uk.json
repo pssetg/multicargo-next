@@ -319,7 +319,9 @@
     "greeting": "Вітаємо в Multicargo! Розкажіть про ваш вантаж — підберемо найкращий маршрут з будь-якої точки світу.",
     "error": "Помилка зв'язку. Спробуйте ще раз.",
     "whatsapp": "WhatsApp",
-    "telegram": "Telegram"
+    "telegram": "Telegram",
+    "consent": "Залишаючи телефон або email, ви погоджуєтеся на передачу їх менеджеру Multicargo, який зв’яжеться з вами.",
+    "privacyLink": "Політика конфіденційності"
   },
   "Footer": {
     "company": "Multicargo Logistics Group",
