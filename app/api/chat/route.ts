@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
-import { buildSystemPrompt } from '@/lib/agent-config';
+import { buildSystemPrompt } from '@/lib/chat-prompt';
 
 export const runtime = 'nodejs';
 

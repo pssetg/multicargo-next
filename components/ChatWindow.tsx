@@ -3,10 +3,11 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Send, X } from 'lucide-react';
-import { WHATSAPP_URL, TELEGRAM_URL } from '@/lib/links';
+import { WHATSAPP_URL, TELEGRAM_URL, PRIVACY_POLICY_URL } from '@/lib/links';
 import { trackLead } from '@/lib/analytics';
+import { useChatLeadCapture } from './useChatLeadCapture';
 
-type Message = { role: 'user' | 'assistant'; content: string };
+type Message = { role: 'user' | 'assistant'; content: string; ts?: number };
 
 type ChatWindowProps = {
   /** A query forwarded from the Hero Smart Console "Calculate" button, sent once on mount. */
@@ -50,10 +51,12 @@ export default function ChatWindow({
   const scrollRef = useRef<HTMLDivElement>(null);
   // Always-current copy of `messages` so sendMessage can read it synchronously
   const messagesRef = useRef<Message[]>([]);
+  // Sends the conversation to /api/chat-lead (HubSpot + email) when a contact is left or the chat ends
+  const { onUserMessage, onAssistantReply } = useChatLeadCapture(messagesRef, locale);
 
   // Seed the greeting once
   useEffect(() => {
-    setMessages([{ role: 'assistant', content: t('greeting') }]);
+    setMessages([{ role: 'assistant', content: t('greeting'), ts: Date.now() }]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,7 +73,8 @@ export default function ChatWindow({
       setLoading(true);
       // Build the new history synchronously from the ref (not from a setState
       // updater, whose result isn't available in this scope yet).
-      const history: Message[] = [...messagesRef.current, { role: 'user', content: trimmed }];
+      const history: Message[] = [...messagesRef.current, { role: 'user', content: trimmed, ts: Date.now() }];
+      onUserMessage(trimmed);
       messagesRef.current = history;
       setMessages(history);
 
@@ -78,6 +82,14 @@ export default function ChatWindow({
       // drop the leading assistant greeting before sending.
       const firstUser = history.findIndex((m) => m.role === 'user');
       const apiMessages = firstUser >= 0 ? history.slice(firstUser) : history;
+
+      // Update the ref synchronously too, so the lead flush sees the reply.
+      const appendAssistant = (content: string) => {
+        const next: Message[] = [...messagesRef.current, { role: 'assistant', content, ts: Date.now() }];
+        messagesRef.current = next;
+        setMessages(next);
+        onAssistantReply();
+      };
 
       try {
         const res = await fetch('/api/chat', {
@@ -87,14 +99,14 @@ export default function ChatWindow({
         });
         const data = await res.json();
         const reply = data.reply ?? data.error ?? t('error');
-        setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+        appendAssistant(reply);
       } catch {
-        setMessages((prev) => [...prev, { role: 'assistant', content: t('error') }]);
+        appendAssistant(t('error'));
       } finally {
         setLoading(false);
       }
     },
-    [loading, locale, t],
+    [loading, locale, t, onUserMessage, onAssistantReply],
   );
 
   // Forward the Hero Smart Console query, if any, once on mount.
@@ -201,7 +213,8 @@ export default function ChatWindow({
       </div>
 
       {/* Input */}
-      <div className="flex flex-shrink-0 items-end gap-2 border-t border-white/[0.07] px-3.5 py-3">
+      <div className="flex flex-shrink-0 flex-col border-t border-white/[0.07]">
+      <div className="flex items-end gap-2 px-3.5 pt-3">
         <textarea
           rows={1}
           value={input}
@@ -217,6 +230,23 @@ export default function ChatWindow({
         >
           <Send className="h-[15px] w-[15px]" strokeWidth={2.5} />
         </button>
+      </div>
+      <p className="px-3.5 pb-2.5 pt-1.5 text-[10px] leading-snug text-slate-500">
+        {t('consent')}
+        {PRIVACY_POLICY_URL[locale] && (
+          <>
+            {' '}
+            <a
+              href={PRIVACY_POLICY_URL[locale]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors hover:text-slate-300"
+            >
+              {t('privacyLink')}
+            </a>
+          </>
+        )}
+      </p>
       </div>
     </div>
   );
