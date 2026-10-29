@@ -115,6 +115,7 @@ export default function LoginForm() {
             <Field label={t('emailLabel')}>
               <input
                 type="email"
+                data-clarity-mask="true"
                 name="email"
                 required
                 placeholder={t('emailPlaceholder')}
@@ -175,6 +176,7 @@ export default function LoginForm() {
                 <form onSubmit={handleEmailSubmit} className="flex flex-col gap-3 sm:flex-row">
                   <input
                     type="email"
+                    data-clarity-mask="true"
                     name="email"
                     required
                     placeholder={t('emailFormPlaceholder')}

@@ -160,6 +160,7 @@ export default function Contact() {
                 <Field label={t('name')}>
                   <input
                     name="name"
+                    data-clarity-mask="true"
                     autoComplete="name"
                     enterKeyHint="next"
                     placeholder={t('namePlaceholder')}
@@ -169,6 +170,7 @@ export default function Contact() {
                 <Field label={t('contact')}>
                   <input
                     name="contact"
+                    data-clarity-mask="true"
                     required
                     autoComplete="email"
                     enterKeyHint="next"
@@ -183,6 +185,7 @@ export default function Contact() {
                   <textarea
                     name="message"
                     rows={4}
+                    data-clarity-mask="true"
                     enterKeyHint="send"
                     placeholder={t('messagePlaceholder')}
                     className="w-full resize-none rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"

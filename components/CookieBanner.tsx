@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { PRIVACY_POLICY_URL } from '@/lib/links';
 
 type Gtag = (...args: unknown[]) => void;
 
 export default function CookieBanner() {
   const t = useTranslations('Cookie');
+  const locale = useLocale();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -18,6 +20,8 @@ export default function CookieBanner() {
 
   function decide(consent: 'accepted' | 'declined') {
     localStorage.setItem('cookieConsent', consent);
+    // Lets ClarityConsent load (or stop) Microsoft Clarity right away.
+    window.dispatchEvent(new CustomEvent('multicargo:cookieConsent', { detail: consent }));
     setShow(false);
     const gtag = (window as unknown as { gtag?: Gtag }).gtag;
     if (typeof gtag === 'function') {
@@ -41,9 +45,15 @@ export default function CookieBanner() {
       style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
     >
       <div className="mx-auto flex max-w-[1200px] flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-4">
-        <p className="line-clamp-2 min-w-[200px] flex-1 text-[13px] text-slate-400 md:line-clamp-none">
-          {t('text')}
-        </p>
+        <div className="min-w-[200px] flex-1">
+          <p className="line-clamp-2 text-[13px] text-slate-400 md:line-clamp-none">{t('text')}</p>
+          <a
+            href={PRIVACY_POLICY_URL[locale] ?? PRIVACY_POLICY_URL.en}
+            className="inline-block py-1.5 text-[13px] text-slate-300 underline underline-offset-2 transition-colors hover:text-white"
+          >
+            {t('privacy')}
+          </a>
+        </div>
         <div className="flex flex-shrink-0 gap-2">
           <button
             onClick={() => decide('accepted')}

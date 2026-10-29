@@ -324,11 +324,17 @@
   },
   "Footer": {
     "company": "Multicargo Logistics Group",
+    "privacy": "Polityka prywatności",
     "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   },
   "Cookie": {
     "text": "Używamy plików cookie do analizy ruchu i poprawy doświadczeń. Kontynuując, zgadzasz się na ich użycie.",
+    "privacy": "Polityka prywatności",
     "accept": "Akceptuj",
     "decline": "Odrzuć"
+  },
+  "Privacy": {
+    "metaTitle": "Polityka prywatności | Multicargo",
+    "metaDescription": "Jak Multicargo przetwarza dane osobowe zbierane przez stronę, formularz kontaktowy i czat AI."
   }
 }

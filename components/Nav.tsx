@@ -44,9 +44,9 @@ const FLAGS: Record<Locale, { src: string; alt: string }> = {
   pl: { src: 'https://flagcdn.com/w40/pl.png', alt: 'PL' },
 };
 
-function Logo({ onClick }: { onClick?: () => void }) {
+function Logo({ onClick, href = '#hero' }: { onClick?: () => void; href?: string }) {
   return (
-    <a href="#hero" onClick={onClick} className="flex items-center space-x-2 sm:space-x-3">
+    <a href={href} onClick={onClick} className="flex items-center space-x-2 sm:space-x-3">
       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-500 shadow-lg">
         <span className="text-xl font-bold tracking-tighter text-white">M</span>
       </div>
@@ -68,6 +68,8 @@ export default function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Section anchors live on the home page; from other pages (e.g. /privacy) link back to it.
+  const h = (hash: string) => (pathname === `/${locale}` ? hash : `/${locale}${hash}`);
 
   function openLogin() {
     window.dispatchEvent(new CustomEvent('multicargo:openLogin'));
@@ -108,19 +110,19 @@ export default function Nav() {
     <>
       <header className="glass-nav fixed z-50 w-full border-b border-white/5">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Logo />
+          <Logo href={h('#hero')} />
 
           {/* Desktop nav */}
           <nav className="hidden h-full items-center space-x-8 whitespace-nowrap text-[11px] font-bold uppercase tracking-widest text-slate-400 xl:flex">
-            <a href="#about" className="transition hover:text-blue-400">
+            <a href={h('#about')} className="transition hover:text-blue-400">
               {t('about')}
             </a>
-            <a href="#contact" className="transition hover:text-blue-400">
+            <a href={h('#contact')} className="transition hover:text-blue-400">
               {t('contact')}
             </a>
 
             {locale === 'uk' && (
-              <a href="#relocants" className="transition hover:text-blue-400">
+              <a href={h('#relocants')} className="transition hover:text-blue-400">
                 Бізнес в ЄС
               </a>
             )}
@@ -136,7 +138,7 @@ export default function Nav() {
                   {SERVICE_ITEMS.map(({ key, icon: Icon, href }, i) => (
                     <a
                       key={key}
-                      href={href}
+                      href={h(href)}
                       className={`group flex items-center space-x-3 px-6 py-3 transition hover:bg-white/5 ${
                         i > 0 ? 'border-t border-white/5' : ''
                       }`}
@@ -151,13 +153,13 @@ export default function Nav() {
               </div>
             </div>
 
-            <a href="#careers" className="transition hover:text-blue-400">
+            <a href={h('#careers')} className="transition hover:text-blue-400">
               {t('careers')}
             </a>
-            <a href="#partners" className="transition hover:text-blue-400">
+            <a href={h('#partners')} className="transition hover:text-blue-400">
               {t('partners')}
             </a>
-            <a href="#download" className="flex items-center text-blue-400 transition hover:text-blue-300">
+            <a href={h('#download')} className="flex items-center text-blue-400 transition hover:text-blue-300">
               <DownloadCloud className="mr-2 h-4 w-4" />
               {t('downloads')}
             </a>
@@ -166,7 +168,7 @@ export default function Nav() {
           {/* Desktop language / login */}
           <div className="hidden items-center space-x-6 xl:flex">
             <a
-              href="#contact"
+              href={h('#contact')}
               onClick={() => trackLead('quote_request')}
               className="whitespace-nowrap rounded-xl bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/25 transition hover:bg-blue-500"
             >
@@ -187,7 +189,7 @@ export default function Nav() {
           {/* Mobile hamburger */}
           <div className="flex items-center gap-1 xl:hidden">
             <a
-              href="#contact"
+              href={h('#contact')}
               onClick={() => trackLead('quote_request')}
               className="flex h-11 items-center whitespace-nowrap rounded-xl bg-blue-600 px-3 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition active:scale-95"
             >
@@ -211,7 +213,7 @@ export default function Nav() {
         }`}
       >
         <div className="flex h-20 items-center justify-between border-b border-white/5 px-6">
-          <Logo onClick={() => setMobileOpen(false)} />
+          <Logo href={h('#hero')} onClick={() => setMobileOpen(false)} />
           <button
             onClick={() => setMobileOpen(false)}
             className="flex h-11 w-11 items-center justify-center text-slate-300 transition hover:text-blue-400 focus:outline-none"
@@ -223,26 +225,26 @@ export default function Nav() {
 
         <div className="flex flex-1 flex-col justify-between overflow-y-auto px-6 py-8">
           <nav className="flex flex-col space-y-1 text-sm font-bold uppercase tracking-widest text-slate-300 [&>a]:flex [&>a]:min-h-[44px] [&>a]:items-center">
-            <a href="#about" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <a href={h('#about')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('about')}
             </a>
-            <a href="#contact" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <a href={h('#contact')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('contact')}
             </a>
             {locale === 'uk' && (
-              <a href="#relocants" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+              <a href={h('#relocants')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
                 Бізнес в ЄС
               </a>
             )}
             <div className="flex flex-col">
-              <a href="#services-detailed" onClick={() => setMobileOpen(false)} className="flex min-h-[44px] items-center transition hover:text-blue-400">
+              <a href={h('#services-detailed')} onClick={() => setMobileOpen(false)} className="flex min-h-[44px] items-center transition hover:text-blue-400">
                 {t('services')}
               </a>
               <div className="grid grid-cols-1 border-l border-white/5 pl-4">
                 {SERVICE_ITEMS.map(({ key, href }) => (
                   <a
                     key={key}
-                    href={href}
+                    href={h(href)}
                     onClick={() => setMobileOpen(false)}
                     className="flex min-h-[40px] items-center text-xs text-slate-400 transition hover:text-blue-400"
                   >
@@ -251,13 +253,13 @@ export default function Nav() {
                 ))}
               </div>
             </div>
-            <a href="#careers" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <a href={h('#careers')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('careers')}
             </a>
-            <a href="#partners" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <a href={h('#partners')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('partners')}
             </a>
-            <a href="#download" onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
+            <a href={h('#download')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('downloads')}
             </a>
           </nav>
