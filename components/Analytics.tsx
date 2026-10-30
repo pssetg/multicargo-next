@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import ClarityConsent from './ClarityConsent';
 
 const GA_ID = 'G-SF432XQYNP';
 const CLARITY_ID = 'x4wwvu16k6';
@@ -6,7 +7,8 @@ const CLARITY_ID = 'x4wwvu16k6';
 /**
  * Google Analytics 4 + Microsoft Clarity.
  * GA consent defaults to denied; the cookie banner flips analytics_storage
- * to granted on Accept.
+ * to granted on Accept. Clarity is not loaded at all until the visitor accepts
+ * (see ClarityConsent).
  */
 export default function Analytics() {
   return (
@@ -36,15 +38,7 @@ export default function Analytics() {
           gtag('config', '${GA_ID}');
         `}
       </Script>
-      <Script id="clarity-init" strategy="afterInteractive">
-        {`
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "${CLARITY_ID}");
-        `}
-      </Script>
+      <ClarityConsent clarityId={CLARITY_ID} />
     </>
   );
 }

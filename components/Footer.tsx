@@ -1,7 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { PRIVACY_POLICY_URL } from '@/lib/links';
 
 export default function Footer() {
   const t = useTranslations('Footer');
+  const locale = useLocale();
   const year = new Date().getFullYear();
 
   return (
@@ -13,8 +15,16 @@ export default function Footer() {
           </div>
           <span className="text-white">{t('company')}</span>
         </div>
-        {/* Pass year as a string so next-intl doesn't number-format it (e.g. "2,026") */}
-        <p>{t('copyright', { year: String(year) })}</p>
+        <div className="flex flex-col items-center gap-1 md:flex-row md:gap-8">
+          <a
+            href={PRIVACY_POLICY_URL[locale] ?? PRIVACY_POLICY_URL.en}
+            className="inline-flex min-h-[44px] items-center transition hover:text-white"
+          >
+            {t('privacy')}
+          </a>
+          {/* Pass year as a string so next-intl doesn't number-format it (e.g. "2,026") */}
+          <p>{t('copyright', { year: String(year) })}</p>
+        </div>
       </div>
     </footer>
   );

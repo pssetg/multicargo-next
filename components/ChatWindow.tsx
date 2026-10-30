@@ -181,7 +181,11 @@ export default function ChatWindow({
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} className="flex flex-1 flex-col gap-2.5 overflow-y-auto scroll-smooth px-4 py-3.5">
+      <div
+        ref={scrollRef}
+        data-clarity-mask="true"
+        className="flex flex-1 flex-col gap-2.5 overflow-y-auto scroll-smooth px-4 py-3.5"
+      >
         {messages.map((m, i) =>
           m.role === 'user' ? (
             <div key={i} className="flex justify-end">
@@ -217,6 +221,7 @@ export default function ChatWindow({
       <div className="flex items-end gap-2 px-3.5 pt-3">
         <textarea
           rows={1}
+          data-clarity-mask="true"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKey}
