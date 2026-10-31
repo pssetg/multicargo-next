@@ -286,6 +286,7 @@
     "message": "Message / Cargo Details",
     "messagePlaceholder": "Describe your cargo, origin, and destination...",
     "submit": "Get a Free Quote",
+    "consent": "By sending, you accept our <link>Privacy Policy</link>.",
     "sending": "Sending…",
     "success": "Received. Our logistics expert will review your case and get back to you shortly.",
     "error": "Something went wrong. Please try again."
@@ -325,6 +326,7 @@
   "Footer": {
     "company": "Multicargo Logistics Group",
     "privacy": "Privacy Policy",
+    "cookieSettings": "Cookie settings",
     "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   },
   "Cookie": {
