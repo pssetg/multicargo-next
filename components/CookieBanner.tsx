@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { PRIVACY_POLICY_URL } from '@/lib/links';
+import { clearAnalyticsCookies, OPEN_COOKIE_BANNER_EVENT } from '@/lib/consent';
 
 type Gtag = (...args: unknown[]) => void;
 
@@ -18,11 +19,20 @@ export default function CookieBanner() {
     }
   }, []);
 
+  // Footer "Cookie settings" link: show the banner again.
+  useEffect(() => {
+    const open = () => setShow(true);
+    window.addEventListener(OPEN_COOKIE_BANNER_EVENT, open);
+    return () => window.removeEventListener(OPEN_COOKIE_BANNER_EVENT, open);
+  }, []);
+
   function decide(consent: 'accepted' | 'declined') {
     localStorage.setItem('cookieConsent', consent);
     // Lets ClarityConsent load (or stop) Microsoft Clarity right away.
     window.dispatchEvent(new CustomEvent('multicargo:cookieConsent', { detail: consent }));
     setShow(false);
+    // Declining (e.g. after an earlier Accept): drop analytics cookies already set.
+    if (consent === 'declined') clearAnalyticsCookies();
     const gtag = (window as unknown as { gtag?: Gtag }).gtag;
     if (typeof gtag === 'function') {
       gtag('consent', 'update', {
