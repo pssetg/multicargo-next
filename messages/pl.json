@@ -286,6 +286,7 @@
     "message": "Wiadomość / Szczegóły ładunku",
     "messagePlaceholder": "Opisz swój ładunek, miejsce nadania i przeznaczenia...",
     "submit": "Otrzymaj bezpłatną wycenę",
+    "consent": "Wysyłając, akceptujesz naszą <link>Politykę prywatności</link>.",
     "sending": "Wysyłanie…",
     "success": "Otrzymano. Nasz ekspert ds. logistyki przeanalizuje Twój przypadek i wkrótce się odezwie.",
     "error": "Coś poszło nie tak. Spróbuj ponownie."
@@ -325,6 +326,7 @@
   "Footer": {
     "company": "Multicargo Logistics Group",
     "privacy": "Polityka prywatności",
+    "cookieSettings": "Ustawienia cookies",
     "copyright": "© {year} Multicargo. Multi Routes. One Partner."
   },
   "Cookie": {

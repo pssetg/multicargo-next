@@ -14,7 +14,7 @@ Niniejsza polityka wyjaśnia, jak **Multicargo LLC (ТОВ «Мультикар�
 - **Czat AI:** wpisywane wiadomości oraz, jeśli je podasz, numer telefonu lub e-mail. Rozmowa jest zapisywana, aby opiekun mógł zobaczyć Twoje zapytanie.
 - **Dane techniczne i pliki cookie:** podstawowe dane (adres IP, typ przeglądarki, odwiedzone strony) do celów analitycznych (Google Analytics 4 firmy Google i Microsoft Clarity firmy Microsoft). Nieobowiązkowe pliki cookie możesz odrzucić w banerze.
 
-**Pliki cookie.** Niezbędne: Twój wybór dotyczący cookie (zapisany w przeglądarce) oraz, dla klientów, pliki logowania, które pojawiają się dopiero po zalogowaniu. Analityczne, wyłącznie po kliknięciu Accept: Google Analytics 4 (`_ga`, `_ga_*`) i Microsoft Clarity (`_clck`, `_clsk`), który rejestruje, jak odwiedzający korzystają ze stron (kliknięcia, przewijanie, ruch myszy), abyśmy mogli ulepszać stronę; pola czatu i formularza są maskowane. Strona nie jest skierowana do dzieci poniżej 16. roku życia.
+**Pliki cookie.** Niezbędne: Twój wybór dotyczący cookie i język interfejsu (NEXT_LOCALE), zapisane w przeglądarce, oraz, dla klientów, pliki logowania, które pojawiają się dopiero po zalogowaniu. Analityczne pliki cookie, wyłącznie po kliknięciu Accept: Google Analytics 4 (`_ga`, `_ga_*`) i Microsoft Clarity (`_clck`, `_clsk`), który rejestruje, jak odwiedzający korzystają ze stron (kliknięcia, przewijanie, ruch myszy), abyśmy mogli ulepszać stronę; pola czatu i formularza są maskowane. Strona nie jest skierowana do dzieci poniżej 16. roku życia.
 
 ## 3. W jakim celu
 
@@ -33,7 +33,7 @@ Dane przekazujemy wyłącznie dostawcom, którzy pomagają nam prowadzić stron�
 - **Vercel** — hosting strony.
 - **Anthropic** — model AI generujący odpowiedzi czatu (Twoje wiadomości są do niego przesyłane).
 
-Google (Google Analytics 4) i Microsoft (Clarity) otrzymują techniczne dane o korzystaniu ze strony wyłącznie w celach analitycznych i tylko po wyrażeniu zgody na pliki cookie. Część dostawców może znajdować się poza Twoim krajem, w tym poza UE/EOG. W takim wypadku stosujemy odpowiednie zabezpieczenia, w szczególności standardowe klauzule umowne lub unijno-amerykańskie Ramy Ochrony Danych (Data Privacy Framework). Linki do WhatsApp i Telegram otwierają te usługi, które mają własne polityki prywatności.
+Google (Google Analytics 4) i Microsoft (Clarity) otrzymują techniczne dane o korzystaniu ze strony wyłącznie w celach analitycznych. Microsoft Clarity działa tylko po wyrażeniu zgody na pliki cookie. Do czasu dokonania wyboru Google Analytics działa w trybie ograniczonym: nie zapisuje plików cookie i otrzymuje wyłącznie zanonimizowane dane techniczne (np. adres strony i typ przeglądarki), bez trwałych identyfikatorów. Część dostawców może znajdować się poza Twoim krajem, w tym poza UE/EOG. W takim wypadku stosujemy odpowiednie zabezpieczenia, w szczególności standardowe klauzule umowne lub unijno-amerykańskie Ramy Ochrony Danych (Data Privacy Framework). Linki do WhatsApp i Telegram otwierają te usługi, które mają własne polityki prywatności.
 
 ## 5. Okres przechowywania
 

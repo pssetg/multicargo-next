@@ -15,4 +15,4 @@ export const PRIVACY_POLICY_URL: Record<string, string> = {
 };
 
 // "Last updated" date shown on the privacy policy (YYYY-MM-DD). Update it when the policy text changes.
-export const PRIVACY_POLICY_DATE = '2026-10-29';
+export const PRIVACY_POLICY_DATE = '2026-10-31';

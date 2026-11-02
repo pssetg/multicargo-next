@@ -14,7 +14,7 @@ This policy explains how **Multicargo LLC (ТОВ «Мультикарго», re
 - **AI chat:** the messages you type and, if you share it, your phone number or email. The conversation is saved so that a manager can see your request.
 - **Technical data and cookies:** basic data such as IP address, browser type and pages visited, collected through cookies for analytics (Google Analytics 4 by Google and Microsoft Clarity by Microsoft). You can decline non-essential cookies in the cookie banner.
 
-**Cookies.** Essential: your cookie choice (stored in your browser) and, for clients, login cookies that appear only after you log in. Analytics, only after you click Accept: Google Analytics 4 (`_ga`, `_ga_*`) and Microsoft Clarity (`_clck`, `_clsk`), which records how visitors use pages (clicks, scrolling, mouse movement) so we can improve the site; chat and form fields are masked. The website is not aimed at children under 16.
+**Cookies.** Essential: your cookie choice and language setting (NEXT_LOCALE), stored in your browser, and, for clients, login cookies that appear only after you log in. Analytics cookies, only after you click Accept: Google Analytics 4 (`_ga`, `_ga_*`) and Microsoft Clarity (`_clck`, `_clsk`), which records how visitors use pages (clicks, scrolling, mouse movement) so we can improve the site; chat and form fields are masked. The website is not aimed at children under 16.
 
 ## 3. Why we use it
 
@@ -33,7 +33,7 @@ We share data only with service providers that help us run the website and handl
 - **Vercel** — website hosting.
 - **Anthropic** — AI model that generates chat replies (your chat messages are sent to it).
 
-Google (Google Analytics 4) and Microsoft (Clarity) receive technical usage data only for analytics and only after you accept cookies. Some providers are located outside your country, including outside the EU/EEA. In that case we rely on appropriate safeguards such as standard contractual clauses or the EU–US Data Privacy Framework. Links to WhatsApp and Telegram open those services, which have their own privacy policies.
+Google (Google Analytics 4) and Microsoft (Clarity) receive technical usage data only for analytics. Microsoft Clarity runs only after you accept cookies. Until you choose, Google Analytics works in a restricted mode: it sets no cookies and receives only anonymous technical data (such as the page address and browser type), without persistent identifiers. Some providers are located outside your country, including outside the EU/EEA. In that case we rely on appropriate safeguards such as standard contractual clauses or the EU–US Data Privacy Framework. Links to WhatsApp and Telegram open those services, which have their own privacy policies.
 
 ## 5. How long we keep it
 

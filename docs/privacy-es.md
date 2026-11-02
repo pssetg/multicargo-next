@@ -14,7 +14,7 @@ Esta política explica cómo **Multicargo LLC (ТОВ «Мультикарго»
 - **Chat con IA:** los mensajes que escribas y, si los compartes, tu teléfono o correo electrónico. La conversación se guarda para que un gestor pueda ver tu solicitud.
 - **Datos técnicos y cookies:** datos básicos (dirección IP, tipo de navegador, páginas visitadas) con fines analíticos (Google Analytics 4, de Google, y Microsoft Clarity, de Microsoft). Puedes rechazar las cookies no esenciales en el banner.
 
-**Cookies.** Esenciales: tu elección sobre cookies (guardada en tu navegador) y, para clientes, las cookies de inicio de sesión, que aparecen solo después de iniciar sesión. Analíticas, solo tras pulsar Accept: Google Analytics 4 (`_ga`, `_ga_*`) y Microsoft Clarity (`_clck`, `_clsk`), que registra cómo usan las páginas los visitantes (clics, desplazamiento, movimiento del ratón) para que podamos mejorar el sitio; los campos del chat y del formulario se enmascaran. El sitio no está dirigido a menores de 16 años.
+**Cookies.** Esenciales: tu elección sobre cookies y el idioma de la interfaz (NEXT_LOCALE), guardados en tu navegador, y, para clientes, las cookies de inicio de sesión, que aparecen solo después de iniciar sesión. Cookies analíticas, solo tras pulsar Accept: Google Analytics 4 (`_ga`, `_ga_*`) y Microsoft Clarity (`_clck`, `_clsk`), que registra cómo usan las páginas los visitantes (clics, desplazamiento, movimiento del ratón) para que podamos mejorar el sitio; los campos del chat y del formulario se enmascaran. El sitio no está dirigido a menores de 16 años.
 
 ## 3. Para qué los usamos
 
@@ -33,7 +33,7 @@ Compartimos datos solo con proveedores que nos ayudan a operar el sitio y gestio
 - **Vercel** — alojamiento del sitio web.
 - **Anthropic** — modelo de IA que genera las respuestas del chat (tus mensajes se le envían).
 
-Google (Google Analytics 4) y Microsoft (Clarity) reciben datos técnicos de uso solo con fines analíticos y solo tras aceptar las cookies. Algunos proveedores están fuera de tu país, incluso fuera de la UE/EEE. En ese caso aplicamos garantías adecuadas, como las cláusulas contractuales tipo o el Marco de Privacidad de Datos UE-EE. UU. Los enlaces a WhatsApp y Telegram abren esos servicios, que tienen sus propias políticas de privacidad.
+Google (Google Analytics 4) y Microsoft (Clarity) reciben datos técnicos de uso solo con fines analíticos. Microsoft Clarity funciona únicamente tras aceptar las cookies. Hasta que elijas, Google Analytics funciona en modo restringido: no instala cookies y recibe solo datos técnicos anónimos (como la dirección de la página y el tipo de navegador), sin identificadores persistentes. Algunos proveedores están fuera de tu país, incluso fuera de la UE/EEE. En ese caso aplicamos garantías adecuadas, como las cláusulas contractuales tipo o el Marco de Privacidad de Datos UE-EE. UU. Los enlaces a WhatsApp y Telegram abren esos servicios, que tienen sus propias políticas de privacidad.
 
 ## 5. Cuánto tiempo los conservamos
 

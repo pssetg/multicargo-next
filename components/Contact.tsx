@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import Badge from './Badge';
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_ADDRESS } from '@/lib/links';
 import { trackLead } from '@/lib/analytics';
+import { PRIVACY_POLICY_URL } from '@/lib/links';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -198,6 +199,18 @@ export default function Contact() {
                 >
                   {status === 'sending' ? t('sending') : t('submit')}
                 </button>
+                <p className="text-xs leading-snug text-slate-500">
+                  {t.rich('consent', {
+                    link: (chunks) => (
+                      <a
+                        href={PRIVACY_POLICY_URL[locale] ?? PRIVACY_POLICY_URL.en}
+                        className="underline underline-offset-2 transition-colors hover:text-slate-300"
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                  })}
+                </p>
                 {status === 'success' && (
                   <p className="text-sm text-green-400">{t('success')}</p>
                 )}

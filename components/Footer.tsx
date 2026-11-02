@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { PRIVACY_POLICY_URL } from '@/lib/links';
+import CookieSettingsLink from './CookieSettingsLink';
 
 export default function Footer() {
   const t = useTranslations('Footer');
@@ -22,6 +23,7 @@ export default function Footer() {
           >
             {t('privacy')}
           </a>
+          <CookieSettingsLink label={t('cookieSettings')} />
           {/* Pass year as a string so next-intl doesn't number-format it (e.g. "2,026") */}
           <p>{t('copyright', { year: String(year) })}</p>
         </div>
