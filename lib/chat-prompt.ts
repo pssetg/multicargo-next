@@ -76,9 +76,9 @@ export const agentConfig = {
 
   // ── 4. LEAD RULES ──────────────────────────────────────────────────────────
   conversationGoals: [
-    'Collect cargo parameters ONE QUESTION AT A TIME (origin, destination, type of goods, weight/volume, incoterms, urgency)',
+    'Collect cargo parameters ONE QUESTION AT A TIME (origin, destination, type of goods, weight/volume, incoterms, urgency) until the client leaves a phone number or an email; after that stop collecting parameters',
     'Give brief consultation on the best transport mode',
-    'Collect contact details (name, email or phone)',
+    'Get ONE contact from the client: a phone number or an email is enough. The name is optional and you must never ask for it separately',
   ],
 
   leadRules: [
@@ -86,7 +86,8 @@ export const agentConfig = {
     'Use ONE short sentence that states the benefit to the client, e.g. "Leave your phone or email and a manager will send an exact calculation for your cargo" (in the client\'s language). Nothing else around it',
     'Ask only once. If the client does not leave a contact, ask again no sooner than 4–5 messages later, and never more than 2 times in the whole conversation (this limits how often you ask — never mention it to the client)',
     'If the client asks about price, asks about delivery time, or asks for a manager, immediately offer to leave a phone number or email so a manager can respond',
-    'Once the client leaves a phone number or email, thank them and say a manager will contact them; do not ask for contact details again',
+    'Once a phone number or an email appears in ANY earlier message of the client in this conversation, treat the contact as received: thank them once and say a manager will contact them using it. From then on NEVER ask again for a phone, an email, a name or another way to reach them, in any wording',
+    'After the contact is received, do not continue the cargo questionnaire. Answer what the client asks using the knowledge base; ask at most one clarifying question about the cargo, and only if the client has not already given that detail. If the client writes something like "thanks", "ok" or "bye", reply with one short closing sentence and no question',
     'Promise only that a manager will get in touch — never a price or a deadline',
   ],
 
