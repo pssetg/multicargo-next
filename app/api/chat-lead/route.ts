@@ -4,9 +4,9 @@ import { EMAIL_RE, normalizePhone } from '@/lib/contact-parse';
 import {
   associateDealWithContact,
   associateNoteWithContact,
-  createDeal,
   createNote,
   getPortalId,
+  saveLead,
   updateDeal,
   updateNote,
   upsertContact,
@@ -284,18 +284,12 @@ export async function POST(request: Request) {
     }
 
     let { dealId, noteId, contactId } = existing ?? { dealId: '', noteId: '', contactId: '' };
+    let created = false;
     let contactAttached = false;
-
-    if (hasContact && !contactId) {
-      const id = await upsertContact(token, { email: body.email, phone: body.phone, name: body.name });
-      if (!id) return NextResponse.json({ ok: false });
-      contactId = id;
-      contactAttached = true;
-    }
 
     const now = new Date();
     const date = now.toISOString().slice(0, 10);
-    const dealName = contactId
+    const dealName = hasContact
       ? `Сайт-чат: ${body.name || body.email || body.phone} — ${date}`
       : `Chat visitor (anon) | ${now.toISOString().slice(0, 16).replace('T', ' ')}`;
     const description = [
@@ -307,39 +301,55 @@ export async function POST(request: Request) {
     ]
       .filter(Boolean)
       .join('\n');
-
-    let created = false;
-    if (!dealId) {
-      const id = await createDeal(token, { name: dealName, description, contactId: contactId || undefined });
-      if (!id) return NextResponse.json({ ok: false });
-      dealId = id;
-      created = true;
-    } else if (contactAttached) {
-      // An anonymous deal got a contact later: link it and rename, no second deal.
-      await associateDealWithContact(token, dealId, contactId);
-      await updateDeal(token, dealId, { dealname: dealName, description });
-    }
-
     const noteHtml = buildNote(body);
-    if (noteId) {
-      await updateNote(token, noteId, noteHtml);
-      if (contactAttached) await associateNoteWithContact(token, noteId, contactId);
+
+    if (!dealId) {
+      // New lead: same helper as the contact form — contact found/created without
+      // relying on search, deal and note always created.
+      const saved = await saveLead(token, {
+        contact: hasContact ? { email: body.email, phone: body.phone, name: body.name } : null,
+        dealName,
+        description,
+        noteHtml,
+      });
+      ({ dealId, noteId, contactId } = saved);
+      created = true;
     } else {
-      noteId = (await createNote(token, noteHtml, dealId, contactId || undefined)) ?? '';
+      if (hasContact && !contactId) {
+        // An anonymous deal got a contact later: link it and rename, no second deal.
+        const id = await upsertContact(token, { email: body.email, phone: body.phone, name: body.name });
+        if (id) {
+          contactId = id;
+          contactAttached = true;
+          await associateDealWithContact(token, dealId, contactId);
+          await updateDeal(token, dealId, { dealname: dealName, description });
+        }
+      }
+      if (noteId) {
+        await updateNote(token, noteId, noteHtml);
+        if (contactAttached) await associateNoteWithContact(token, noteId, contactId);
+      } else {
+        noteId = (await createNote(token, noteHtml, dealId, contactId || undefined)) ?? '';
+      }
     }
 
+    // The email copy to order1 does not depend on HubSpot: it goes out even if the
+    // deal could not be created (then without a deal link).
     if (created || contactAttached) {
-      const portalId = await getPortalId(token);
+      const portalId = dealId ? await getPortalId(token) : null;
       await sendEmailCopy({
         name: body.name || FALLBACK_NAME,
         email: body.email,
         phone: body.phone,
         language: body.language,
         summary: buildSummary(body),
-        dealUrl: portalId ? `https://app.hubspot.com/contacts/${portalId}/record/0-3/${dealId}` : null,
+        dealUrl: portalId && dealId ? `https://app.hubspot.com/contacts/${portalId}/record/0-3/${dealId}` : null,
       });
     }
 
+    // The visitor always gets success; without a deal there is no ref (a later
+    // request starts over). HubSpot failures are logged by lib/hubspot.ts, no PII.
+    if (!dealId) return NextResponse.json({ ok: true });
     return NextResponse.json({ ok: true, ref: makeRef(token, body.sessionId, { dealId, noteId, contactId }) });
   } catch {
     console.error('[api/chat-lead] unexpected error');
