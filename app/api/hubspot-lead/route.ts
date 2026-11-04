@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
+import { saveLead } from '@/lib/hubspot';
 
 export const runtime = 'nodejs';
 
-const HUBSPOT_API = 'https://api.hubapi.com';
-const REQUEST_TIMEOUT_MS = 8000;
-const RETRY_DELAY_MS = 1000;
 const MAX_BODY_BYTES = 10 * 1024;
 
 const ALLOWED_ORIGINS = [
@@ -80,146 +78,6 @@ function normalizePhone(raw: string): string {
   return /^\+?\d{7,15}$/.test(compact) ? compact : '';
 }
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// Calls HubSpot with an 8s timeout and one retry on 429/5xx. Returns the
-// parsed JSON body, or null on any failure. Logs only status + short label —
-// never the token, the response body, or lead data.
-async function hubspot<T>(
-  token: string,
-  label: string,
-  method: 'GET' | 'POST' | 'PATCH',
-  path: string,
-  body?: unknown,
-): Promise<T | null> {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-    try {
-      const res = await fetch(`${HUBSPOT_API}${path}`, {
-        method,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: body === undefined ? undefined : JSON.stringify(body),
-        signal: controller.signal,
-      });
-
-      if (res.ok) return (await res.json()) as T;
-
-      const retryable = res.status === 429 || res.status >= 500;
-      console.error(`[api/hubspot-lead] ${label} failed: HTTP ${res.status}`);
-      if (!retryable || attempt === 1) return null;
-    } catch (error) {
-      const reason = error instanceof Error && error.name === 'AbortError' ? 'timeout' : 'network error';
-      console.error(`[api/hubspot-lead] ${label} failed: ${reason}`);
-      if (attempt === 1) return null;
-    } finally {
-      clearTimeout(timer);
-    }
-    await sleep(RETRY_DELAY_MS);
-  }
-  return null;
-}
-
-// Cached for the lifetime of the module instance.
-let cachedStage: { pipeline: string; stage: string } | null = null;
-
-async function getPipelineStage(token: string): Promise<{ pipeline: string; stage: string } | null> {
-  const envPipeline = process.env.HUBSPOT_PIPELINE_ID;
-  const envStage = process.env.HUBSPOT_DEAL_STAGE_ID;
-  if (envPipeline && envStage) return { pipeline: envPipeline, stage: envStage };
-  if (cachedStage) return cachedStage;
-
-  type Pipelines = {
-    results?: { id: string; displayOrder?: number; stages?: { id: string; displayOrder: number }[] }[];
-  };
-  const data = await hubspot<Pipelines>(token, 'get pipelines', 'GET', '/crm/v3/pipelines/deals');
-  const pipelines = data?.results ?? [];
-  if (pipelines.length === 0) return null;
-
-  const first = [...pipelines].sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0))[0];
-  const stage = [...(first.stages ?? [])].sort((a, b) => a.displayOrder - b.displayOrder)[0];
-  if (!stage) return null;
-
-  cachedStage = { pipeline: first.id, stage: stage.id };
-  return cachedStage;
-}
-
-async function upsertContact(token: string, lead: Lead): Promise<string | null> {
-  const [firstname, ...rest] = lead.name.split(/\s+/).filter(Boolean);
-  const lastname = rest.join(' ');
-
-  // Only non-empty values, so an existing contact's data is never blanked.
-  const properties: Record<string, string> = {};
-  if (firstname) properties.firstname = firstname;
-  if (lastname) properties.lastname = lastname;
-  if (lead.phone) properties.phone = lead.phone;
-  if (lead.company) properties.company = lead.company;
-
-  // Prefer email as the identity; fall back to the normalised phone.
-  const [searchProp, searchValue] = lead.email ? ['email', lead.email] : ['phone', lead.phone];
-  const found = await hubspot<{ results?: { id: string }[] }>(
-    token,
-    'search contact',
-    'POST',
-    '/crm/v3/objects/contacts/search',
-    {
-      filterGroups: [{ filters: [{ propertyName: searchProp, operator: 'EQ', value: searchValue }] }],
-      limit: 1,
-    },
-  );
-  if (!found) return null;
-
-  const existingId = found.results?.[0]?.id;
-  if (existingId) {
-    if (Object.keys(properties).length > 0) {
-      const updated = await hubspot(token, 'update contact', 'PATCH', `/crm/v3/objects/contacts/${existingId}`, {
-        properties,
-      });
-      if (!updated) return null;
-    }
-    return existingId;
-  }
-
-  const created = await hubspot<{ id: string }>(token, 'create contact', 'POST', '/crm/v3/objects/contacts', {
-    properties: { ...(lead.email ? { email: lead.email } : {}), ...properties },
-  });
-  return created?.id ?? null;
-}
-
-async function createDeal(token: string, lead: Lead, contactId: string): Promise<boolean> {
-  const target = await getPipelineStage(token);
-  if (!target) return false;
-
-  const date = new Date().toISOString().slice(0, 10);
-  const description = [
-    lead.phone && `Телефон: ${lead.phone}`,
-    lead.message,
-    `Язык: ${lead.language || '—'}`,
-    `Источник: ${lead.source || '—'}`,
-  ]
-    .filter(Boolean)
-    .join('\n');
-
-  const deal = await hubspot(token, 'create deal', 'POST', '/crm/v3/objects/deals', {
-    properties: {
-      dealname: `Сайт-чат: ${lead.name || lead.email || lead.phone} — ${date}`,
-      description,
-      pipeline: target.pipeline,
-      dealstage: target.stage,
-    },
-    associations: [
-      {
-        to: { id: contactId },
-        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }],
-      },
-    ],
-  });
-  return deal !== null;
-}
-
 export async function POST(request: Request) {
   try {
     const origin = request.headers.get('origin');
@@ -258,11 +116,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false });
     }
 
-    const contactId = await upsertContact(token, lead);
-    if (!contactId) return NextResponse.json({ ok: false });
+    // Same flow as the chat: find/create the contact, ALWAYS create the deal.
+    // The visitor gets success regardless (the lead email is sent separately by the
+    // form); failures are logged by saveLead without any personal data.
+    const date = new Date().toISOString().slice(0, 10);
+    const description = [
+      lead.phone && `Телефон: ${lead.phone}`,
+      lead.email && `Email: ${lead.email}`,
+      lead.message,
+      `Язык: ${lead.language || '—'}`,
+      `Источник: ${lead.source || '—'}`,
+    ]
+      .filter(Boolean)
+      .join('\n');
 
-    const dealOk = await createDeal(token, lead, contactId);
-    return NextResponse.json({ ok: dealOk });
+    await saveLead(token, {
+      contact: { email: lead.email, phone: lead.phone, name: lead.name, company: lead.company },
+      dealName: `Сайт-чат: ${lead.name || lead.email || lead.phone} — ${date}`,
+      description,
+    });
+    return NextResponse.json({ ok: true });
   } catch {
     console.error('[api/hubspot-lead] unexpected error');
     return NextResponse.json({ ok: false });

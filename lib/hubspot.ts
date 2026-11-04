@@ -1,7 +1,7 @@
-// Server-side HubSpot helpers used by /api/chat-lead. Same behaviour as the
-// helpers in app/api/hubspot-lead/route.ts (timeout 8s, one retry on 429/5xx).
-// Logs only a short label + HTTP status — never the token, response bodies or
-// any lead data.
+// Server-side HubSpot helpers shared by /api/hubspot-lead (contact form) and
+// /api/chat-lead (AI chat), so both create leads the same way.
+// Calls use an 8s timeout and one retry on 429/5xx. Logs only a short label +
+// HTTP status — never the token, response bodies or any lead data.
 
 const HUBSPOT_API = 'https://api.hubapi.com';
 const REQUEST_TIMEOUT_MS = 8000;
@@ -15,13 +15,21 @@ const ASSOC_NOTE_TO_DEAL = 214;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function hubspot<T>(
+type RawResult = { status: number; data: unknown };
+
+/**
+ * One HubSpot call. Returns the final status + parsed JSON body (null body if
+ * not JSON), or null on a network error / timeout. `expected` lists non-2xx
+ * statuses the caller handles itself (not logged as failures, not retried).
+ */
+async function hubspotRaw(
   token: string,
   label: string,
   method: 'GET' | 'POST' | 'PATCH' | 'PUT',
   path: string,
   body?: unknown,
-): Promise<T | null> {
+  expected: number[] = [],
+): Promise<RawResult | null> {
   for (let attempt = 0; attempt < 2; attempt++) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -32,11 +40,17 @@ export async function hubspot<T>(
         body: body === undefined ? undefined : JSON.stringify(body),
         signal: controller.signal,
       });
-      if (res.ok) return res.status === 204 ? ({} as T) : ((await res.json()) as T);
+      let data: unknown = null;
+      try {
+        data = res.status === 204 ? {} : await res.json();
+      } catch {
+        data = null;
+      }
+      if (res.ok || expected.includes(res.status)) return { status: res.status, data };
 
       const retryable = res.status === 429 || res.status >= 500;
       console.error(`${LOG_PREFIX} ${label} failed: HTTP ${res.status}`);
-      if (!retryable || attempt === 1) return null;
+      if (!retryable || attempt === 1) return { status: res.status, data };
     } catch (error) {
       const reason = error instanceof Error && error.name === 'AbortError' ? 'timeout' : 'network error';
       console.error(`${LOG_PREFIX} ${label} failed: ${reason}`);
@@ -47,6 +61,18 @@ export async function hubspot<T>(
     await sleep(RETRY_DELAY_MS);
   }
   return null;
+}
+
+/** Parsed JSON body of a successful call, or null on any failure. */
+export async function hubspot<T>(
+  token: string,
+  label: string,
+  method: 'GET' | 'POST' | 'PATCH' | 'PUT',
+  path: string,
+  body?: unknown,
+): Promise<T | null> {
+  const res = await hubspotRaw(token, label, method, path, body);
+  return res && res.status >= 200 && res.status < 300 ? (res.data as T) : null;
 }
 
 const PIPELINE_LABEL = 'Freight Forwarding Sales Pipeline';
@@ -76,42 +102,75 @@ export async function getPipelineStage(token: string): Promise<{ pipeline: strin
   return cachedStage;
 }
 
-export type LeadContact = { email: string; phone: string; name: string };
+export type LeadContact = { email: string; phone: string; name: string; company?: string };
 
-/** Finds a contact by email (else normalised phone), updates it with non-empty values, or creates it. */
+/**
+ * Returns the contact id for a lead, creating the contact if needed.
+ *
+ * With an email we do NOT search (HubSpot's search index lags a few seconds
+ * behind writes): we create directly and, on 409 Conflict, take the existing id
+ * from the error message ("Existing ID: 123"). Phone-only leads have no unique
+ * key in HubSpot, so a best-effort phone search is used before creating.
+ * Existing contacts are updated with non-empty values only — never blanked.
+ */
 export async function upsertContact(token: string, lead: LeadContact): Promise<string | null> {
   const [firstname, ...rest] = lead.name.split(/\s+/).filter(Boolean);
   const lastname = rest.join(' ');
 
-  // Only non-empty values, so an existing contact's data is never blanked.
   const properties: Record<string, string> = {};
   if (firstname) properties.firstname = firstname;
   if (lastname) properties.lastname = lastname;
   if (lead.phone) properties.phone = lead.phone;
+  if (lead.company) properties.company = lead.company;
 
-  const [searchProp, searchValue] = lead.email ? ['email', lead.email] : ['phone', lead.phone];
+  const updateExisting = async (id: string): Promise<string | null> => {
+    if (Object.keys(properties).length === 0) return id;
+    const updated = await hubspot(token, 'update contact', 'PATCH', `/crm/v3/objects/contacts/${id}`, { properties });
+    return updated ? id : null;
+  };
+
+  if (lead.email) {
+    const created = await hubspotRaw(
+      token,
+      'create contact',
+      'POST',
+      '/crm/v3/objects/contacts',
+      { properties: { email: lead.email, ...properties } },
+      [409],
+    );
+    if (!created) return null;
+    if (created.status >= 200 && created.status < 300) return (created.data as { id?: string })?.id ?? null;
+    if (created.status === 409) {
+      const message = (created.data as { message?: string } | null)?.message ?? '';
+      const existingId = /Existing ID:\s*(\d+)/i.exec(message)?.[1];
+      if (existingId) return updateExisting(existingId);
+      // 409 without an id in the message: fall back to a search by email.
+      const found = await hubspot<{ results?: { id: string }[] }>(
+        token,
+        'search contact',
+        'POST',
+        '/crm/v3/objects/contacts/search',
+        { filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: lead.email }] }], limit: 1 },
+      );
+      const foundId = found?.results?.[0]?.id;
+      return foundId ? updateExisting(foundId) : null;
+    }
+    return null;
+  }
+
+  // Phone only
   const found = await hubspot<{ results?: { id: string }[] }>(
     token,
     'search contact',
     'POST',
     '/crm/v3/objects/contacts/search',
-    { filterGroups: [{ filters: [{ propertyName: searchProp, operator: 'EQ', value: searchValue }] }], limit: 1 },
+    { filterGroups: [{ filters: [{ propertyName: 'phone', operator: 'EQ', value: lead.phone }] }], limit: 1 },
   );
-  if (!found) return null;
-
-  const existingId = found.results?.[0]?.id;
-  if (existingId) {
-    if (Object.keys(properties).length > 0) {
-      const updated = await hubspot(token, 'update contact', 'PATCH', `/crm/v3/objects/contacts/${existingId}`, {
-        properties,
-      });
-      if (!updated) return null;
-    }
-    return existingId;
-  }
+  const existingId = found?.results?.[0]?.id;
+  if (existingId) return updateExisting(existingId);
 
   const created = await hubspot<{ id: string }>(token, 'create contact', 'POST', '/crm/v3/objects/contacts', {
-    properties: { ...(lead.email ? { email: lead.email } : {}), ...properties },
+    properties,
   });
   return created?.id ?? null;
 }
@@ -203,6 +262,43 @@ export async function associateNoteWithContact(token: string, noteId: string, co
     [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: ASSOC_NOTE_TO_CONTACT }],
   );
   return res !== null;
+}
+
+/**
+ * The one way both the contact form and the chat record a NEW lead:
+ * find/create the contact (if there is one), always create the deal (linked to the
+ * contact when we have it) and, if given, the note. Never throws; any id is '' when
+ * that step failed, so the caller can still report success and send its email copy.
+ * A failed contact does not stop the deal from being created (the lead is not lost).
+ */
+export async function saveLead(
+  token: string,
+  input: {
+    contact: LeadContact | null;
+    dealName: string;
+    description: string;
+    noteHtml?: string;
+  },
+): Promise<{ contactId: string; dealId: string; noteId: string }> {
+  let contactId = '';
+  if (input.contact) {
+    contactId = (await upsertContact(token, input.contact)) ?? '';
+    if (!contactId) console.error(`${LOG_PREFIX} lead saved without a contact`);
+  }
+
+  const dealId =
+    (await createDeal(token, {
+      name: input.dealName,
+      description: input.description,
+      contactId: contactId || undefined,
+    })) ?? '';
+  if (!dealId) console.error(`${LOG_PREFIX} lead saved without a deal`);
+
+  let noteId = '';
+  if (dealId && input.noteHtml) {
+    noteId = (await createNote(token, input.noteHtml, dealId, contactId || undefined)) ?? '';
+  }
+  return { contactId, dealId, noteId };
 }
 
 let cachedPortalId: string | null = null;
