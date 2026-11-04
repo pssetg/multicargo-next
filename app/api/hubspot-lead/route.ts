@@ -72,11 +72,11 @@ function parseLead(raw: unknown): Lead | null {
   return lead;
 }
 
-// Removes spaces, brackets and hyphens; the rest must be an optional leading "+"
+// Removes spaces, brackets, hyphens and dots; the rest must be an optional leading "+"
 // and 7–15 digits. Returns '' for anything else.
 function normalizePhone(raw: string): string {
   if (!raw) return '';
-  const compact = raw.trim().replace(/[\s()-]/g, '');
+  const compact = raw.trim().replace(/[\s().-]/g, '');
   return /^\+?\d{7,15}$/.test(compact) ? compact : '';
 }
 

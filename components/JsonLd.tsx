@@ -19,8 +19,9 @@ export default async function JsonLd({ locale }: { locale: string }) {
     url: `${SITE_URL}/${locale}`,
     logo: `${SITE_URL}/icon.svg`,
     image: `${SITE_URL}/img/og-image.jpg`,
-    description: t('description'),
-    foundingDate: '2007',
+    description: t('description'), // already states the team's experience since 2008
+    // Multicargo began operating as an independent company in 2013; the team's experience dates from 2008.
+    foundingDate: '2013',
     email: CONTACT_EMAIL,
     telephone: CONTACT_PHONE_HREF.replace('tel:', ''),
     address: {

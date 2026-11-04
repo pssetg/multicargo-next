@@ -8,13 +8,13 @@ export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?\d{7,15}$/;
 
 /**
- * Strict phone check: after removing spaces, brackets and hyphens, an optional
+ * Strict phone check: after removing spaces, brackets, hyphens and dots, an optional
  * leading "+" followed by 7–15 digits and nothing else. Returns the compact
  * form ("+380501234567"), or '' if the value is not a phone number.
  */
 export function normalizePhone(raw: string): string {
   if (!raw) return '';
-  const compact = raw.trim().replace(/[\s()-]/g, '');
+  const compact = raw.trim().replace(/[\s().-]/g, '');
   return PHONE_RE.test(compact) ? compact : '';
 }
 

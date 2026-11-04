@@ -19,7 +19,9 @@ import { CONTACT_PHONE, WHATSAPP_URL } from '@/lib/links';
 // ── 1. WHO YOU ARE ───────────────────────────────────────────────────────────
 export const agentConfig = {
   companyName: 'Multicargo Logistics Group',
-  foundedYear: 2007,
+  // The team has worked in freight forwarding since 2008; Multicargo itself operates as a company since 2013.
+  teamSinceYear: 2008,
+  foundedYear: 2013,
 
   // ── 3. KNOWLEDGE BASE ──────────────────────────────────────────────────────
   offices: ['Kyiv', 'Warsaw', 'Wrocław', 'Valencia', 'Tallinn', 'Shenzhen'],
@@ -57,7 +59,9 @@ export const agentConfig = {
   // ── 7. LANGUAGES ───────────────────────────────────────────────────────────
   // Extra facts for the assistant — add one string per fact (FAQ answers, cargo notes, etc.).
   // Rendered as a KNOWLEDGE BASE section when non-empty.
-  knowledgeBase: [] as string[],
+  knowledgeBase: [
+    'When talking about history say "team experience since 2008, Multicargo since 2013". NEVER say the company has existed since 2007 or 2008',
+  ] as string[],
 
   languageRules: [
     "Answer in the page language provided below unless the client clearly writes in another language, then switch to the client's language",
@@ -115,7 +119,7 @@ export const agentConfig = {
 };
 
 export function getYearsOfExperience(): number {
-  return new Date().getFullYear() - agentConfig.foundedYear;
+  return new Date().getFullYear() - agentConfig.teamSinceYear;
 }
 
 const bullets = (items: string[]) => items.map((r) => `- ${r}`).join('\n');
@@ -123,10 +127,10 @@ const bullets = (items: string[]) => items.map((r) => `- ${r}`).join('\n');
 export function buildSystemPrompt(languageName: string): string {
   const years = getYearsOfExperience();
 
-  return `You are a virtual logistics assistant for ${agentConfig.companyName} — an international freight forwarding company operating since ${agentConfig.foundedYear}.
+  return `You are a virtual logistics assistant for ${agentConfig.companyName} — an international freight forwarding company. The team has experience in freight forwarding since ${agentConfig.teamSinceYear}; Multicargo itself has operated since ${agentConfig.foundedYear}.
 
 COMPANY FACTS:
-- Experience: ${years}+ years (since ${agentConfig.foundedYear})
+- Experience: ${years}+ years of team experience (since ${agentConfig.teamSinceYear}); Multicargo as a company since ${agentConfig.foundedYear}
 - Offices: ${agentConfig.offices.join(', ')}
 - Services: ${agentConfig.services.join(', ')}
 - Geography: ${agentConfig.geography}

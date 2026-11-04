@@ -14,6 +14,15 @@ const intlMiddleware = createMiddleware({
 // next-intl's own routing.
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Unknown language prefix (/de, /fr, /pt-br ...): 308 to the English page, path kept.
+  // (/ru is redirected to /uk in next.config.js before this runs.)
+  const prefix = pathname.match(/^\/([A-Za-z]{2}(?:-[A-Za-z]{2})?)(\/.*)?$/);
+  if (prefix && !(locales as readonly string[]).includes(prefix[1])) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${defaultLocale}${prefix[2] ?? ''}`;
+    return NextResponse.redirect(url, 308);
+  }
   const cabinetMatch = pathname.match(/^\/([a-z]{2})\/cabinet(?:\/|$)/);
 
   if (cabinetMatch) {
