@@ -5,21 +5,29 @@
 
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Strips spaces, brackets, dashes etc.; keeps a leading "+" and digits. '' if not 7–15 digits. */
+const PHONE_RE = /^\+?\d{7,15}$/;
+
+/**
+ * Strict phone check: after removing spaces, brackets and hyphens, an optional
+ * leading "+" followed by 7–15 digits and nothing else. Returns the compact
+ * form ("+380501234567"), or '' if the value is not a phone number.
+ */
 export function normalizePhone(raw: string): string {
   if (!raw) return '';
-  const digits = raw.replace(/\D/g, '');
-  if (digits.length < 7 || digits.length > 15) return '';
-  return (raw.trim().startsWith('+') ? '+' : '') + digits;
+  const compact = raw.trim().replace(/[\s()-]/g, '');
+  return PHONE_RE.test(compact) ? compact : '';
 }
 
 export type ContactInfo = { email: string; phone: string };
 
-/** A single "phone or email" field: valid email if it looks like one, otherwise a phone. */
-export function splitContact(value: string): ContactInfo {
+/**
+ * The single "phone or email" field. Returns the trimmed email, or the phone as typed
+ * (trimmed), or null when the value is neither a valid email nor a valid phone number.
+ */
+export function parseContactField(value: string): ContactInfo | null {
   const contact = value.trim();
-  if (contact.includes('@') && EMAIL_RE.test(contact)) return { email: contact, phone: '' };
-  return { email: '', phone: normalizePhone(contact) };
+  if (contact.includes('@')) return EMAIL_RE.test(contact) ? { email: contact, phone: '' } : null;
+  return normalizePhone(contact) ? { email: '', phone: contact } : null;
 }
 
 const EMAIL_IN_TEXT_RE = /[^\s@,;:()<>"']+@[^\s@,;:()<>"']+\.[^\s@,;:()<>"']+/;
@@ -39,7 +47,7 @@ export function findContactInText(text: string): ContactInfo {
   const rest = emailMatch ? text.replace(emailMatch[0], ' ') : text;
   let phone = '';
   for (const candidate of rest.match(PHONE_IN_TEXT_RE) ?? []) {
-    const normalized = normalizePhone(candidate);
+    const normalized = normalizePhone(candidate.replace(/\./g, ''));
     if (!normalized) continue;
     const digitCount = normalized.replace(/\D/g, '').length;
     if (normalized.startsWith('+') || digitCount >= 9) {

@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/config';
 import Analytics from '@/components/Analytics';
 import CookieBanner from '@/components/CookieBanner';
+import JsonLd from '@/components/JsonLd';
 import '../globals.css';
 
 const SITE_URL = 'https://multicargoltd.com';
@@ -104,6 +105,7 @@ export default async function LocaleLayout({
       >
         {/* Fixed route map background */}
         <div className="bg-routes pointer-events-none fixed inset-0 z-[-1] h-full w-full opacity-35" />
+        <JsonLd locale={locale} />
         <NextIntlClientProvider messages={messages}>
           {children}
           <CookieBanner />

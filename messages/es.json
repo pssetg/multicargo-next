@@ -1,7 +1,7 @@
 {
   "Meta": {
     "title": "Multicargo — Transitario global | Desde 2007",
-    "description": "¿Caos logístico? Multicargo es tu departamento de comercio exterior — aéreo, marítimo, ferroviario y por carretera desde Asia, América, Israel y más. 15 años. 6 oficinas. Una llamada."
+    "description": "Multicargo es tu departamento de comercio exterior: aéreo, marítimo, ferroviario y terrestre desde Asia, América e Israel. Desde 2007. 6 oficinas."
   },
   "Nav": {
     "about": "Nosotros",
@@ -90,7 +90,7 @@
         "desc": "Transformación en un operador logístico independiente. Lanzamiento de líneas directas y servicios integrales de comercio exterior llave en mano."
       },
       "e3": {
-        "year": "15+ años",
+        "year": "Hoy",
         "title": "Ecosistema",
         "desc": "Un mecanismo afinado: hubs marítimos, agentes aéreos, almacenes en la UE y consultoría aduanera propia."
       }
@@ -283,6 +283,7 @@
     "namePlaceholder": "Juan Pérez",
     "contact": "Teléfono o Email",
     "contactPlaceholder": "+34... o email@example.com",
+    "contactError": "Introduce un teléfono válido (7–15 dígitos) o un email.",
     "message": "Mensaje / Detalles de la carga",
     "messagePlaceholder": "Describe tu carga, origen y destino...",
     "submit": "Obtener presupuesto gratis",

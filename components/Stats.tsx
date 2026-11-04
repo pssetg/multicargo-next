@@ -1,8 +1,10 @@
 import { useTranslations } from 'next-intl';
 
 /** Headline metrics. Values are brand facts; labels are translated. */
+const FOUNDED_YEAR = 2007;
+
 const STATS: { value: string; plus?: boolean; key: string }[] = [
-  { value: '15', plus: true, key: 'years' },
+  { value: String(new Date().getFullYear() - FOUNDED_YEAR), plus: true, key: 'years' },
   { value: '6', key: 'offices' },
   { value: '30', plus: true, key: 'countries' },
   { value: '500', plus: true, key: 'clients' },

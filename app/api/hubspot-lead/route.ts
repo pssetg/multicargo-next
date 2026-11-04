@@ -62,21 +62,22 @@ function parseLead(raw: unknown): Lead | null {
     lead[key] = trimmed;
   }
 
-  // Either a valid email or a valid phone is enough; an invalid one is
-  // dropped as long as the other is usable.
-  if (lead.email && !EMAIL_RE.test(lead.email)) lead.email = '';
-  lead.phone = normalizePhone(lead.phone);
+  // Either a valid email or a valid phone is required; anything supplied must be valid.
+  if (lead.email && !EMAIL_RE.test(lead.email)) return null;
+  if (lead.phone) {
+    lead.phone = normalizePhone(lead.phone);
+    if (!lead.phone) return null;
+  }
   if (!lead.email && !lead.phone) return null;
   return lead;
 }
 
-// Strips spaces, brackets, dashes etc.; keeps a leading "+" and digits.
-// Returns '' unless the result has 7–15 digits.
+// Removes spaces, brackets and hyphens; the rest must be an optional leading "+"
+// and 7–15 digits. Returns '' for anything else.
 function normalizePhone(raw: string): string {
   if (!raw) return '';
-  const digits = raw.replace(/\D/g, '');
-  if (digits.length < 7 || digits.length > 15) return '';
-  return (raw.trim().startsWith('+') ? '+' : '') + digits;
+  const compact = raw.trim().replace(/[\s()-]/g, '');
+  return /^\+?\d{7,15}$/.test(compact) ? compact : '';
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

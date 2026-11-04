@@ -217,6 +217,7 @@ export default function Hero() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
+                aria-label={t('searchPlaceholder')}
                 placeholder={typed || t('searchPlaceholder')}
                 className="min-w-0 flex-1 truncate bg-transparent px-3 py-3.5 text-base text-white placeholder-slate-500 focus:outline-none"
               />
@@ -241,6 +242,7 @@ export default function Hero() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
+              aria-label={t('searchPlaceholder')}
               placeholder={typed || t('searchPlaceholder')}
               className="min-w-0 flex-1 truncate bg-transparent px-5 py-7 text-lg text-white placeholder-slate-500 focus:outline-none"
             />
