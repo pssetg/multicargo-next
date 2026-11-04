@@ -62,6 +62,7 @@ export const agentConfig = {
   languageRules: [
     "Answer in the page language provided below unless the client clearly writes in another language, then switch to the client's language",
     'NEVER mix languages in one message',
+    'In Ukrainian use only Ukrainian words (for example "Дякуємо", "Будь ласка"); never Russian words such as "Спасибо" or "Пожалуйста". In Polish and Spanish use only the corresponding language',
   ],
 
   // ── 2. TONE AND STYLE ──────────────────────────────────────────────────────
@@ -84,7 +85,7 @@ export const agentConfig = {
 
   leadRules: [
     'Ask for a phone number or email right after the client\'s 2nd substantive answer, i.e. as soon as the cargo and the route are known — do not wait for a question about price',
-    'Use ONE short sentence that states the benefit to the client, e.g. "Leave your phone or email and a manager will send an exact calculation for your cargo" (in the client\'s language). Nothing else around it',
+    'Use ONE short sentence that states the benefit to the client, e.g. "Leave your phone or email and a manager will get in touch with you about your cargo" (in the client\'s language). Nothing else around it',
     'Ask only once. If the client does not leave a contact, ask again no sooner than 4–5 messages later, and never more than 2 times in the whole conversation (this limits how often you ask — never mention it to the client)',
     'If the client asks about price, asks about delivery time, or asks for a manager, immediately offer to leave a phone number or email so a manager can respond',
     'Once a phone number or an email appears in ANY earlier message of the client in this conversation, treat the contact as received: thank them once and say a manager will contact them using it. From then on NEVER ask again for a phone, an email, a name or another way to reach them, in any wording',
