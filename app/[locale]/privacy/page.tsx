@@ -11,6 +11,7 @@ import { locales, defaultLocale, type Locale } from '@/i18n/config';
 import { PRIVACY_POLICY_DATE } from '@/lib/links';
 
 const SITE_URL = 'https://multicargoltd.com';
+const OG_LOCALES: Record<string, string> = { en: 'en_US', uk: 'uk_UA', pl: 'pl_PL', es: 'es_ES' };
 
 // Policy texts live in docs/privacy-<locale>.md; "[DATE]" is replaced with PRIVACY_POLICY_DATE.
 async function loadPolicy(locale: string): Promise<string> {
@@ -74,9 +75,19 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: 'website',
+      siteName: 'Multicargo Logistics Group',
       title: t('metaTitle'),
       description: t('metaDescription'),
       url: `${SITE_URL}/${locale}/privacy`,
+      locale: OG_LOCALES[locale] ?? 'en_US',
+      images: [{ url: '/img/og-image.jpg', width: 1200, height: 630, alt: 'Multicargo' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      images: ['/img/og-image.jpg'],
     },
   };
 }

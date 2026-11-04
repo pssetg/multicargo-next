@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "title": "Multicargo — Global Freight Forwarder | Since 2007",
-    "description": "Logistics chaos? Multicargo is your dedicated trade department — air, sea, rail & road from Asia, the Americas, Israel and beyond. 15 years. 6 offices. One call."
+    "title": "Multicargo — Global Freight Forwarder | Team since 2008",
+    "description": "Multicargo — your dedicated trade department. Air, sea, rail & road freight from Asia, the Americas and Israel. Team experience since 2008. 6 offices."
   },
   "Nav": {
     "about": "About",
@@ -77,7 +77,7 @@
     "title": "To make international logistics for business <hl>transparent</hl>, predictable, and free of bureaucracy.",
     "body": "Multicargo is your outsourced foreign trade department. We handle sourcing, shipping, customs, and last-mile delivery — from any supplier, in any country. Asia, the Americas, Israel, Brazil, Canada — wherever your supply chain begins, we take it from there. One partner. Full control. Zero chaos.",
     "evolutionTitle": "Company Evolution",
-    "established": "Est. 2008",
+    "established": "Team since 2008",
     "evolution": {
       "e1": {
         "year": "2008",
@@ -85,12 +85,12 @@
         "desc": "Formation of the core team. Commencement of practice in multimodal transport and creation of agent networks in China and Europe."
       },
       "e2": {
-        "year": "2014",
+        "year": "2013",
         "title": "Multicargo Brand",
         "desc": "Transformation into an independent logistics operator. Launch of direct lines and complex turnkey foreign trade services."
       },
       "e3": {
-        "year": "15+ years",
+        "year": "Today",
         "title": "Ecosystem",
         "desc": "A fine-tuned mechanism: ocean hubs, air agents, warehouses in the EU, and in-house customs consulting."
       }
@@ -283,6 +283,7 @@
     "namePlaceholder": "John Doe",
     "contact": "Phone or Email",
     "contactPlaceholder": "+1... or email@example.com",
+    "contactError": "Enter a valid phone number (7–15 digits) or email address.",
     "message": "Message / Cargo Details",
     "messagePlaceholder": "Describe your cargo, origin, and destination...",
     "submit": "Get a Free Quote",

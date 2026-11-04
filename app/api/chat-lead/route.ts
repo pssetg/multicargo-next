@@ -117,8 +117,11 @@ function parseBody(raw: unknown): Parsed | null {
     const e = str(c.email, 254);
     const p = str(c.phone, 40);
     if (e === null || p === null) return null;
-    email = EMAIL_RE.test(e) ? e : '';
-    phone = normalizePhone(p);
+    // A supplied contact must be valid (anonymous leads omit `contact` entirely).
+    if (e && !EMAIL_RE.test(e)) return null;
+    if (p && !normalizePhone(p)) return null;
+    email = e;
+    phone = p ? normalizePhone(p) : '';
   }
 
   if (!Array.isArray(input.messages) || input.messages.length === 0) return null;

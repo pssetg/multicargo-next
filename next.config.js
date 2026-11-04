@@ -43,6 +43,11 @@ const nextConfig = {
       { protocol: 'https', hostname: 'cdn.jsdelivr.net' },
     ],
   },
+  // Russian is not a site locale: send /ru and /ru/* to the Ukrainian version (308),
+  // otherwise next-intl treats "ru" as a path inside a locale and returns 404.
+  async redirects() {
+    return [{ source: '/ru/:path*', destination: '/uk/:path*', permanent: true }];
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

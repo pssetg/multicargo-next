@@ -225,6 +225,7 @@ export default function ChatWindow({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKey}
+          aria-label={t('placeholder')}
           placeholder={t('placeholder')}
           className="max-h-20 flex-1 resize-none rounded-xl border border-white/10 bg-slate-800 px-3.5 py-2.5 text-[13px] leading-relaxed text-white outline-none transition-colors focus:border-blue-600/50"
         />

@@ -118,6 +118,7 @@ export default function LoginForm() {
                 data-clarity-mask="true"
                 name="email"
                 required
+                aria-label={t('emailLabel')}
                 placeholder={t('emailPlaceholder')}
                 className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
@@ -127,6 +128,7 @@ export default function LoginForm() {
                 type="password"
                 name="password"
                 required
+                aria-label={t('passwordLabel')}
                 placeholder={t('passwordPlaceholder')}
                 className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
@@ -179,6 +181,7 @@ export default function LoginForm() {
                     data-clarity-mask="true"
                     name="email"
                     required
+                    aria-label={t('emailFormPlaceholder')}
                     placeholder={t('emailFormPlaceholder')}
                     className="w-full flex-1 rounded-2xl border border-white/10 bg-slate-950/60 px-5 py-3.5 text-sm text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   />

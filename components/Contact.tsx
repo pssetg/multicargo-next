@@ -8,6 +8,7 @@ import Badge from './Badge';
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_ADDRESS } from '@/lib/links';
 import { trackLead } from '@/lib/analytics';
 import { PRIVACY_POLICY_URL } from '@/lib/links';
+import { parseContactField } from '@/lib/contact-parse';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -18,16 +19,6 @@ const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'r6yEzc
 const ORDER_EMAIL = 'order1@multicargoltd.com';
 // Name is optional on the form; keeps the EmailJS subject and HubSpot deal name non-empty.
 const FALLBACK_NAME = 'Website visitor';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// The single "Phone or Email" field: a valid email if it looks like one,
-// otherwise treated as a phone number (validated/normalised server-side).
-function splitContact(value: string): { email: string; phone: string } {
-  const contact = value.trim();
-  if (contact.includes('@') && EMAIL_RE.test(contact)) return { email: contact, phone: '' };
-  return { email: '', phone: contact };
-}
 
 // Best-effort CRM sync after EmailJS has accepted the lead. Failures are
 // never surfaced.
@@ -58,6 +49,7 @@ export default function Contact() {
   const t = useTranslations('Contact');
   const locale = useLocale();
   const [status, setStatus] = useState<Status>('idle');
+  const [contactInvalid, setContactInvalid] = useState(false);
 
   // Initialise EmailJS once on mount with the public key
   useEffect(() => {
@@ -74,13 +66,20 @@ export default function Contact() {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
 
+    // The single "Phone or Email" field must be a valid email or phone number.
+    const contact = parseContactField(data.contact);
+    if (!contact) {
+      setContactInvalid(true);
+      (form.elements.namedItem('contact') as HTMLInputElement).focus();
+      return;
+    }
+
     setStatus('sending');
 
     // Yield to the browser so it can paint the "sending" state and keep the
     // interaction responsive (improves INP) before the synchronous EmailJS work.
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const contact = splitContact(data.contact);
     const name = data.name.trim() || FALLBACK_NAME;
 
     try {
@@ -100,6 +99,7 @@ export default function Contact() {
       void syncLeadToHubspot({ name, message: data.message }, contact, locale);
       setStatus('success');
       form.reset();
+      setContactInvalid(false);
     } catch (err) {
       console.error('EmailJS send failed:', err);
       setStatus('error');
@@ -158,8 +158,9 @@ export default function Contact() {
             {/* Form */}
             <div className="w-full rounded-[40px] border border-white/5 bg-slate-900/30 p-8 shadow-2xl backdrop-blur-md md:p-12 lg:w-1/2">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <Field label={t('name')}>
+                <Field label={t('name')} htmlFor="contact-name">
                   <input
+                    id="contact-name"
                     name="name"
                     data-clarity-mask="true"
                     autoComplete="name"
@@ -168,9 +169,13 @@ export default function Contact() {
                     className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                   />
                 </Field>
-                <Field label={t('contact')}>
+                <Field label={t('contact')} htmlFor="contact-contact">
                   <input
+                    id="contact-contact"
                     name="contact"
+                    aria-invalid={contactInvalid ? 'true' : undefined}
+                    aria-describedby={contactInvalid ? 'contact-error' : undefined}
+                    onChange={() => contactInvalid && setContactInvalid(false)}
                     data-clarity-mask="true"
                     required
                     autoComplete="email"
@@ -179,11 +184,17 @@ export default function Contact() {
                     autoCorrect="off"
                     spellCheck={false}
                     placeholder={t('contactPlaceholder')}
-                    className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-6 py-4 text-white placeholder-slate-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50 aria-[invalid=true]:border-red-500/60"
                   />
+                  {contactInvalid && (
+                    <p id="contact-error" role="alert" className="mt-2 text-xs text-red-400">
+                      {t('contactError')}
+                    </p>
+                  )}
                 </Field>
-                <Field label={t('message')}>
+                <Field label={t('message')} htmlFor="contact-message">
                   <textarea
+                    id="contact-message"
                     name="message"
                     rows={4}
                     data-clarity-mask="true"
@@ -224,10 +235,18 @@ export default function Contact() {
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  htmlFor,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-400">
+      <label htmlFor={htmlFor} className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-400">
         {label}
       </label>
       {children}

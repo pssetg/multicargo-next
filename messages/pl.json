@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "title": "Multicargo — Międzynarodowy spedytor | Od 2007 roku",
-    "description": "Chaos w logistyce? Multicargo to Twój dział handlu zagranicznego — lotniczo, morzem, koleją i drogą z Azji, Ameryki, Izraela i nie tylko. 15 lat. 6 biur. Jeden telefon."
+    "title": "Multicargo — Międzynarodowy spedytor | Zespół od 2008 roku",
+    "description": "Multicargo to Twój dział handlu zagranicznego: lotniczo, morzem, koleją i drogą z Azji, Ameryki i Izraela. Doświadczenie zespołu od 2008 roku. 6 biur."
   },
   "Nav": {
     "about": "O nas",
@@ -77,7 +77,7 @@
     "title": "Uczynić międzynarodową logistykę dla biznesu <hl>przejrzystą</hl>, przewidywalną i wolną od biurokracji.",
     "body": "Multicargo to Twój zewnętrzny dział handlu zagranicznego. Zajmujemy się zaopatrzeniem, transportem, cłem i dostawą ostatniej mili — od każdego dostawcy, w każdym kraju. Azja, obie Ameryki, Izrael, Brazylia, Kanada — gdziekolwiek zaczyna się Twój łańcuch dostaw, przejmujemy go stamtąd. Jeden partner. Pełna kontrola. Zero chaosu.",
     "evolutionTitle": "Ewolucja firmy",
-    "established": "Zał. 2008",
+    "established": "Zespół od 2008",
     "evolution": {
       "e1": {
         "year": "2008",
@@ -85,12 +85,12 @@
         "desc": "Utworzenie zespołu podstawowego. Rozpoczęcie praktyki w transporcie multimodalnym i budowa sieci agentów w Chinach i Europie."
       },
       "e2": {
-        "year": "2014",
+        "year": "2013",
         "title": "Marka Multicargo",
         "desc": "Przekształcenie w niezależnego operatora logistycznego. Uruchomienie linii bezpośrednich i kompleksowych usług handlu zagranicznego pod klucz."
       },
       "e3": {
-        "year": "15+ lat",
+        "year": "Dziś",
         "title": "Ekosystem",
         "desc": "Dopracowany mechanizm: huby morskie, agenci lotniczy, magazyny w UE i wewnętrzne doradztwo celne."
       }
@@ -283,6 +283,7 @@
     "namePlaceholder": "Jan Kowalski",
     "contact": "Telefon lub Email",
     "contactPlaceholder": "+48... lub email@example.com",
+    "contactError": "Podaj prawidłowy numer telefonu (7–15 cyfr) lub adres e-mail.",
     "message": "Wiadomość / Szczegóły ładunku",
     "messagePlaceholder": "Opisz swój ładunek, miejsce nadania i przeznaczenia...",
     "submit": "Otrzymaj bezpłatną wycenę",
