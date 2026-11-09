@@ -38,7 +38,7 @@
       "Ningbo → Gdańsk, kontener 40HC",
       "Walencja → Kijów, pełny transport"
     ],
-    "calculate": "Oblicz",
+    "calculate": "Uzyskaj wycenę",
     "hotOffers": "Gorące oferty",
     "quote": "Ludzie budują zbyt wiele murów, a za mało mostów.",
     "quoteAuthor": "Isaac Newton",
@@ -317,7 +317,7 @@
     "title": "Multicargo",
     "status": "Online",
     "placeholder": "Wpisz wiadomość...",
-    "greeting": "Witamy w Multicargo! Opowiedz nam o swoim ładunku — znajdziemy najlepszą trasę z dowolnego miejsca na świecie.",
+    "greeting": "Opisz ładunek i trasę, a menedżer wróci z wyceną.",
     "error": "Błąd połączenia. Spróbuj ponownie.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
@@ -339,5 +339,8 @@
   "Privacy": {
     "metaTitle": "Polityka prywatności | Multicargo",
     "metaDescription": "Jak Multicargo przetwarza dane osobowe zbierane przez stronę, formularz kontaktowy i czat AI."
+  },
+  "hotOffers": {
+    "disclaimer": "Stawki orientacyjne. Ostateczna wycena na zapytanie."
   }
 }

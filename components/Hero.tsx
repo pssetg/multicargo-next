@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { trackLead } from '@/lib/analytics';
+// Hot-offer rates live only in data/hot-offers.json (see CLAUDE.md). `ratesVerifiedAt` is
+// an internal field and is deliberately not imported or shown.
+import hotOffers from '@/data/hot-offers.json';
+
+const { updatedAt, offers } = hotOffers;
 import {
   Search,
   ArrowRight,
@@ -15,15 +20,18 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-/** Static rate data — language-neutral, mirrors the original offers.js */
-const HOT_OFFERS = [
-  { type: 'TRUCK', route: 'VALENCIA → KYIV', price: '2.10 EUR / KM' },
-  { type: 'AIR', route: 'SZX → WAW', price: '6.50 USD / KG' },
-  { type: 'RAIL', route: 'CHINA → POLAND', price: '190 USD / M3' },
-  { type: 'SEA', route: 'NINGBO → GDANSK', price: '1450 USD / 40HC' },
-  { type: 'TRUCK', route: 'WARSAW → KYIV', price: '2.10 EUR / KM' },
-  { type: 'AIR', route: 'DXB → WAW', price: '3.80 USD / KG' },
-];
+/** The panel is hidden when the rates were last updated more than this many days ago. */
+const RATES_MAX_AGE_DAYS = 10;
+
+/** ISO-8601 week label from a YYYY-MM-DD date, e.g. "WEEK46/26:" (language-neutral, never translated). */
+function weekLabel(dateStr: string): string {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  const dayOfWeek = d.getUTCDay() || 7; // Mon=1 … Sun=7
+  d.setUTCDate(d.getUTCDate() + 4 - dayOfWeek); // Thursday of that week decides the ISO year
+  const isoYear = d.getUTCFullYear();
+  const week = Math.ceil(((d.getTime() - Date.UTC(isoYear, 0, 1)) / 86_400_000 + 1) / 7);
+  return `WEEK${String(week).padStart(2, '0')}/${String(isoYear % 100).padStart(2, '0')}:`;
+}
 
 /** Service cards in the left rail — icons + translation keys + anchor targets */
 const SERVICES: { key: string; icon: LucideIcon; href: string }[] = [
@@ -78,7 +86,7 @@ function useTypewriter(phrases: string[]) {
 function HotOffersGroup() {
   return (
     <div className="flex flex-col gap-8 pb-8">
-      {HOT_OFFERS.map((offer, i) => (
+      {offers.map((offer, i) => (
         <div
           key={`${offer.route}-${i}`}
           className={`flex flex-col gap-1 border-l-2 pl-3 ${
@@ -97,7 +105,14 @@ function HotOffersGroup() {
 
 export default function Hero() {
   const t = useTranslations('Hero');
+  const tOffers = useTranslations('hotOffers');
   const locale = useLocale();
+  // Decided after mount (Date.now() differs between build time and the visitor's clock).
+  const [showRates, setShowRates] = useState(false);
+  useEffect(() => {
+    const ageDays = (Date.now() - Date.parse(`${updatedAt}T00:00:00Z`)) / 86_400_000;
+    setShowRates(ageDays <= RATES_MAX_AGE_DAYS);
+  }, []);
   const phrases = (t.raw('typewriter') as string[]) ?? [];
   const typed = useTypewriter(phrases);
   const [query, setQuery] = useState('');
@@ -171,7 +186,8 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Right Hot Offers rail */}
+          {/* Right Hot Offers rail (hidden when the rates are older than RATES_MAX_AGE_DAYS) */}
+          {showRates && (
           <div className="absolute left-1/2 top-0 hidden w-64 -translate-y-80 translate-x-[440px] flex-col xl:flex">
             <div className="flex items-center justify-between rounded-t-[16px] border-x border-t border-white/5 bg-slate-950/90 px-4 py-2">
               <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white">
@@ -183,7 +199,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="relative h-[453px] overflow-hidden rounded-b-[16px] border-x border-b border-white/5 bg-slate-950/40 shadow-2xl backdrop-blur-md">
+            <div className="relative flex h-[453px] flex-col overflow-hidden rounded-b-[16px] border-x border-b border-white/5 bg-slate-950/40 shadow-2xl backdrop-blur-md">
               <div
                 className="pointer-events-none absolute inset-0 opacity-[0.05]"
                 style={{
@@ -191,16 +207,25 @@ export default function Hero() {
                   backgroundSize: '4px 4px',
                 }}
               />
-              <div className="flex h-full flex-col py-4 font-mono">
-                <div className="scroll-container flex flex-col px-6">
-                  <HotOffersGroup />
-                  <HotOffersGroup />
+              <p className="relative px-6 pt-4 font-mono text-[11px] font-bold tracking-[0.15em] text-blue-400">
+                {weekLabel(updatedAt)}
+              </p>
+              <div className="relative min-h-0 flex-1 overflow-hidden">
+                <div className="flex h-full flex-col py-4 font-mono">
+                  <div className="scroll-container flex flex-col px-6">
+                    <HotOffersGroup />
+                    <HotOffersGroup />
+                  </div>
                 </div>
+                <div className="pointer-events-none absolute left-0 top-0 h-8 w-full bg-gradient-to-b from-[#030712] to-transparent" />
+                <div className="pointer-events-none absolute bottom-0 left-0 h-12 w-full bg-gradient-to-t from-[#030712] to-transparent" />
               </div>
-              <div className="pointer-events-none absolute left-0 top-0 h-12 w-full bg-gradient-to-b from-[#030712] to-transparent" />
-              <div className="pointer-events-none absolute bottom-0 left-0 h-12 w-full bg-gradient-to-t from-[#030712] to-transparent" />
+              <p className="relative px-6 pb-4 pt-2 font-mono text-[10px] leading-snug text-slate-500">
+                {tOffers('disclaimer')}
+              </p>
             </div>
           </div>
+          )}
         </div>
 
         {/* Smart Console — mobile: stacked, full-width Calculate button always
