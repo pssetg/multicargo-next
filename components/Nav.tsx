@@ -14,7 +14,7 @@ import {
   LayoutGrid,
   ClipboardCheck,
   ChevronDown,
-  DownloadCloud,
+  Mail,
   Menu,
   X,
   type LucideIcon,
@@ -117,9 +117,6 @@ export default function Nav() {
             <a href={h('#about')} className="transition hover:text-blue-400">
               {t('about')}
             </a>
-            <a href={h('#contact')} className="transition hover:text-blue-400">
-              {t('contact')}
-            </a>
 
             {locale === 'uk' && (
               <a href={h('#relocants')} className="transition hover:text-blue-400">
@@ -159,8 +156,7 @@ export default function Nav() {
             <a href={h('#partners')} className="transition hover:text-blue-400">
               {t('partners')}
             </a>
-            <a href={h('#download')} className="flex items-center text-blue-400 transition hover:text-blue-300">
-              <DownloadCloud className="mr-2 h-4 w-4" />
+            <a href={h('#download')} className="transition hover:text-blue-400">
               {t('downloads')}
             </a>
           </nav>
@@ -170,9 +166,10 @@ export default function Nav() {
             <a
               href={h('#contact')}
               onClick={() => trackLead('quote_request')}
-              className="whitespace-nowrap rounded-xl bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/25 transition hover:bg-blue-500"
+              className="flex items-center whitespace-nowrap text-[11px] font-bold uppercase tracking-widest text-blue-400 transition hover:text-blue-300"
             >
-              {t('quote')}
+              <Mail className="mr-2 h-4 w-4" />
+              {t('contactUs')}
             </a>
             <div className="flex items-center">
               <LanguageBar className="mr-8" />
@@ -191,9 +188,11 @@ export default function Nav() {
             <a
               href={h('#contact')}
               onClick={() => trackLead('quote_request')}
-              className="flex h-11 items-center whitespace-nowrap rounded-xl bg-blue-600 px-3 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition active:scale-95"
+              className="flex h-11 items-center whitespace-nowrap px-2 text-[9px] font-bold uppercase tracking-normal text-blue-400 transition hover:text-blue-300 min-[400px]:text-[10px] min-[400px]:tracking-wider"
             >
-              {t('quote')}
+              <Mail className="mr-1.5 h-4 w-4 flex-shrink-0" />
+              {/* Narrow screens (< 375px): icon only, the text stays for screen readers */}
+              <span className="max-[374px]:sr-only">{t('contactUs')}</span>
             </a>
             <button
               onClick={() => setMobileOpen(true)}
@@ -228,9 +227,6 @@ export default function Nav() {
             <a href={h('#about')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('about')}
             </a>
-            <a href={h('#contact')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
-              {t('contact')}
-            </a>
             {locale === 'uk' && (
               <a href={h('#relocants')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
                 Бізнес в ЄС
@@ -261,6 +257,14 @@ export default function Nav() {
             </a>
             <a href={h('#download')} onClick={() => setMobileOpen(false)} className="transition hover:text-blue-400">
               {t('downloads')}
+            </a>
+            <a
+              href={h('#contact')}
+              onClick={() => setMobileOpen(false)}
+              className="gap-2 text-blue-400 transition hover:text-blue-300"
+            >
+              <Mail className="h-4 w-4" />
+              {t('contactUs')}
             </a>
           </nav>
 
