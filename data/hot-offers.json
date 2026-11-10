@@ -1,0 +1,31 @@
+{
+  "updatedAt": "2026-11-09",
+  "ratesVerifiedAt": "2026-11-09",
+  "offers": [
+    {
+      "type": "SEA",
+      "route": "QINGDAO → GDANSK",
+      "price": "1700 USD / 20FT"
+    },
+    {
+      "type": "SEA",
+      "route": "QINGDAO → GDANSK",
+      "price": "2840 USD / 40FT"
+    },
+    {
+      "type": "SEA",
+      "route": "BUSAN → GDANSK",
+      "price": "1990 USD / 20FT"
+    },
+    {
+      "type": "AIR",
+      "route": "PEK → WAW",
+      "price": "6.50 USD / KG"
+    },
+    {
+      "type": "AIR",
+      "route": "PEK → FRA",
+      "price": "6.00 USD / KG"
+    }
+  ]
+}

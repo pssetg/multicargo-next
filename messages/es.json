@@ -38,7 +38,7 @@
       "Ningbo → Gdansk, contenedor 40HC",
       "Valencia → Kiev, camión completo"
     ],
-    "calculate": "Calcular",
+    "calculate": "Solicitar cotización",
     "hotOffers": "Ofertas destacadas",
     "quote": "La gente construye demasiados muros y no suficientes puentes.",
     "quoteAuthor": "Isaac Newton",
@@ -317,7 +317,7 @@
     "title": "Multicargo",
     "status": "En línea",
     "placeholder": "Escribe tu mensaje...",
-    "greeting": "¡Bienvenidos a Multicargo! Cuéntenos sobre su carga — encontraremos la mejor ruta desde cualquier parte del mundo.",
+    "greeting": "Describe tu carga y la ruta, y un gestor volverá contigo con un cálculo.",
     "error": "Error de conexión. Inténtalo de nuevo.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
@@ -339,5 +339,8 @@
   "Privacy": {
     "metaTitle": "Política de privacidad | Multicargo",
     "metaDescription": "Cómo Multicargo trata los datos personales recogidos a través del sitio web, el formulario de contacto y el chat con IA."
+  },
+  "hotOffers": {
+    "disclaimer": "Tarifas orientativas. Cotización final bajo consulta."
   }
 }

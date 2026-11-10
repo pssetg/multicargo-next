@@ -38,7 +38,7 @@
       "Ningbo → Gdansk, 40HC container",
       "Valencia → Kyiv, full truck load"
     ],
-    "calculate": "Calculate",
+    "calculate": "Get a quote",
     "hotOffers": "Hot Offers",
     "quote": "People build too many walls and not enough bridges.",
     "quoteAuthor": "Isaac Newton",
@@ -317,7 +317,7 @@
     "title": "Multicargo",
     "status": "Online",
     "placeholder": "Type your message...",
-    "greeting": "Welcome to Multicargo! Tell us about your shipment — we'll find the best route from anywhere in the world.",
+    "greeting": "Describe your cargo and route, and a manager will get back to you with a calculation.",
     "error": "Connection error. Please try again.",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
@@ -339,5 +339,8 @@
   "Privacy": {
     "metaTitle": "Privacy Policy | Multicargo",
     "metaDescription": "How Multicargo handles personal data collected through the website, the contact form and the AI chat."
+  },
+  "hotOffers": {
+    "disclaimer": "Indicative rates. Final quote on request."
   }
 }
