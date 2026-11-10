@@ -17,6 +17,8 @@ const BAR_HEIGHT_VAR = '--cta-bar-h';
  */
 export default function MobileCtaBar() {
   const t = useTranslations('CtaBar');
+  // The primary button uses the same label as the header CTA.
+  const tNav = useTranslations('Nav');
   const [formVisible, setFormVisible] = useState(false);
   const [bannerOffset, setBannerOffset] = useState(0);
   const barRef = useRef<HTMLDivElement>(null);
@@ -83,7 +85,7 @@ export default function MobileCtaBar() {
   if (formVisible) return null;
 
   const base =
-    'flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl px-1 text-[10px] font-black uppercase tracking-wide transition active:scale-95';
+    'flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl px-1 text-center text-[10px] font-black uppercase leading-tight tracking-wide transition active:scale-95';
 
   return (
     <div
@@ -100,7 +102,7 @@ export default function MobileCtaBar() {
         className={`${base} bg-blue-600 text-white shadow-lg shadow-blue-500/25`}
       >
         <MessageSquareText className="h-4 w-4" />
-        {t('quote')}
+        {tNav('contactUs')}
       </a>
       <a
         href={CONTACT_PHONE_HREF}
